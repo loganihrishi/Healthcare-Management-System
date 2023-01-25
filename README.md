@@ -1,4 +1,4 @@
-# Healthcare Management System Project
+# Healthcare Management System 
 
 ## About the Application 
 
@@ -21,4 +21,3 @@
   in creating a tool that can assist doctors, specifically my father who is a doctor. 
   I have always wanted to develop an application that can make their job more manageable. 
 
-s
