@@ -18,6 +18,6 @@
 **Why is this project of interest to you?**
 
 - I am particularly drawn to this system because it aligns with my personal interest 
-  in creating a tool that can assist doctors, specifically my father who is a doctor. 
+  in creating a tool that can assist doctors, specifically my father. 
   I have always wanted to develop an application that can make their job more manageable. 
 
