@@ -23,3 +23,11 @@
 
 ## User Stories
 
+As a user, I will have the capability to:
+
+- Schedule a new appointment and add it to the existing list
+- Change the date and time of an existing appointment to the following day
+- Remove an appointment that has been scheduled
+- Store the appointments on my device
+- Reopen the application and have it return to the same state as when I last closed it.
+
