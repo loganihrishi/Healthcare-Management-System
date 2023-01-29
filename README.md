@@ -30,3 +30,4 @@
 - Remove an appointment that has been scheduled
 - Store the appointments on my device
 - Reopen the application and have it return to the same state as when I last closed it.
+- Search the appointment details using the patients Personal Health Number (PHN)
