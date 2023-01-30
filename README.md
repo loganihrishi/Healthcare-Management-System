@@ -17,16 +17,16 @@
 
 **Why is this project of interest to you?**
 
-As someone who has always been interested in creating tools to assist those in the healthcare industry, 
+- As someone who has always been interested in creating tools to assist those in the healthcare industry, 
 I am particularly drawn to this project. My goal is to develop an application that can make the job of doctors, 
 specifically my father, more manageable.
 In the fast-paced world of medicine, doctors often have to deal with a huge amount of information, patient data, and paperwork. 
 
-This can make their job stressful and time-consuming, leading to burnout and decreased patient care. 
+- This can make their job stressful and time-consuming, leading to burnout and decreased patient care. 
 By developing a tool that can assist doctors and make their job more manageable, I hope to have a positive impact on the 
 quality of healthcare they provide.
 
-The healthcare industry is ripe for innovation, and there are many areas where technology can play a supportive role. 
+- The healthcare industry is ripe for innovation, and there are many areas where technology can play a supportive role. 
 Electronic medical records, telemedicine, and medical decision support systems are just a few examples. 
 I believe that by utilizing the latest technology and advancements in artificial intelligence, 
 I can create an application that will truly make a difference in the lives of doctors and their patients.
