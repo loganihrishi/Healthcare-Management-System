@@ -45,7 +45,7 @@ public class Appointment {
 
     // EFFECTS: displays the appointment in a proper format
     public String toString() {
-       return patient.toString() + " " + date + " " + time;
+       return patient.toString() + " " + " Date:" + date + " Time:" + time;
     }
 
     public boolean overlap(Appointment appointment) {
