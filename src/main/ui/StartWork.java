@@ -21,9 +21,9 @@ public class StartWork {
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
     public StartWork() throws ParseException {
-        displayMenu();
         this.patients = new ArrayList<>();
         this.appointments = new AppointmentList();
+        displayMenu();
     }
 
     Scanner sc = new Scanner(System.in);
@@ -68,9 +68,7 @@ public class StartWork {
         Patient patient = new Patient(name, age, sex, insurance, PHN);
         patients.add(patient);
         List<Disease> diseases = addDisease();
-        for (Disease d : diseases) {
-            patient.addDisease(d.getName(), d.getDiagnosedDate());
-        }
+        patient.setDiseases(diseases);
         displayMenu();
     }
 
@@ -86,7 +84,6 @@ public class StartWork {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDate d = LocalDate.parse(date, formatter);
             diseases.add(new Disease(name, d));
-            System.out.println("Disease successfully added!");
         }
         System.out.println("All the diseases have been stored");
         return diseases;
@@ -111,7 +108,8 @@ public class StartWork {
             if (result.equals("No appointment found with given PHN") &&
                     !overlaps(d, t) &&
                     (getPatient(PHN) != null)) {
-                appointments.addAppointment(new Appointment(d, t, getPatient(PHN)));
+                Appointment a1 = new Appointment(d, t, getPatient(PHN));
+                appointments.addAppointment(a1);
                 System.out.println("Appointment successfully scheduled");
             }
             else {
@@ -136,9 +134,12 @@ public class StartWork {
             if (appointment.getPatient().getPHN() == PHN) {
                 appointments.removeAppointment(appointment);
                 System.out.println("Cancelled the Appointment");
+                break;
             }
+            else
+                System.out.println("Could not find any appointment associated with the given PHN");
         }
-        System.out.println("Could not find any appointment associated with it");
+
         displayMenu();
     }
 
@@ -160,10 +161,10 @@ public class StartWork {
         else {
             System.out.print("Enter the date of the NEW appointment (YYYY/MM/DD): ");
             String date1 = sc.next();
-            LocalDate d1 = LocalDate.parse(date, formatter);
+            LocalDate d1 = LocalDate.parse(date1, formatter);
             System.out.print("Enter the time of the NEW appointment (hh:mm): ");
             String time1 = sc.next();
-            LocalTime t1 = LocalTime.parse(time + ":00");
+            LocalTime t1 = LocalTime.parse(time1 + ":00");
             Appointment app = new Appointment(d, t, getPatient(PHN));
             appointments.rescheduleAppointment(app, d1, t1);
             displayMenu();

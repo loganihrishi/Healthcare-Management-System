@@ -23,8 +23,7 @@ public class AppointmentList {
     // MODIFIES: this
     // EFFECTS: adds the appointment to the given list of appointments
     public void addAppointment(Appointment app) {
-        if (!appointments.contains(app))
-            appointments.add(app);
+        appointments.add(app);
     }
 
     // REQUIRES: an appointment which has already been scheduled
@@ -48,28 +47,24 @@ public class AppointmentList {
     //          otherwise do nothing
     // TODO: consider changing the return type to boolean, returns true if rescheduling successful, false otherwise
     public void rescheduleAppointment(Appointment a, LocalDate date, LocalTime time) {
-        if (appointments.contains(a)) {
-            if (time.isAfter(LocalTime.of(9, 0)) && time.isBefore(LocalTime.of(17, 0))) {
-                boolean dateTimeAvailable = true;
-                for (Appointment app : appointments) {
-                    if (app.getDate().equals(date) && app.getTime().equals(time)) {
-                        dateTimeAvailable = false;
-                        break;
-                    }
+        if (time.isAfter(LocalTime.of(9, 0)) && time.isBefore(LocalTime.of(17, 0))) {
+            boolean dateTimeAvailable = true;
+            for (Appointment app : appointments) {
+                if (app.getDate().equals(date) && app.getTime().equals(time)) {
+                    dateTimeAvailable = false;
+                    break;
                 }
-                if (dateTimeAvailable) {
-                    a.setDate(date);
-                    a.setTime(time);
-                    System.out.println("Appointment rescheduled successfully to "+ date + " at " + time);
-                } else {
-                    System.out.println("The selected date and time are not available, please choose a different one.");
-                }
-            } else {
-                System.out.println("Invalid time. Appointment can only be scheduled between 9:00 and 17:00.");
             }
-        }
-        else {
-            System.out.println("Appointment not found; please input a valid appointment.");
+            if (dateTimeAvailable) {
+                Appointment newAppointment = new Appointment(date, time, a.getPatient());
+                removeAppointment(a);
+                addAppointment(newAppointment);
+                System.out.println("Appointment rescheduled successfully to "+ date + " at " + time);
+            } else {
+                System.out.println("The selected date and time are not available, please choose a different one.");
+            }
+        } else {
+            System.out.println("Invalid time. Appointment can only be scheduled between 9:00 and 17:00.");
         }
     }
 

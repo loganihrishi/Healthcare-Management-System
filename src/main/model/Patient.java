@@ -50,6 +50,10 @@ public class Patient {
         diseases.add(new Disease(diseaseName, diagnosisDate));
     }
 
+    public void setDiseases(List<Disease> diseases) {
+        this.diseases = diseases;
+    }
+
     public List<Disease> getDiseases() {
         return diseases;
     }
