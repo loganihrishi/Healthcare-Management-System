@@ -203,38 +203,3 @@ public class StartWork {
     }
 
 }
-
-
-/*
-* int currPHN = sc.nextInt();
-            // checks if the patient exists in the list of patients
-            for (Patient p: patients) {
-                if (p.getPHN() == currPHN) {
-                    name = p.getName();
-                    age = p.getAge();
-                    sex = p.getSex();
-                    diseases = p.getDiseases();
-                    insurance = p.getInsurance();
-                    PHN = p.getPHN();
-                    break;
-                }
-                System.out.println("Invalid Personal Health Number!");
-            }
-            // check if the current appointment overlaps any existing appointments
-            boolean b =false;
-            for (Appointment appointment: appointments.getAppointments()) {
-                if (appointment.overlap(appointment)) {
-                    b = true;
-                    break;
-                }
-            }
-            if (!b) {
-                appointments.addAppointment(new Appointment(d ,t, new Patient(name, age, sex, insurance, PHN)));
-            }
-        }
-
-*
-*
-*
-*
-* */
