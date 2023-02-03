@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestPatient {
     private Patient p1, p2;
@@ -65,7 +67,7 @@ public class TestPatient {
         assertEquals("TB 2021-08-02\n", p1.DisplayDiseases());
         p1.addDisease(d2.getName(), d2.getDiagnosedDate());
         assertEquals("TB 2021-08-02\n" +
-                "Cholera 2023-02-02\n", p1.DisplayDiseases());
+                "Cholera " + LocalDate.now() + "\n", p1.DisplayDiseases());
     }
 
     @Test
@@ -96,6 +98,18 @@ public class TestPatient {
                 "PHN: 1234568\n" +
                 "Diseases: \n" +
                 "TB 2021-08-02\n" +
-                "Cholera 2023-02-02\n", p2.toString());
+                "Cholera " + LocalDate.now() + "\n", p2.toString());
+    }
+
+    @Test
+    public void TestGetDiseases() {
+        List<Disease> diseases = new ArrayList<>();
+        assertEquals(0, p1.getDiseases().size());
+        p1.addDisease(d1.getName(), d1.getDiagnosedDate());
+        diseases.add(d1);
+        assertEquals(1, p1.getDiseases().size());
+        diseases.add(d2);
+        p1.addDisease(d2.getName(), d2.getDiagnosedDate());
+        assertEquals(2, p1.getDiseases().size());
     }
 }

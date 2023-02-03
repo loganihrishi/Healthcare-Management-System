@@ -23,16 +23,14 @@ public class AppointmentList {
     // MODIFIES: this
     // EFFECTS: adds the appointment to the given list of appointments
     public void addAppointment(Appointment app) {
-        appointments.add(app);
+        this.appointments.add(app);
     }
 
     // REQUIRES: an appointment which has already been scheduled
     // MODIFIES: this
     // EFFECTS: removes the appointment from the given list of appointments
     public void removeAppointment(Appointment app)  {
-        if (appointments.contains(app)) {
-            appointments.remove(app);
-        }
+        this.appointments.remove(app);
     }
 
     // MODIFIES: this
@@ -45,8 +43,8 @@ public class AppointmentList {
     // MODIFIES: this
     // EFFECTS: reschedules the given appointment to the given date, if possible
     //          otherwise do nothing
-    // TODO: consider changing the return type to boolean, returns true if rescheduling successful, false otherwise
-    public void rescheduleAppointment(Appointment a, LocalDate date, LocalTime time) {
+
+    public boolean rescheduleAppointment(Appointment a, LocalDate date, LocalTime time) {
         if (time.isAfter(LocalTime.of(9, 0)) && time.isBefore(LocalTime.of(17, 0))) {
             boolean dateTimeAvailable = true;
             for (Appointment app : appointments) {
@@ -60,16 +58,20 @@ public class AppointmentList {
                 removeAppointment(a);
                 addAppointment(newAppointment);
                 System.out.println("Appointment rescheduled successfully to "+ date + " at " + time);
+                return true;
             } else {
                 System.out.println("The selected date and time are not available, please choose a different one.");
+                return false;
             }
         } else {
             System.out.println("Invalid time. Appointment can only be scheduled between 9:00 and 17:00.");
+            return false;
         }
     }
 
+
     // REQUIRES: a valid date
-    // EFFECTS: displays all the appointments scheduled on the given date
+    // EFFECTS: displays all the appointments scheduled on the give
 
     public void DisplayGivenDate(LocalDate d) {
         for (Appointment a : appointments) {
@@ -90,5 +92,14 @@ public class AppointmentList {
             }
         }
         return "No appointment found with given PHN";
+    }
+
+    public Appointment findAppointment(int PHN) {
+        for (Appointment a: appointments) {
+            if (a.getPatient().getPHN() == PHN) {
+                return a;
+            }
+        }
+        return null;
     }
 }

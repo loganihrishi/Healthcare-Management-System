@@ -167,6 +167,7 @@ public class StartWork {
             LocalTime t1 = LocalTime.parse(time1 + ":00");
             Appointment app = new Appointment(d, t, getPatient(PHN));
             appointments.rescheduleAppointment(app, d1, t1);
+            appointments.removeAppointment(new Appointment(d, t, getPatient(PHN)));
             displayMenu();
         }
     }

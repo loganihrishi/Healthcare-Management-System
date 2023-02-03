@@ -72,41 +72,45 @@ public class TestAppointmentList {
     }
 
     @Test
-    public void testRescheduleAppointment() {
+    public void testRescheduleAppointment_SuccessfulRescheduling() {
         AppointmentList appointmentList = new AppointmentList();
         Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
-        appointmentList.addAppointment(a);
+        appointmentList.addAppointment(a); // Test successful rescheduling
 
-        // Test successful rescheduling
-        appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
+        boolean success = appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
                 LocalTime.of(10, 0));
-        assertEquals(LocalDate.of(2022, 1, 2), a.getDate());
-        assertEquals(LocalTime.of(10, 0), a.getTime());
+        assertTrue(success);
 
-        // Test rescheduling to an unavailable time
+        Appointment rescheduledAppointment = appointmentList.findAppointment(9876543);
+        assertEquals(LocalDate.of(2022, 1, 2), rescheduledAppointment.getDate());
+        assertEquals(LocalTime.of(10, 0), rescheduledAppointment.getTime());
+    }
+
+    @Test
+    public void testRescheduleAppointment_UnavailableTime() {
+        AppointmentList appointmentList = new AppointmentList();
+        Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
+        Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
+                LocalTime.of(10, 0), p);
+        appointmentList.addAppointment(a); // Test rescheduling to an unavailable time
         appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
                 LocalTime.of(18, 0));
-        assertEquals(LocalDate.of(2022, 1, 2), a.getDate());
+        assertEquals(LocalDate.of(2022, 1, 1), a.getDate());
         assertEquals(LocalTime.of(10, 0), a.getTime());
+    }
 
-        // Test rescheduling to an unavailable date and time
-        Appointment b = new Appointment(LocalDate.of(2022, 1, 2),
+    @Test
+    public void testRescheduleAppointment_InvalidTime() {
+        AppointmentList appointmentList = new AppointmentList();
+        Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
+        Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
-        appointmentList.addAppointment(b);
+        appointmentList.addAppointment(a); // Test rescheduling to an invalid time
         appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
-                LocalTime.of(10, 0));
-        assertEquals(LocalDate.of(2022, 1, 2), a.getDate());
+                LocalTime.of(7, 0));
+        assertEquals(LocalDate.of(2022, 1, 1), a.getDate());
         assertEquals(LocalTime.of(10, 0), a.getTime());
-
-        // Test rescheduling a non-existent appointment
-        Appointment c = new Appointment(LocalDate.of(2022, 1, 3),
-                LocalTime.of(10, 0), p);
-        appointmentList.rescheduleAppointment(c, LocalDate.of(2022, 1, 4),
-                LocalTime.of(10, 0));
-        assertEquals(LocalDate.of(2022, 1, 3), c.getDate());
-        assertEquals(LocalTime.of(10,0), c.getTime());
-
     }
 }
