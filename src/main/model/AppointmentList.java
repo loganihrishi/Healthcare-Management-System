@@ -96,6 +96,4 @@ public class AppointmentList {
         }
         return "No appointment found with given PHN";
     }
-
-
 }
