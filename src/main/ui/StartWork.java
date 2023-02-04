@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
+import java.util.SortedMap;
 
 
 public class StartWork {
@@ -36,21 +37,23 @@ public class StartWork {
         System.out.println("5. Enter 5 to display all scheduled appointments for a particular date.");
         System.out.println("6. Enter 6 to Quit the application.");
         option = sc.nextInt();
-        sc.nextLine();
-        if (option == 1) {
-            addPatient();
-        } else if (option == 2) {
-            addAppointment();
-        } else if (option == 3)
-            cancelAppointment();
-        else if (option == 4)
-            rescheduleAppointment();
-        else if (option == 5) {
-            displayAll();
-        }
-        else {
-            System.out.println("Exiting the application...");
-            System.out.println("Exited");
+        while (true) {
+            if (option == 1) {
+                addPatient();
+            } else if (option == 2) {
+                addAppointment();
+            } else if (option == 3)
+                cancelAppointment();
+            else if (option == 4)
+                rescheduleAppointment();
+            else if (option == 5) {
+                displayAll();
+            }
+            else if (option == 6) {
+                System.out.println("Exiting the application...");
+                System.out.println("Exited");
+                break;
+            }
         }
     }
 
@@ -145,32 +148,64 @@ public class StartWork {
 
 
     public void rescheduleAppointment() throws ParseException {
-        System.out.print("Enter the date of the current appointment (YYYY/MM/DD): ");
-        String date = sc.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate d = LocalDate.parse(date, formatter);
-        System.out.print("Enter the time of the current appointment (hh:mm): ");
-        String time = sc.next();
-        LocalTime t = LocalTime.parse(time + ":00");
-        System.out.print("Enter the PHN of the patient: ");
-        int PHN = sc.nextInt();
-        if (getPatient(PHN) == null) {
-            System.out.println("Invalid PHN!");
+        System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled");
+        int phn = sc.nextInt();
+        Patient patient = getPatient(phn);
+        if (patient == null) {
+            System.out.println("Patient does not exist! ");
+            displayMenu();
+        }
+
+        Appointment currentAppointment = appointments.findAppointment(phn);
+        if (currentAppointment == null) {
+            System.out.println("Appointment Not Found!");
             displayMenu();
         }
         else {
-            System.out.print("Enter the date of the NEW appointment (YYYY/MM/DD): ");
-            String date1 = sc.next();
-            LocalDate d1 = LocalDate.parse(date1, formatter);
-            System.out.print("Enter the time of the NEW appointment (hh:mm): ");
-            String time1 = sc.next();
-            LocalTime t1 = LocalTime.parse(time1 + ":00");
-            Appointment app = new Appointment(d, t, getPatient(PHN));
-            appointments.rescheduleAppointment(app, d1, t1);
-            appointments.removeAppointment(new Appointment(d, t, getPatient(PHN)));
+            // appointments.removeAppointment(currentAppointment);
+            // removes the appointment
+            System.out.print("Enter the date for the new appointment (YYYY/MM/DD): ");
+            String newDate = sc.next();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate d = LocalDate.parse(newDate, formatter);
+            System.out.print("Enter the time of the new appointment (hh:mm): ");
+            String time = sc.next();
+            LocalTime t = LocalTime.parse(time + ":00");
+            // Appointment newAppointment = new Appointment(d, t, getPatient(phn));
+            appointments.rescheduleAppointment(currentAppointment ,d , t);
             displayMenu();
         }
     }
+
+//    public void rescheduleAppointment() throws ParseException {
+//        System.out.print("Enter the date of the current appointment (YYYY/MM/DD): ");
+//        String date = sc.next();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//        LocalDate d = LocalDate.parse(date, formatter);
+//        System.out.print("Enter the time of the current appointment (hh:mm): ");
+//        String time = sc.next();
+//        LocalTime t = LocalTime.parse(time + ":00");
+//        System.out.print("Enter the PHN of the patient: ");
+//
+//        int PHN = sc.nextInt();
+//        if (getPatient(PHN) == null) {
+//            System.out.println("Invalid PHN!");
+//            displayMenu();
+//        }
+//
+//        else {
+//            Appointment a = new Appointment(d, t, getPatient(PHN)); // this is the existing appointment
+//            System.out.print("Enter the date of the NEW appointment (YYYY/MM/DD): ");
+//            String date1 = sc.next();
+//            LocalDate d1 = LocalDate.parse(date1, formatter);
+//            System.out.print("Enter the time of the NEW appointment (hh:mm): ");
+//            String time1 = sc.next();
+//            LocalTime t1 = LocalTime.parse(time1 + ":00");
+//            appointments.rescheduleAppointment(a, d1, t1);
+//            appointments.removeAppointment(a);
+//            displayMenu();
+//        }
+//    }
 
     public void displayAll() throws ParseException {
         System.out.print("Enter the date of the current appointment (YYYY/MM/DD): ");

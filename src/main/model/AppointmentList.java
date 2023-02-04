@@ -86,10 +86,8 @@ public class AppointmentList {
     //          otherwise returns "No appointment found with given PHN"
 
     public String findAppointmentWithPHN(int PHN) {
-        for (Appointment a: appointments) {
-            if (a.getPatient().getPHN()==PHN) {
-                return a.toString();
-            }
+        if (findAppointment(PHN) != null) {
+            return findAppointment(PHN).toString();
         }
         return "No appointment found with given PHN";
     }

@@ -71,6 +71,15 @@ public class TestAppointmentList {
         assertEquals(a2.toString(), LOA1.findAppointmentWithPHN(1234568));
     }
 
+    @Test public void testFindAppointmentWithPHN() {
+        assertEquals(null, LOA1.findAppointment(1234567));
+        LOA1.addAppointment(a1);
+        assertNotNull(LOA1.findAppointment(1234567));
+        LOA1.addAppointment(a2);
+        assertNull(LOA1.findAppointment(2345678));
+        assertNotNull(LOA1.findAppointment(1234568));
+    }
+
     @Test
     public void testRescheduleAppointment_SuccessfulRescheduling() {
         AppointmentList appointmentList = new AppointmentList();
