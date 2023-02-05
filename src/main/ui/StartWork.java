@@ -50,12 +50,10 @@ public class StartWork {
             else if (option == 5) {
                 displayAll();
             }
-            else if (option == 6) {
-                System.out.println("Exiting the application...");
+            else{
+                System.out.println("Exiting the application.");
                 break;
             }
-            else
-                break;
         }
     }
 
