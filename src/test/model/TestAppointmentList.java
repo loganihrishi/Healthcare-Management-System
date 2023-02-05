@@ -62,6 +62,20 @@ public class TestAppointmentList {
     }
 
     @Test
+    public void TestResetAppointment() {
+        assertEquals(0, LOA1.getAppointments().size());
+        LOA1.addAppointment(a1);
+        assertEquals(1, LOA1.getAppointments().size());
+        LOA1.resetAppointment();
+        assertEquals(0, LOA1.getAppointments().size());
+        LOA1.addAppointment(a1);
+        LOA1.addAppointment(a2);
+        assertEquals(2, LOA1.getAppointments().size());
+        LOA1.resetAppointment();
+        assertEquals(0, LOA1.getAppointments().size());
+    }
+
+    @Test
     public void testAppointmentWithPHN() {
         assertEquals("No appointment found with given PHN", LOA1.findAppointmentWithPHN(1234567));
         LOA1.addAppointment(a1);

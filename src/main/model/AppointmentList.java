@@ -34,9 +34,9 @@ public class AppointmentList {
     }
 
     // MODIFIES: this
-    // EFFECTS: resets the given appointment
+    // EFFECTS: cancels all the currently scheduled appointment
     public void resetAppointment() {
-        this.appointments = new ArrayList<>();
+        appointments.clear();
     }
 
     // REQUIRES: a valid appointment that has been scheduled already
@@ -91,6 +91,9 @@ public class AppointmentList {
         }
         return "No appointment found with given PHN";
     }
+
+    // REQUIRES: a valid PHN
+    // EFFECTS: returns the appointment if found, null otherwise
 
     public Appointment findAppointment(int PHN) {
         for (Appointment a: appointments) {
