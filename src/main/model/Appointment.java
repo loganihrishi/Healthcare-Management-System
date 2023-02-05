@@ -48,6 +48,9 @@ public class Appointment {
        return patient.toString() + " " + " Date:" + date + " Time:" + time;
     }
 
+    // REQUIRES: a valid appointment
+    // EFFECTS: returns true if the given appointment overlaps another appointment
+
     public boolean overlap(Appointment appointment) {
         return (date.equals(appointment.getDate()) && time.equals(appointment.getTime()));
     }
