@@ -36,17 +36,16 @@ public class StartApp {
         System.out.println("6. Enter 6 to Quit the application.");
         option = sc.nextInt();
         while (true) {
-            if (option == 1) {
+            if (option == 1)
                 addPatient();
-            } else if (option == 2) {
+            else if (option == 2)
                 addAppointment();
-            } else if (option == 3)
+            else if (option == 3)
                 cancelAppointment();
             else if (option == 4)
                 rescheduleAppointment();
-            else if (option == 5) {
+            else if (option == 5)
                 displayAll();
-            }
             else{
                 System.out.println("Exiting the application.");
                 break;
@@ -60,6 +59,7 @@ public class StartApp {
         System.out.print("Enter Patient's Age: ");
         int age = sc.nextInt();
         System.out.print("Enter Patient's Sex (M/F): ");
+        // converting the string to char
         char sex = sc.next().charAt(0);
         System.out.print("Enter Patient's Insurance Details: ");
         String insurance = sc.next();
@@ -79,7 +79,7 @@ public class StartApp {
         for (int i = 0; i < num; i++) {
             System.out.print("Enter the name of disease no. " + (i + 1) + " :");
             String name = sc.next();
-            System.out.print("Enter the date of the date (YYYY/MM/DD) when the disease was diagnosed: ");
+            System.out.print("Enter the date (YYYY/MM/DD) when the disease was diagnosed: ");
             String date = sc.next();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDate d = LocalDate.parse(date, formatter);
@@ -143,7 +143,6 @@ public class StartApp {
         displayMenu();
     }
 
-
     public void rescheduleAppointment() throws ParseException {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = sc.nextInt();
@@ -172,9 +171,9 @@ public class StartApp {
         }
     }
 
-
+    // EFFECTS: displays all the appointments scheduled at a particular date
     public void displayAll() throws ParseException {
-        System.out.print("Enter the date of the current appointment (YYYY/MM/DD): ");
+        System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = sc.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate d = LocalDate.parse(date, formatter);
