@@ -4,24 +4,21 @@ import model.AppointmentList;
 import model.Disease;
 import model.Patient;
 
-import java.sql.SQLOutput;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
-import java.util.SortedMap;
 
 
-public class StartWork {
+public class StartApp {
     int option = 0;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
-    public StartWork() throws ParseException {
+    public StartApp() throws ParseException {
         this.patients = new ArrayList<>();
         this.appointments = new AppointmentList();
         displayMenu();
@@ -205,5 +202,4 @@ public class StartWork {
         }
         return null;
     }
-
 }

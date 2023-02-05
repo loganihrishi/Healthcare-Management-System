@@ -4,7 +4,7 @@ import java.text.ParseException;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
-        StartWork st = new StartWork();
+        StartApp st = new StartApp();
         st.displayMenu();
     }
 }
