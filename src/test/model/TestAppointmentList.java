@@ -33,6 +33,7 @@ public class TestAppointmentList {
         LOA2.addAppointment(a2);
     }
 
+
     @Test
     public void testGetAppointments() {
         ArrayList<Appointment> loa = new ArrayList<>();

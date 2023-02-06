@@ -7,6 +7,7 @@ import java.util.ArrayList;
 // So, at max we can only schedule 32 appointments for one day
 
 
+
 public class AppointmentList {
     private ArrayList<Appointment> appointments;
     // EFFECTS: constructs a new object for appointments

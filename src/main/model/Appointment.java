@@ -20,6 +20,7 @@ public class Appointment {
         return date;
     }
 
+
     // EFFECTS: returns the time of the given appointment
     public LocalTime getTime() {
         return time;

@@ -130,6 +130,7 @@ public class StartApp {
 
     public void cancelAppointment() throws ParseException {
         System.out.print("Enter PHN of the Patient: ");
+        // assuming that the appointment cannot be cancelled
         boolean isCancelled = false;
         int phn = sc.nextInt();
         for (Appointment appointment: appointments.getAppointments()) {
