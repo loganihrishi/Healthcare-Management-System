@@ -11,7 +11,6 @@ public class Disease {
     public Disease(String name, LocalDate date){
         this.name=name;
         this.diagnosedDate = date;
-
     }
 
     // EFFECTS: returns the name of the disease

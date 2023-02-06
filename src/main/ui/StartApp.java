@@ -104,7 +104,7 @@ public class StartApp {
         if (choice == 1) {
             System.out.print("Enter the Personal Health Number of the patient: ");
             int PHN = sc.nextInt();
-            String result = appointments.findAppointmentWithPHN(PHN);
+            String result = appointments.findAppointmentToString(PHN);
             if (result.equals("No appointment found with given PHN") &&
                     !overlaps(d, t) &&
                     (getPatient(PHN) != null)) {
@@ -180,7 +180,6 @@ public class StartApp {
         appointments.DisplayGivenDate(d);
         displayMenu();
     }
-
 
     // this is a helper
     // returns true if any appointment overlaps with the appointment in already scheduled appointments

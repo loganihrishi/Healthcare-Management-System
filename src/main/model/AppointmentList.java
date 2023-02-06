@@ -85,7 +85,7 @@ public class AppointmentList {
     // EFFECTS: returns the appointment details with the given PHN, if found
     //          otherwise returns "No appointment found with given PHN"
 
-    public String findAppointmentWithPHN(int PHN) {
+    public String findAppointmentToString(int PHN) {
         if (findAppointment(PHN) != null) {
             return findAppointment(PHN).toString();
         }

@@ -76,13 +76,13 @@ public class TestAppointmentList {
     }
 
     @Test
-    public void testAppointmentWithPHN() {
-        assertEquals("No appointment found with given PHN", LOA1.findAppointmentWithPHN(1234567));
+    public void testAppointmentWithPHNToString() {
+        assertEquals("No appointment found with given PHN", LOA1.findAppointmentToString(1234567));
         LOA1.addAppointment(a1);
-        assertEquals(a1.toString(), LOA1.findAppointmentWithPHN(1234567));
+        assertEquals(a1.toString(), LOA1.findAppointmentToString(1234567));
         LOA1.addAppointment(a2);
-        assertEquals("No appointment found with given PHN", LOA1.findAppointmentWithPHN(2345678));
-        assertEquals(a2.toString(), LOA1.findAppointmentWithPHN(1234568));
+        assertEquals("No appointment found with given PHN", LOA1.findAppointmentToString(2345678));
+        assertEquals(a2.toString(), LOA1.findAppointmentToString(1234568));
     }
 
     @Test public void testFindAppointmentWithPHN() {
