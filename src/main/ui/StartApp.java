@@ -130,17 +130,20 @@ public class StartApp {
 
     public void cancelAppointment() throws ParseException {
         System.out.print("Enter PHN of the Patient: ");
+        boolean isCancelled = false;
         int phn = sc.nextInt();
         for (Appointment appointment: appointments.getAppointments()) {
             if (appointment.getPatient().getPhn() == phn) {
                 appointments.removeAppointment(appointment);
-                System.out.println("Cancelled the Appointment!");
+                isCancelled = true;
                 break;
-            } else {
-                System.out.println("Error! Could not find any appointment associated with the given PHN!");
             }
         }
-
+        if (isCancelled) {
+            System.out.println("Cancelled the Appointment!");
+        } else {
+            System.out.println("Could not find the appointment!");
+        }
         displayMenu();
     }
 
