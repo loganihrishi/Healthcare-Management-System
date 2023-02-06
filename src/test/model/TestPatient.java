@@ -62,12 +62,12 @@ public class TestPatient {
 
     @Test
     public void TestDisplayDiseases() {
-        assertEquals("", p1.DisplayDiseases());
+        assertEquals("", p1.displayDiseases());
         p1.addDisease(d1.getName(), d1.getDiagnosedDate());
-        assertEquals("TB 2021-08-02\n", p1.DisplayDiseases());
+        assertEquals("TB 2021-08-02\n", p1.displayDiseases());
         p1.addDisease(d2.getName(), d2.getDiagnosedDate());
         assertEquals("TB 2021-08-02\n" +
-                "Cholera " + LocalDate.now() + "\n", p1.DisplayDiseases());
+                "Cholera " + LocalDate.now() + "\n", p1.displayDiseases());
     }
 
     @Test

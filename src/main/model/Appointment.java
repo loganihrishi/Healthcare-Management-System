@@ -8,10 +8,11 @@ public class Appointment {
     private Patient patient;
     // REQUIRES: valid date and time (between 9:00:00 and 17:00:00)
     // EFFECTS: construct appointment object using the given details
+
     public Appointment(LocalDate date, LocalTime time, Patient patient) {
-        this.date=date;
-        this.time=time;
-        this.patient=patient;
+        this.date = date;
+        this.time = time;
+        this.patient = patient;
     }
 
     // EFFECTS: return the date of the appointment
@@ -45,7 +46,7 @@ public class Appointment {
 
     // EFFECTS: displays the appointment in a proper format
     public String toString() {
-       return patient.toString() + " " + " Date:" + date + " Time:" + time;
+        return patient.toString() + " " + " Date:" + date + " Time:" + time;
     }
 
     // REQUIRES: a valid appointment

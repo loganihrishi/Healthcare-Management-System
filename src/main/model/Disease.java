@@ -8,8 +8,8 @@ public class Disease {
 
     // REQUIRES: a valid disease name and a valid date
     // EFFECTS: constructs a new disease object using the given information
-    public Disease(String name, LocalDate date){
-        this.name=name;
+    public Disease(String name, LocalDate date) {
+        this.name = name;
         this.diagnosedDate = date;
     }
 
@@ -26,7 +26,8 @@ public class Disease {
 
     // EFFECTS: returns the disease in the proper String format
     public String toString() {
-        return "Disease: " + name + "\n" +
+        return "Disease: " + name + "\n"
+                +
                 "Diagnosis Date: " + diagnosedDate;
     }
 }

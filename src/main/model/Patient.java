@@ -10,16 +10,16 @@ public class Patient {
     private List<Disease> diseases;
     private char sex;
     private String insurance;
-    public int PHN;
+    private int phn;
 
     // REQUIRES: a valid name, age, sex, insurance and PHN
     // EFFECTS: constructs the Patient object with the given details
-    public Patient(String name, int age, char sex, String insurance, int PHN){
-        this.name=name;
-        this.age=age;
+    public Patient(String name, int age, char sex, String insurance, int phn) {
+        this.name = name;
+        this.age = age;
         this.sex = sex;
         this.insurance = insurance;
-        this.PHN = PHN;
+        this.phn = phn;
         this.diseases = new ArrayList<>();
     }
 
@@ -44,8 +44,8 @@ public class Patient {
     }
 
     // EFFECTS: returns the PHN of the patient
-    public int getPHN() {
-        return PHN;
+    public int getPhn() {
+        return phn;
     }
 
     // REQUIRES: a valid insurance
@@ -75,7 +75,7 @@ public class Patient {
     }
 
     // EFFECTS: returns all the diseases in the proper string format
-    public String DisplayDiseases() {
+    public String displayDiseases() {
         String result = "";
         for (Disease d: diseases) {
             result += d.getName() + " " + d.getDiagnosedDate() + "\n";
@@ -85,13 +85,20 @@ public class Patient {
 
     // EFFECTS: displays the details of the patient in the proper string format
     public String toString() {
-        return "Patient: " + "\n" +
-                "Name: " + name + "\n" +
-                "Age: " + age + "\n" +
-                "Sex: " + sex + "\n" +
-                "Insurance: " + insurance + "\n" +
-                "PHN: " + PHN + "\n" +
-                "Diseases: " + "\n" +
-                DisplayDiseases();
+        return "Patient: " + "\n"
+                +
+                "Name: " + name + "\n"
+                +
+                "Age: " + age + "\n"
+                +
+                "Sex: " + sex + "\n"
+                +
+                "Insurance: " + insurance + "\n"
+                +
+                "PHN: " + phn + "\n"
+                +
+                "Diseases: " + "\n"
+                +
+                displayDiseases();
     }
 }

@@ -1,4 +1,5 @@
 package ui;
+
 import model.Appointment;
 import model.AppointmentList;
 import model.Disease;
@@ -36,17 +37,17 @@ public class StartApp {
         System.out.println("6. Enter 6 to Quit the application.");
         option = sc.nextInt();
         while (true) {
-            if (option == 1)
+            if (option == 1) {
                 addPatient();
-            else if (option == 2)
+            } else if (option == 2) {
                 addAppointment();
-            else if (option == 3)
+            } else if (option == 3) {
                 cancelAppointment();
-            else if (option == 4)
+            } else if (option == 4) {
                 rescheduleAppointment();
-            else if (option == 5)
+            } else if (option == 5) {
                 displayAll();
-            else{
+            } else {
                 System.out.println("Exiting the application.");
                 break;
             }
@@ -64,8 +65,8 @@ public class StartApp {
         System.out.print("Enter Patient's Insurance Details: ");
         String insurance = sc.next();
         System.out.print("Enter Patient's Personal Health Number: ");
-        int PHN = sc.nextInt();
-        Patient patient = new Patient(name, age, sex, insurance, PHN);
+        int phn = sc.nextInt();
+        Patient patient = new Patient(name, age, sex, insurance, phn);
         patients.add(patient);
         List<Disease> diseases = addDisease();
         patient.setDiseases(diseases);
@@ -98,46 +99,46 @@ public class StartApp {
         String time = sc.next();
         LocalTime t = LocalTime.parse(time + ":00");
 
-        System.out.println("Enter 1 for to schedule an appointment with an existing patient and 2 " +
+        System.out.println("Enter 1 for to schedule an appointment with an existing patient and 2 "
+                +
                 "to add a new patient.");
         int choice = sc.nextInt();
         if (choice == 1) {
             System.out.print("Enter the Personal Health Number of the patient: ");
-            int PHN = sc.nextInt();
-            String result = appointments.findAppointmentToString(PHN);
-            if (result.equals("No appointment found with given PHN") &&
-                    !overlaps(d, t) &&
-                    (getPatient(PHN) != null)) {
-                Appointment a1 = new Appointment(d, t, getPatient(PHN));
+            int phn = sc.nextInt();
+            String result = appointments.findAppointmentToString(phn);
+            if (result.equals("No appointment found with given PHN")
+                    &&
+                    !overlaps(d, t)
+                    &&
+                    (getPatient(phn) != null)) {
+                Appointment a1 = new Appointment(d, t, getPatient(phn));
                 appointments.addAppointment(a1);
                 System.out.println("Appointment successfully scheduled");
-            }
-            else {
-                System.out.println("Could not schedule the appointment either the slot is taken, " +
+            } else {
+                System.out.println("Could not schedule the appointment either the slot is taken, "
+                        +
                         "invalid PHN or patient already has an appointment");
             }
             displayMenu();
-        }
-
-        else if (choice == 2) {
+        } else if (choice == 2) {
             addPatient();
-        }
-        else
+        } else {
             displayMenu();
+        }
     }
-
 
     public void cancelAppointment() throws ParseException {
         System.out.print("Enter PHN of the Patient: ");
-        int PHN = sc.nextInt();
+        int phn = sc.nextInt();
         for (Appointment appointment: appointments.getAppointments()) {
-            if (appointment.getPatient().getPHN() == PHN) {
+            if (appointment.getPatient().getPhn() == phn) {
                 appointments.removeAppointment(appointment);
                 System.out.println("Cancelled the Appointment!");
                 break;
-            }
-            else
+            } else {
                 System.out.println("Error! Could not find any appointment associated with the given PHN!");
+            }
         }
 
         displayMenu();
@@ -156,8 +157,7 @@ public class StartApp {
         if (currentAppointment == null) {
             System.out.println("Appointment Not Found!");
             displayMenu();
-        }
-        else {
+        } else {
             System.out.print("Enter the date for the new appointment (YYYY/MM/DD): ");
             String newDate = sc.next();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -166,7 +166,7 @@ public class StartApp {
             String time = sc.next();
             LocalTime t = LocalTime.parse(time + ":00");
 
-            appointments.rescheduleAppointment(currentAppointment ,d , t);
+            appointments.rescheduleAppointment(currentAppointment,d,t);
             displayMenu();
         }
     }
@@ -177,7 +177,7 @@ public class StartApp {
         String date = sc.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate d = LocalDate.parse(date, formatter);
-        appointments.DisplayGivenDate(d);
+        appointments.displayGivenDate(d);
         displayMenu();
     }
 
@@ -185,18 +185,20 @@ public class StartApp {
     // returns true if any appointment overlaps with the appointment in already scheduled appointments
     public boolean overlaps(LocalDate date, LocalTime time) {
         for (Appointment a: appointments.getAppointments()) {
-            if (a.getDate().equals(date) && a.getTime().equals(time))
+            if (a.getDate().equals(date) && a.getTime().equals(time)) {
                 return true;
+            }
         }
         return false;
     }
 
     // this is a helper
     // returns patient if found, null otherwise
-    public Patient getPatient(int PHN) {
+    public Patient getPatient(int phn) {
         for (Patient p: patients) {
-            if (p.getPHN() == PHN)
+            if (p.getPhn() == phn) {
                 return p;
+            }
         }
         return null;
     }

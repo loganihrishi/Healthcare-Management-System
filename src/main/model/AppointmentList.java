@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class AppointmentList {
     private ArrayList<Appointment> appointments;
     // EFFECTS: constructs a new object for appointments
+
     public AppointmentList() {
         this.appointments = new ArrayList<>();
     }
@@ -57,7 +58,7 @@ public class AppointmentList {
                 Appointment newAppointment = new Appointment(date, time, a.getPatient());
                 removeAppointment(a);
                 addAppointment(newAppointment);
-                System.out.println("Appointment rescheduled successfully to "+ date + " at " + time);
+                System.out.println("Appointment rescheduled successfully to " + date + " at " + time);
                 return true;
             } else {
                 System.out.println("The selected date and time are not available, please choose a different one.");
@@ -73,7 +74,7 @@ public class AppointmentList {
     // REQUIRES: a valid date
     // EFFECTS: displays all the appointments scheduled on the give
 
-    public void DisplayGivenDate(LocalDate d) {
+    public void displayGivenDate(LocalDate d) {
         for (Appointment a : appointments) {
             if (a.getDate().equals(d)) {
                 System.out.println(a.toString());
@@ -85,9 +86,9 @@ public class AppointmentList {
     // EFFECTS: returns the appointment details with the given PHN, if found
     //          otherwise returns "No appointment found with given PHN"
 
-    public String findAppointmentToString(int PHN) {
-        if (findAppointment(PHN) != null) {
-            return findAppointment(PHN).toString();
+    public String findAppointmentToString(int phn) {
+        if (findAppointment(phn) != null) {
+            return findAppointment(phn).toString();
         }
         return "No appointment found with given PHN";
     }
@@ -95,9 +96,9 @@ public class AppointmentList {
     // REQUIRES: a valid PHN
     // EFFECTS: returns the appointment if found, null otherwise
 
-    public Appointment findAppointment(int PHN) {
+    public Appointment findAppointment(int phn) {
         for (Appointment a: appointments) {
-            if (a.getPatient().getPHN() == PHN) {
+            if (a.getPatient().getPhn() == phn) {
                 return a;
             }
         }
