@@ -169,8 +169,6 @@ public class StartApp {
         // if the appointment is null
         if (currentAppointment == null) {
             System.out.println("Appointment Not Found!");
-            System.out.println();
-            displayMenu();
         } else {
             System.out.print("Enter the date for the new appointment (YYYY/MM/DD): ");
             String newDate = sc.next();
@@ -180,9 +178,9 @@ public class StartApp {
             String time = sc.next();
             LocalTime t = LocalTime.parse(time + ":00");
             appointments.rescheduleAppointment(currentAppointment,d,t);
-            System.out.println();
-            displayMenu();
         }
+        System.out.println();
+        displayMenu();
     }
 
     // EFFECTS: displays all the appointments scheduled at a particular date
