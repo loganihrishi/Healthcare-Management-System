@@ -6,9 +6,9 @@ public class Appointment {
     private LocalTime time;
     private LocalDate date;
     private Patient patient;
+
     // REQUIRES: valid date and time (between 9:00:00 and 17:00:00)
     // EFFECTS: construct appointment object using the given details
-
     public Appointment(LocalDate date, LocalTime time, Patient patient) {
         this.date = date;
         this.time = time;
@@ -19,7 +19,6 @@ public class Appointment {
     public LocalDate getDate() {
         return date;
     }
-
 
     // EFFECTS: returns the time of the given appointment
     public LocalTime getTime() {
@@ -52,7 +51,6 @@ public class Appointment {
 
     // REQUIRES: a valid appointment
     // EFFECTS: returns true if the given appointment overlaps another appointment
-
     public boolean overlap(Appointment appointment) {
         return (date.equals(appointment.getDate()) && time.equals(appointment.getTime()));
     }

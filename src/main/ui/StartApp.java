@@ -15,7 +15,7 @@ import java.util.List;
 
 
 public class StartApp {
-    int option = 0;
+    int option;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
@@ -25,12 +25,13 @@ public class StartApp {
         displayMenu();
     }
 
+    // creating a scanner object
     Scanner sc = new Scanner(System.in);
 
     // the function to start the UI of the application
     public void displayMenu() throws ParseException {
         System.out.println("1. Enter 1 to Add a patient.");
-        System.out.println("2. Enter 2 to add an appointment");
+        System.out.println("2. Enter 2 to add an appointment.");
         System.out.println("3. Enter 3 to cancel an appointment.");
         System.out.println("4. Enter 4 to reschedule an existing appointment.");
         System.out.println("5. Enter 5 to display all scheduled appointments for a particular date.");
@@ -48,7 +49,7 @@ public class StartApp {
             } else if (option == 5) {
                 displayAll();
             } else {
-                System.out.println("Exiting the application.");
+                System.out.println("Exiting the application...");
                 break;
             }
         }
@@ -70,6 +71,7 @@ public class StartApp {
         patients.add(patient);
         List<Disease> diseases = addDisease();
         patient.setDiseases(diseases);
+        System.out.println();
         displayMenu();
     }
 
@@ -124,13 +126,14 @@ public class StartApp {
         } else if (choice == 2) {
             addPatient();
         } else {
+            System.out.println();
             displayMenu();
         }
     }
 
     public void cancelAppointment() throws ParseException {
         System.out.print("Enter PHN of the Patient: ");
-        // assuming that the appointment cannot be cancelled
+        // assuming that the appointment has not been cancelled
         boolean isCancelled = false;
         int phn = sc.nextInt();
         for (Appointment appointment: appointments.getAppointments()) {
@@ -145,6 +148,7 @@ public class StartApp {
         } else {
             System.out.println("Could not find the appointment!");
         }
+        System.out.println();
         displayMenu();
     }
 
@@ -152,14 +156,20 @@ public class StartApp {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = sc.nextInt();
         Patient patient = getPatient(phn);
+        // if the patient is null
         if (patient == null) {
             System.out.println("Patient does not exist! ");
+            System.out.println();
             displayMenu();
         }
 
+        // if the patient is not null, we find its appointment
         Appointment currentAppointment = appointments.findAppointment(phn);
+
+        // if the appointment is null
         if (currentAppointment == null) {
             System.out.println("Appointment Not Found!");
+            System.out.println();
             displayMenu();
         } else {
             System.out.print("Enter the date for the new appointment (YYYY/MM/DD): ");
@@ -169,8 +179,8 @@ public class StartApp {
             System.out.print("Enter the time of the new appointment (hh:mm): ");
             String time = sc.next();
             LocalTime t = LocalTime.parse(time + ":00");
-
             appointments.rescheduleAppointment(currentAppointment,d,t);
+            System.out.println();
             displayMenu();
         }
     }
@@ -182,6 +192,7 @@ public class StartApp {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate d = LocalDate.parse(date, formatter);
         appointments.displayGivenDate(d);
+        System.out.println();
         displayMenu();
     }
 
