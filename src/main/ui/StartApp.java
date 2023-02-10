@@ -57,7 +57,8 @@ public class StartApp {
 
     public void addPatient() throws ParseException {
         System.out.print("Enter Patient Name: ");
-        String name = input.next();
+        String name = input.nextLine();
+        input.nextLine();
         System.out.print("Enter Patient's Age: ");
         int age = input.nextInt();
         System.out.print("Enter Patient's Sex (M/F): ");
@@ -65,6 +66,7 @@ public class StartApp {
         char sex = input.next().charAt(0);
         System.out.print("Enter Patient's Insurance Details: ");
         String insurance = input.next();
+        input.nextLine();
         System.out.print("Enter Patient's Personal Health Number: ");
         int phn = input.nextInt();
         Patient patient = new Patient(name, age, sex, insurance, phn);
@@ -82,8 +84,10 @@ public class StartApp {
         for (int i = 0; i < num; i++) {
             System.out.print("Enter the name of disease no. " + (i + 1) + " :");
             String name = input.next();
+            input.nextLine();
             System.out.print("Enter the date (YYYY/MM/DD) when the disease was diagnosed: ");
             String date = input.next();
+            input.nextLine();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDate d = LocalDate.parse(date, formatter);
             diseases.add(new Disease(name, d));
