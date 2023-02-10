@@ -83,7 +83,7 @@ public class StartApp {
         int num = input.nextInt();
         for (int i = 0; i < num; i++) {
             System.out.print("Enter the name of disease no. " + (i + 1) + " :");
-            String name = input.next();
+            String name = input.nextLine();
             input.nextLine();
             System.out.print("Enter the date (YYYY/MM/DD) when the disease was diagnosed: ");
             String date = input.next();
