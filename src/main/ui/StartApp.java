@@ -99,6 +99,7 @@ public class StartApp {
         return diseases;
     }
 
+    @SuppressWarnings("methodlength")
     public void addAppointment() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
