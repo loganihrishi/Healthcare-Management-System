@@ -5,6 +5,9 @@ import model.AppointmentList;
 import model.Disease;
 import model.Patient;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,7 +22,7 @@ public class StartApp {
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
-    public StartApp() throws ParseException {
+    public StartApp() throws ParseException, IOException {
         this.patients = new ArrayList<>();
         this.appointments = new AppointmentList();
         displayMenu();
@@ -28,8 +31,11 @@ public class StartApp {
     // creating a scanner object
     Scanner input = new Scanner(System.in);
 
+    // creating a BufferReader object
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     // the function to start the UI of the application
-    public void displayMenu() throws ParseException {
+    public void displayMenu() throws ParseException, IOException {
         System.out.println("1. Enter 1 to Add a patient.");
         System.out.println("2. Enter 2 to add an appointment.");
         System.out.println("3. Enter 3 to cancel an appointment.");
@@ -55,18 +61,16 @@ public class StartApp {
         }
     }
 
-    public void addPatient() throws ParseException {
+    public void addPatient() throws ParseException, IOException {
         System.out.print("Enter Patient Name: ");
-        String name = input.nextLine();
-        input.nextLine();
+        String name = reader.readLine();
         System.out.print("Enter Patient's Age: ");
         int age = input.nextInt();
         System.out.print("Enter Patient's Sex (M/F): ");
         // converting the string to char
         char sex = input.next().charAt(0);
         System.out.print("Enter Patient's Insurance Details: ");
-        String insurance = input.next();
-        input.nextLine();
+        String insurance = reader.readLine();
         System.out.print("Enter Patient's Personal Health Number: ");
         int phn = input.nextInt();
         Patient patient = new Patient(name, age, sex, insurance, phn);
@@ -77,14 +81,13 @@ public class StartApp {
         displayMenu();
     }
 
-    public List<Disease> addDisease() throws ParseException {
+    public List<Disease> addDisease() throws ParseException, IOException {
         List<Disease> diseases = new ArrayList<>();
         System.out.print("Enter the number of diseases: ");
         int num = input.nextInt();
         for (int i = 0; i < num; i++) {
             System.out.print("Enter the name of disease no. " + (i + 1) + " :");
-            String name = input.nextLine();
-            input.nextLine();
+            String name = reader.readLine();
             System.out.print("Enter the date (YYYY/MM/DD) when the disease was diagnosed: ");
             String date = input.next();
             input.nextLine();
@@ -96,7 +99,7 @@ public class StartApp {
         return diseases;
     }
 
-    public void addAppointment() throws ParseException {
+    public void addAppointment() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -135,7 +138,7 @@ public class StartApp {
         }
     }
 
-    public void cancelAppointment() throws ParseException {
+    public void cancelAppointment() throws ParseException, IOException {
         System.out.print("Enter PHN of the Patient: ");
         // assuming that the appointment has not been cancelled
         boolean isCancelled = false;
@@ -156,7 +159,7 @@ public class StartApp {
         displayMenu();
     }
 
-    public void rescheduleAppointment() throws ParseException {
+    public void rescheduleAppointment() throws ParseException, IOException {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = input.nextInt();
         Patient patient = getPatient(phn);
@@ -188,7 +191,7 @@ public class StartApp {
     }
 
     // EFFECTS: displays all the appointments scheduled at a particular date
-    public void displayAll() throws ParseException {
+    public void displayAll() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
