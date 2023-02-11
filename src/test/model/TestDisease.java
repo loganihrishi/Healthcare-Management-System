@@ -25,4 +25,12 @@ public class TestDisease {
         assertEquals(LocalDate.of(2021, 8, 02) ,d1.getDiagnosedDate());
         assertEquals(LocalDate.now(), d2.getDiagnosedDate());
     }
+
+    @Test
+    public void testToString() {
+        assertEquals("Disease: TB\n" +
+                "Diagnosis Date: 2021-08-02", d1.toString());
+        assertEquals("Disease: Cholera\n" +
+                "Diagnosis Date: 2023-02-10", d2.toString());
+    }
 }
