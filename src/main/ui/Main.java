@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 public class Main {
     public static void main(String[] args) throws ParseException, IOException {
-        StartApp st = new StartApp();
+        StartApplication st = new StartApplication();
         st.displayMenu();
     }
 }

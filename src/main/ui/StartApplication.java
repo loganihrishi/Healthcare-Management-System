@@ -17,12 +17,12 @@ import java.util.Scanner;
 import java.util.List;
 
 
-public class StartApp {
+public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
-    public StartApp() throws ParseException, IOException {
+    public StartApplication() throws ParseException, IOException {
         this.patients = new ArrayList<>();
         this.appointments = new AppointmentList();
         displayMenu();
