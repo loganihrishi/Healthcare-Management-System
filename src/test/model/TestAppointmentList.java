@@ -165,6 +165,7 @@ public class TestAppointmentList {
         assertTrue(success);
     }
 
+
     @Test
     public void testRescheduleAppointment_SameTimeDifferentDate() {
 
