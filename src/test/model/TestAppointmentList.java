@@ -141,6 +141,18 @@ public class TestAppointmentList {
     }
 
     @Test
+    public void testRescheduleAppointment_TimeTaken() {
+        AppointmentList appointmentList = new AppointmentList();
+        // adding two appointments
+        appointmentList.addAppointment(a1);
+        appointmentList.addAppointment(a2);
+        // trying to reschedule appointment
+        boolean success = appointmentList.rescheduleAppointment(a1, a2.getDate(), a2.getTime());
+        assertFalse(success);
+        // it will fail because a1 and a2's dates and times are clashing
+    }
+
+    @Test
     public void testDisplayGivenDate_NoAppointmentFound() {
         assertEquals("No appointment found for the given date", LOA3.displayGivenDate(date1));
     }
