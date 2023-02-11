@@ -75,11 +75,17 @@ public class AppointmentList {
     // REQUIRES: a valid date
     // EFFECTS: displays all the appointments scheduled on the give
 
-    public void displayGivenDate(LocalDate d) {
+    public String displayGivenDate(LocalDate d) {
+        String result = "";
         for (Appointment a : appointments) {
             if (a.getDate().equals(d)) {
-                System.out.println(a.toString());
+                result += a.toString();
             }
+        }
+        if (result.equals("")) {
+            return "No appointment found for the given date";
+        } else {
+            return result;
         }
     }
 

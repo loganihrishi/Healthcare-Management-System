@@ -137,4 +137,43 @@ public class TestAppointmentList {
         assertEquals(LocalDate.of(2022, 1, 1), a.getDate());
         assertEquals(LocalTime.of(10, 0), a.getTime());
     }
+
+    @Test
+    public void testDisplayGivenDate_NoAppointmentFound() {
+        assertEquals("No appointment found for the given date", LOA3.displayGivenDate(date1));
+    }
+
+    @Test
+    public void testDisplayGivenDate_OneAppointmentFound() {
+        assertEquals("Patient: \n" +
+                "Name: Gregor\n" +
+                "Age: 69\n" +
+                "Sex: M\n" +
+                "Insurance: lung cancer\n" +
+                "PHN: 1234567\n" +
+                "Diseases: \n" +
+                "  Date:2023-01-27 Time:12:00", LOA2.displayGivenDate(date1));
+    }
+
+    @Test
+    public void testDisplayGivenDate_TwoAppointmentsFound() {
+        Patient p3 = new Patient("Hrishi", 18, 'M', "private", 5961);
+        Appointment a3 = new Appointment(LocalDate.of(2023,01,27), LocalTime.of(12,30), p3);
+        LOA2.addAppointment(a3);
+        assertEquals("Patient: \n" +
+                "Name: Gregor\n" +
+                "Age: 69\n" +
+                "Sex: M\n" +
+                "Insurance: lung cancer\n" +
+                "PHN: 1234567\n" +
+                "Diseases: \n" +
+                "  Date:2023-01-27 Time:12:00Patient: \n" +
+                "Name: Hrishi\n" +
+                "Age: 18\n" +
+                "Sex: M\n" +
+                "Insurance: private\n" +
+                "PHN: 5961\n" +
+                "Diseases: \n" +
+                "  Date:2023-01-27 Time:12:30", LOA2.displayGivenDate(LocalDate.of(2023,01,27)));
+    }
 }

@@ -197,7 +197,7 @@ public class StartApp {
         String date = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate d = LocalDate.parse(date, formatter);
-        appointments.displayGivenDate(d);
+        System.out.println(appointments.displayGivenDate(d));
         System.out.println();
         displayMenu();
     }
