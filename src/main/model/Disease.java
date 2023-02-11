@@ -26,9 +26,10 @@ public class Disease {
 
     // EFFECTS: returns the disease in the proper String format
     public String toString() {
-        return "Disease: " + name + "\n"
+        String diagnosis = "Disease: " + name + "\n"
                 +
                 "Diagnosis Date: " + diagnosedDate;
+        return diagnosis;
     }
 }
 
