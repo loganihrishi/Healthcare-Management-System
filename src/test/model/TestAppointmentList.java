@@ -153,10 +153,35 @@ public class TestAppointmentList {
     }
 
     @Test
+    public void  testRescheduleAppointment_SameDateDifferentTime() {
+        // test to check when time is taken but date is not
+
+        AppointmentList appointmentList = new AppointmentList();
+        // adding two appointments
+        appointmentList.addAppointment(a1);
+        appointmentList.addAppointment(a2);
+        // trying to reschedule the appointment
+        boolean success = appointmentList.rescheduleAppointment(a1, a2.getDate(), LocalTime.of(12,30));
+        assertTrue(success);
+    }
+
+    @Test
+    public void testRescheduleAppointment_SameTimeDifferentDate() {
+
+        AppointmentList appointmentList = new AppointmentList();
+        // adding two appointments
+        appointmentList.addAppointment(a1);
+        appointmentList.addAppointment(a2);
+        // trying to reschedule the appointment
+        boolean success = appointmentList.rescheduleAppointment(a1,
+                LocalDate.of(2023, 02,25), a2.getTime());
+        assertTrue(success);
+    }
+
+    @Test
     public void testDisplayGivenDate_NoAppointmentFound() {
         assertEquals("No appointment found for the given date", LOA3.displayGivenDate(date1));
     }
-
     @Test
     public void testDisplayGivenDate_OneAppointmentFound() {
         assertEquals("Patient: \n" +
