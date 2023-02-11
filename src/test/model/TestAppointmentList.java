@@ -141,7 +141,7 @@ public class TestAppointmentList {
     }
 
     @Test
-    public void testRescheduleAppointment_TimeTaken() {
+    public void testRescheduleAppointment_TimeAndDateTaken() {
         AppointmentList appointmentList = new AppointmentList();
         // adding two appointments
         appointmentList.addAppointment(a1);
