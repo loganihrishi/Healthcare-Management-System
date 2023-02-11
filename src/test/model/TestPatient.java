@@ -112,4 +112,33 @@ public class TestPatient {
         p1.addDisease(d2.getName(), d2.getDiagnosedDate());
         assertEquals(2, p1.getDiseases().size());
     }
+
+    @Test
+    public void TestSetDiseases_Empty(){
+        List<Disease> diseases = new ArrayList<>();
+        p1.setDiseases(diseases);
+        assertEquals(0, p1.getDiseases().size());
+        assertFalse(p1.getDiseases().contains(d1));
+        assertFalse(p1.getDiseases().contains(d2));
+    }
+
+    @Test
+    public void TestSetDiseases_One() {
+        List<Disease> diseases = new ArrayList<>();
+        diseases.add(d1);
+        p1.setDiseases(diseases);
+        assertEquals(1, p1.getDiseases().size());
+        assertTrue(p1.getDiseases().contains(d1));
+    }
+
+    @Test
+    public void TestSetDiseases_Multiple() {
+        List<Disease> diseases = new ArrayList<>();
+        diseases.add(d1);
+        diseases.add(d2);
+        p1.setDiseases(diseases);
+        assertEquals(2, p1.getDiseases().size());
+        assertTrue(p1.getDiseases().contains(d1));
+        assertTrue(p1.getDiseases().contains(d2));
+    }
 }
