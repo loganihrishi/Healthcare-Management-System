@@ -119,8 +119,9 @@ public class TestAppointmentList {
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
         appointmentList.addAppointment(a); // Test rescheduling to an unavailable time
-        appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
+        boolean result = appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
                 LocalTime.of(18, 0));
+        assertFalse(result);
         assertEquals(LocalDate.of(2022, 1, 1), a.getDate());
         assertEquals(LocalTime.of(10, 0), a.getTime());
     }
@@ -132,8 +133,9 @@ public class TestAppointmentList {
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
         appointmentList.addAppointment(a); // Test rescheduling to an invalid time
-        appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
+        boolean result = appointmentList.rescheduleAppointment(a, LocalDate.of(2022, 1, 2),
                 LocalTime.of(7, 0));
+        assertFalse(result);
         assertEquals(LocalDate.of(2022, 1, 1), a.getDate());
         assertEquals(LocalTime.of(10, 0), a.getTime());
     }
