@@ -31,6 +31,6 @@ public class TestDisease {
         assertEquals("Disease: TB\n" +
                 "Diagnosis Date: 2021-08-02", d1.toString());
         assertEquals("Disease: Cholera\n" +
-                "Diagnosis Date: 2023-02-10", d2.toString());
+                "Diagnosis Date: " + LocalDate.now(), d2.toString());
     }
 }
