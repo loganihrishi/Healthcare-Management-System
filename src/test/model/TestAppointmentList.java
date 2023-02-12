@@ -165,7 +165,6 @@ public class TestAppointmentList {
         assertTrue(success);
     }
 
-
     @Test
     public void testRescheduleAppointment_SameTimeDifferentDate() {
 
@@ -183,6 +182,7 @@ public class TestAppointmentList {
     public void testDisplayGivenDate_NoAppointmentFound() {
         assertEquals("No appointment found for the given date", LOA3.displayGivenDate(date1));
     }
+
     @Test
     public void testDisplayGivenDate_OneAppointmentFound() {
         assertEquals("Patient: \n" +
