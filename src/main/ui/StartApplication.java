@@ -227,7 +227,7 @@ public class StartApplication {
     // REQUIRES: a valid PHN
     // EFFECTS: prints the appointment details associated with a particular PHN
     public void findWithPHN() throws ParseException, IOException {
-        System.out.print("Enter the PHN of the patient whose details are needed: ");
+        System.out.print("Enter the PHN of the patient whose appointment details are needed: ");
         int phn = input.nextInt();
         Appointment appointment = appointments.findAppointment(phn);
         if (appointment == null) {
