@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 public class AppointmentList {
     private ArrayList<Appointment> appointments;
-    // EFFECTS: constructs a new object for appointments
 
+    // EFFECTS: constructs a new object for appointments
     public AppointmentList() {
         this.appointments = new ArrayList<>();
     }
 
-    // EFFECTS: returns the appointments
+    // EFFECTS: returns the appointments that have been scheduled
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
@@ -41,7 +41,7 @@ public class AppointmentList {
         appointments.clear();
     }
 
-    // REQUIRES: a valid appointment that has been scheduled already
+    // REQUIRES: a valid appointment that has been scheduled already, a new date and time
     // MODIFIES: this
     // EFFECTS: reschedules the given appointment to the given date, if possible
     //          otherwise do nothing
@@ -101,7 +101,6 @@ public class AppointmentList {
 
     // REQUIRES: a valid PHN
     // EFFECTS: returns the appointment if found, null otherwise
-
     public Appointment findAppointment(int phn) {
         for (Appointment a: appointments) {
             if (a.getPatient().getPhn() == phn) {
