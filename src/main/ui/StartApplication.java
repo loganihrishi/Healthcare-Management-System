@@ -87,6 +87,7 @@ public class StartApplication {
     // REQUIRES: a valid disease name and a valid date
     // MODIFIES: this
     // EFFECTS: sets the disease to the patient
+
     public List<Disease> addDisease() throws ParseException, IOException {
         List<Disease> diseases = new ArrayList<>();
         System.out.print("Enter the number of diseases: ");
@@ -208,6 +209,7 @@ public class StartApplication {
     }
     // REQUIRES: a valid date
     // EFFECTS: displays all the appointments scheduled at a particular date
+
     public void displayAll() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
