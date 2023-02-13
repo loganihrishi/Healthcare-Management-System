@@ -21,6 +21,7 @@ public class StartApplication {
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
 
+    // EFFECTS: creates an empty list of patients and appointments and starts the displayMenu()
     public StartApplication() throws ParseException, IOException {
         this.patients = new ArrayList<>();
         this.appointments = new AppointmentList();
@@ -33,7 +34,7 @@ public class StartApplication {
     // creating a BufferReader object
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    // the function to start the UI of the application
+    // EFFECTS: starts the UI of the application
     public void displayMenu() throws ParseException, IOException {
         System.out.println("1. Enter 1 to Add a patient.");
         System.out.println("2. Enter 2 to add an appointment.");
@@ -60,6 +61,9 @@ public class StartApplication {
         }
     }
 
+    // REQUIRES: a valid Personal Health Number and other basic details
+    // MODIFIES: this
+    // EFFECTS: adds the patient to the given list of patients
     public void addPatient() throws ParseException, IOException {
         System.out.print("Enter Patient Name: ");
         String name = reader.readLine();
@@ -79,7 +83,10 @@ public class StartApplication {
         System.out.println();
         displayMenu();
     }
-
+    // THIS IS CALLED AS A HELPER, CANNOT BE CALLED DIRECTLY BY THE USER
+    // REQUIRES: a valid disease name and a valid date
+    // MODIFIES: this
+    // EFFECTS: sets the disease to the patient
     public List<Disease> addDisease() throws ParseException, IOException {
         List<Disease> diseases = new ArrayList<>();
         System.out.print("Enter the number of diseases: ");
@@ -98,6 +105,9 @@ public class StartApplication {
         return diseases;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the appointment to the given list of appointments, if possible
+    //          otherwise displays an appropriate error message
     @SuppressWarnings("methodlength")
     public void addAppointment() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
@@ -138,6 +148,9 @@ public class StartApplication {
         }
     }
 
+    // REQUIRES: a valid PHN
+    // MODIFIES: this
+    // EFFECTS: cancels the appointment if found, displays the appropriate message otherwise
     public void cancelAppointment() throws ParseException, IOException {
         System.out.print("Enter PHN of the Patient: ");
         // assuming that the appointment has not been cancelled
@@ -159,6 +172,10 @@ public class StartApplication {
         displayMenu();
     }
 
+    // REQUIRES: a valid PHN
+    // MODIFIES: this
+    // EFFECTS: reschedules the appointment to the date and time provided by the user if possible,
+    //          displays the appropriate message otherwise
     public void rescheduleAppointment() throws ParseException, IOException {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = input.nextInt();
@@ -189,7 +206,7 @@ public class StartApplication {
         System.out.println();
         displayMenu();
     }
-
+    // REQUIRES: a valid date
     // EFFECTS: displays all the appointments scheduled at a particular date
     public void displayAll() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
