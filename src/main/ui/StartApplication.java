@@ -35,13 +35,15 @@ public class StartApplication {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     // EFFECTS: starts the UI of the application
+    @SuppressWarnings("methodlength")
     public void displayMenu() throws ParseException, IOException {
         System.out.println("1. Enter 1 to Add a patient.");
         System.out.println("2. Enter 2 to add an appointment.");
         System.out.println("3. Enter 3 to cancel an appointment.");
         System.out.println("4. Enter 4 to reschedule an existing appointment.");
         System.out.println("5. Enter 5 to display all scheduled appointments for a particular date.");
-        System.out.println("6. Enter 6 to Quit the application.");
+        System.out.println("6. Enter 6 to find the appointment details using PHN. ");
+        System.out.println("7. Enter 7 to Quit the application.");
         option = input.nextInt();
         while (true) {
             if (option == 1) {
@@ -54,6 +56,8 @@ public class StartApplication {
                 rescheduleAppointment();
             } else if (option == 5) {
                 displayAll();
+            } else if (option == 6) {
+                findWithPHN();
             } else {
                 System.out.println("Exiting the application...");
                 System.exit(69);
@@ -217,6 +221,20 @@ public class StartApplication {
         LocalDate d = LocalDate.parse(date, formatter);
         System.out.println(appointments.displayGivenDate(d));
         System.out.println();
+        displayMenu();
+    }
+
+    // REQUIRES: a valid PHN
+    // EFFECTS: prints the appointment details associated with a particular PHN
+    public void findWithPHN() throws ParseException, IOException {
+        System.out.print("Enter the PHN of the patient whose details are needed: ");
+        int phn = input.nextInt();
+        Appointment appointment = appointments.findAppointment(phn);
+        if (appointment == null) {
+            System.out.println("No Appointment found");
+        } else {
+            System.out.println(appointment.toString());
+        }
         displayMenu();
     }
 
