@@ -15,6 +15,7 @@ public class Appointment {
         this.patient = patient;
     }
 
+
     // EFFECTS: return the date of the appointment
     public LocalDate getDate() {
         return date;
