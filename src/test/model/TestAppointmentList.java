@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 // THIS IS A TEST CLASS FOR APPOINTMENTLIST
 public class TestAppointmentList {
 
-    LocalDate date1, date2;
-    LocalTime time1, time2;
-    Patient p1, p2;
-    Appointment a1, a2;
+    private LocalDate date1, date2;
+    private LocalTime time1, time2;
+    private Patient p1, p2;
+    private Appointment a1, a2;
     private AppointmentList LOA1, LOA2, LOA3;
 
     @BeforeEach
