@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// THIS IS A TEST CLASS FOR APPOINTMENTLIST
 public class TestAppointmentList {
 
     LocalDate date1, date2;

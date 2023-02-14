@@ -2,6 +2,7 @@ package model;
 
 import java.time.*;
 
+// THIS CLASS REPRESENTS THE APPOINTMENT with Time, Date and PATIENT
 public class Appointment {
     private LocalTime time;
     private LocalDate date;

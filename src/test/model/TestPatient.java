@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// THIS IS A TEST CLASS FOR PATIENT
 public class TestPatient {
     private Patient p1, p2;
     private Disease d1, d2;

@@ -4,6 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**The Patient class represents a patient with basic personal and medical information.
+ * It has fields for name, age, sex, insurance details, personal health number (PHN), and a list of diseases.
+ * It provides methods to get and set these fields and add diseases to the list.
+ * The toString() method returns the patient's details in a formatted string, and the displayDiseases() method returns
+ * a formatted string of all the diseases in the patient's list.
+ */
 public class Patient {
     private String name;
     private int age;
