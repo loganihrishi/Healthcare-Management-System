@@ -77,8 +77,8 @@ public class Patient {
     // EFFECTS: returns all the diseases in the proper string format
     public String displayDiseases() {
         String result = "";
-        for (Disease d: diseases) {
-            result += d.getName() + " " + d.getDiagnosedDate() + "\n";
+        for (int i = 0; i < diseases.size(); i++) {
+            result += (i + 1) + ". " + diseases.get(i).getName() + ", " + diseases.get(i).getDiagnosedDate() + "\n";
         }
         return result;
     }

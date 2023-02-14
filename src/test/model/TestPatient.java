@@ -64,10 +64,10 @@ public class TestPatient {
     public void TestDisplayDiseases() {
         assertEquals("", p1.displayDiseases());
         p1.addDisease(d1.getName(), d1.getDiagnosedDate());
-        assertEquals("TB 2021-08-02\n", p1.displayDiseases());
+        assertEquals("1. TB, 2021-08-02\n", p1.displayDiseases());
         p1.addDisease(d2.getName(), d2.getDiagnosedDate());
-        assertEquals("TB 2021-08-02\n" +
-                "Cholera " + LocalDate.now() + "\n", p1.displayDiseases());
+        assertEquals("1. TB, 2021-08-02\n" +
+                "2. Cholera, " + LocalDate.now() + "\n", p1.displayDiseases());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class TestPatient {
                 "Insurance: BC MSP\n" +
                 "PHN: 1234567\n" +
                 "Diseases: \n" +
-                "TB 2021-08-02\n", p1.toString());
+                "1. TB, 2021-08-02\n", p1.toString());
         assertEquals("Patient: \n" +
                 "Name: Kemi\n" +
                 "Age: 46\n" +
@@ -97,8 +97,8 @@ public class TestPatient {
                 "Insurance: N/A\n" +
                 "PHN: 1234568\n" +
                 "Diseases: \n" +
-                "TB 2021-08-02\n" +
-                "Cholera " + LocalDate.now() + "\n", p2.toString());
+                "1. TB, 2021-08-02\n" +
+                "2. Cholera, 2023-02-13\n", p2.toString());
     }
 
     @Test
