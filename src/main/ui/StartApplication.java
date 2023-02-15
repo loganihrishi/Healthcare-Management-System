@@ -236,8 +236,8 @@ public class StartApplication {
         displayMenu();
     }
 
-    // this is a helper
-    // returns true if any appointment overlaps with the appointment in already scheduled appointments
+    // REQUIRES: a valid date and time
+    // EFFECTS: returns true if any appointment overlaps with the appointment in already scheduled appointments
     public boolean overlaps(LocalDate date, LocalTime time) {
         for (Appointment a: appointments.getAppointments()) {
             if (a.getDate().equals(date) && a.getTime().equals(time)) {
@@ -247,8 +247,8 @@ public class StartApplication {
         return false;
     }
 
-    // this is a helper
-    // returns patient if found, null otherwise
+    // REQUIRES: a valid PHN
+    // EFFECTS: returns the patient object if found, null otherwise
     public Patient getPatient(int phn) {
         for (Patient p: patients) {
             if (p.getPhn() == phn) {
