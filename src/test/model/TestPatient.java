@@ -99,7 +99,7 @@ public class TestPatient {
                 "PHN: 1234568\n" +
                 "Diseases: \n" +
                 "1. TB, 2021-08-02\n" +
-                "2. Cholera, 2023-02-13\n", p2.toString());
+                "2. Cholera, " + LocalDate.now() + "\n", p2.toString());
     }
 
     @Test
