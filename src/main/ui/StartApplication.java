@@ -144,13 +144,11 @@ public class StartApplication {
                         +
                         "invalid PHN or patient already has an appointment");
             }
-            displayMenu();
         } else if (choice == 2) {
             addPatient();
-        } else {
-            System.out.println();
-            displayMenu();
         }
+        System.out.println();
+        displayMenu();
     }
 
     // REQUIRES: a valid PHN

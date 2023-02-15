@@ -7,6 +7,5 @@ public class Main {
     public static void main(String[] args) throws ParseException, IOException {
         StartApplication st = new StartApplication();
         st.displayMenu();
-
     }
 }
