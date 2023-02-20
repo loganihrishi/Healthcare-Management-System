@@ -44,3 +44,6 @@ medical community.
 - Store the appointments on my device
 - Reopen the application and have it return to the same state as when I last closed it.
 - Search the appointment details using the patient's Personal Health Number (PHN)
+- Save the entire state of Patients and Appointments to the file 
+- Load the saved state of Patients and Appointments from the last time it was run 
+  and resume where it was left off
