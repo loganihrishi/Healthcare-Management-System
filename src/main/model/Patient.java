@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +14,7 @@ import java.util.List;
  * The toString() method returns the patient's details in a formatted string, and the displayDiseases() method returns
  * a formatted string of all the diseases in the patient's list.
  */
-public class Patient {
+public class Patient implements Writable {
     private String name;
     private int age;
     private List<Disease> diseases;
@@ -106,5 +110,26 @@ public class Patient {
                 "Diseases: " + "\n"
                 +
                 displayDiseases();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Name: ", this.name);
+        json.put("Age", this.age);
+        json.put("Sex", this.sex);
+        json.put("Insurance", this.insurance);
+        json.put("PHN", this.phn);
+        json.put("Diseases", diseasesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns the diseases as a json array
+    private JSONArray diseasesToJson() {
+        JSONArray result = new JSONArray();
+        for (Disease d: diseases) {
+            result.put(d.toJson());
+        }
+        return result;
     }
 }

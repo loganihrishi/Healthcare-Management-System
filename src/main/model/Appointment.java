@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.*;
 
 // THIS CLASS REPRESENTS THE APPOINTMENT with Time, Date and PATIENT
-public class Appointment {
+public class Appointment implements Writable {
     private LocalTime time;
     private LocalDate date;
     private Patient patient;
@@ -55,5 +58,14 @@ public class Appointment {
     // EFFECTS: returns true if the given appointment overlaps another appointment
     public boolean overlap(Appointment appointment) {
         return (date.equals(appointment.getDate()) && time.equals(appointment.getTime()));
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Time", this.time);
+        json.put("Date", this.date);
+        json.put("Patient", this.patient.toJson());
+        return json;
     }
 }

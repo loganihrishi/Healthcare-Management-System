@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 /**
 
@@ -9,7 +12,7 @@ import java.time.LocalDate;
  */
 
 
-public class Disease {
+public class Disease implements Writable {
     private String name;
     private LocalDate diagnosedDate;
 
@@ -37,6 +40,14 @@ public class Disease {
                 +
                 "Diagnosis Date: " + diagnosedDate;
         return diagnosis;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Name", name);
+        json.put("Diagnosis Date", diagnosedDate);
+        return json;
     }
 }
 

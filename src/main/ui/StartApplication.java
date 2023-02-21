@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
+// TODO: create two separate files for List<Patient> and AppointmentList
+
 public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made
@@ -59,12 +61,22 @@ public class StartApplication {
             } else if (option == 6) {
                 findWithPHN();
             } else {
-                System.out.println("Exiting the application...");
-                System.exit(69);
+                System.out.println("Enter Yes to save the data");
+                String ch = input.next();
+                if (ch.substring(0,1).toLowerCase().equals("y")) {
+                    saveData();
+                    exitApplication();
+                } else {
+                    exitApplication();
+                }
             }
         }
     }
 
+    // EFFECTS: exits the application
+    public void exitApplication() {
+        System.exit(69);
+    }
     // REQUIRES: a valid Personal Health Number and other basic details
     // MODIFIES: this
     // EFFECTS: adds the patient to the given list of patients
@@ -173,6 +185,11 @@ public class StartApplication {
         }
         System.out.println();
         displayMenu();
+    }
+
+    public void saveData() {
+        // TODO: complete the implementation
+        // save the appointmentList and patient list to the JSON file
     }
 
     // REQUIRES: a valid PHN
