@@ -4,6 +4,8 @@ import model.Appointment;
 import model.AppointmentList;
 import model.Disease;
 import model.Patient;
+import persistence.AppointmentFileHandler;
+import persistence.PatientFileHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +24,12 @@ public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
+    private final static String patientPath = "patients.json";
+    private final static String appointmentPath = "appointments.json";
+
+    PatientFileHandler patientFile = new PatientFileHandler(patientPath);
+    AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
+
 
     // EFFECTS: creates an empty list of patients and appointments and starts the displayMenu()
     public StartApplication() throws ParseException, IOException {
@@ -45,7 +53,9 @@ public class StartApplication {
         System.out.println("4. Enter 4 to reschedule an existing appointment.");
         System.out.println("5. Enter 5 to display all scheduled appointments for a particular date.");
         System.out.println("6. Enter 6 to find the appointment details using PHN. ");
-        System.out.println("7. Enter 7 to Quit the application.");
+        System.out.println("7. Enter 7 to save the data. ");
+        System.out.println("8. Enter 8 to Load the data. ");
+        System.out.println("9. Enter 9 to Quit the application.");
         option = input.nextInt();
         while (true) {
             if (option == 1) {
@@ -60,15 +70,13 @@ public class StartApplication {
                 displayAll();
             } else if (option == 6) {
                 findWithPHN();
-            } else {
-                System.out.println("Enter Yes to save the data");
-                String ch = input.next();
-                if (ch.substring(0,1).toLowerCase().equals("y")) {
-                    saveData();
-                    exitApplication();
-                } else {
-                    exitApplication();
-                }
+            } else if (option == 7) {
+                 saveData();
+            } else if (option == 8) {
+                getExistingData();
+            }
+            else {
+                exitApplication();
             }
         }
     }
@@ -87,7 +95,7 @@ public class StartApplication {
         int age = input.nextInt();
         System.out.print("Enter Patient's Sex (M/F): ");
         // converting the string to char
-        char sex = input.next().charAt(0);
+        String sex = input.next();
         System.out.print("Enter Patient's Insurance Details: ");
         String insurance = reader.readLine();
         System.out.print("Enter Patient's Personal Health Number: ");
@@ -187,11 +195,55 @@ public class StartApplication {
         displayMenu();
     }
 
-    public void saveData() {
-        // TODO: complete the implementation
-        // save the appointmentList and patient list to the JSON file
+    // todo: debugging
+    // EFFECTS: saves the data if possible, displays the appropriate error message otherwise
+    public void saveData() throws ParseException, IOException {
+        System.out.println("Enter 1 to save Patients and 2 to Save appointments!");
+        int choice = input.nextInt();
+        if (choice == 1) {
+            patientFile.writePatientsToFile(patients);
+            System.out.println("Patients Successfully Saved");
+        } else if (choice == 2) {
+            appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
+            System.out.println("Appointments stored successfully!");
+        } else {
+            System.out.println("Invalid Choice!");
+        }
+        displayMenu();
     }
 
+    // todo: debugging
+    // EFFECTS: displays the existing data saved in the files
+    public void getExistingData() throws ParseException, IOException {
+        List<Patient> result1 = patientFile.readPatientsFromFile();
+        List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
+
+        // adding all the patients to the currently stored patients
+        patients.addAll(result1);
+        // adding all the appointments to the currently stored appointments
+        appointments.addAll(result2);
+
+        // displaying the details
+        System.out.println("Details of All Patients: ");
+        displayPatients(patients);
+        System.out.println("Details of All the Appointments: ");
+        displayAppointments(appointments.getAppointments());
+        displayMenu();
+    }
+
+    // EFFECTS: displays the patients
+    public void displayPatients(List<Patient> patients) {
+        for (Patient p: patients) {
+            System.out.println(p.toString());
+        }
+    }
+
+    // EFFECTS: displays the appointments in the given list
+    public void displayAppointments(List<Appointment> appointments) {
+        for (Appointment appointment:appointments) {
+            System.out.println(appointment.toString());
+        }
+    }
     // REQUIRES: a valid PHN
     // MODIFIES: this
     // EFFECTS: reschedules the appointment to the date and time provided by the user if possible,
