@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.time.*;
 import java.util.ArrayList;
+import java.util.List;
 // All the appointments have to be scheduled from 9:00 to 17:00 and
 // each session is usually 15 minutes
 // So, at max we can only schedule 32 appointments for one day
@@ -117,7 +118,11 @@ public class AppointmentList implements Writable {
         return null;
     }
 
-
+    // MODIFIES: this
+    // EFFECTS : adds all the given appointments to the current list of appointments
+    public void addAll(List<Appointment> appointments) {
+        this.appointments.addAll(appointments);
+    }
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

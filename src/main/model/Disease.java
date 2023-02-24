@@ -49,5 +49,7 @@ public class Disease implements Writable {
         json.put("Diagnosis Date", diagnosedDate);
         return json;
     }
+
+
 }
 

@@ -1,6 +1,7 @@
 package model;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -18,19 +19,23 @@ public class Patient implements Writable {
     private String name;
     private int age;
     private List<Disease> diseases;
-    private char sex;
+    private String sex;
     private String insurance;
     private int phn;
 
     // REQUIRES: a valid name, age, sex, insurance and PHN
     // EFFECTS: constructs the Patient object with the given details
-    public Patient(String name, int age, char sex, String insurance, int phn) {
+    public Patient(String name, int age, String sex, String insurance, int phn) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.insurance = insurance;
         this.phn = phn;
         this.diseases = new ArrayList<>();
+    }
+
+    public Patient(JSONObject patient) {
+
     }
 
     // EFFECTS: returns the name of the patient
@@ -49,7 +54,7 @@ public class Patient implements Writable {
     }
 
     // EFFECTS: returns the sex of the patient
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
@@ -86,11 +91,15 @@ public class Patient implements Writable {
 
     // EFFECTS: returns all the diseases in the proper string format
     public String displayDiseases() {
-        String result = "";
-        for (int i = 0; i < diseases.size(); i++) {
-            result += (i + 1) + ". " + diseases.get(i).getName() + ", " + diseases.get(i).getDiagnosedDate() + "\n";
+        if (diseases == null) {
+            return "No diseases found";
+        } else {
+            String result = "";
+            for (int i = 0; i < diseases.size(); i++) {
+                result += (i + 1) + ". " + diseases.get(i).getName() + ", " + diseases.get(i).getDiagnosedDate() + "\n";
+            }
+            return result;
         }
-        return result;
     }
 
     // EFFECTS: displays the details of the patient in the proper string format
@@ -115,11 +124,11 @@ public class Patient implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Name: ", this.name);
-        json.put("Age", this.age);
-        json.put("Sex", this.sex);
-        json.put("Insurance", this.insurance);
-        json.put("PHN", this.phn);
+        json.put("Name: ", name);
+        json.put("Age", age);
+        json.put("Sex", sex);
+        json.put("Insurance", insurance);
+        json.put("PHN", phn);
         json.put("Diseases", diseasesToJson());
         return json;
     }
@@ -132,4 +141,6 @@ public class Patient implements Writable {
         }
         return result;
     }
+
+
 }
