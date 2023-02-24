@@ -14,8 +14,8 @@ public class TestPatient {
 
     @BeforeEach
     public void testPatient() {
-        p1 = new Patient("Gregor", 55, 'M', "BC MSP", 1234567);
-        p2 = new Patient("Kemi", 46, 'F', "N/A" , 1234568);
+        p1 = new Patient("Gregor", 55, "M", "BC MSP", 1234567);
+        p2 = new Patient("Kemi", 46, "F", "N/A" , 1234568);
         d1 = new Disease("TB", LocalDate.of(2021, 8, 02));
         d2 = new Disease("Cholera", LocalDate.now());
     }
@@ -34,8 +34,8 @@ public class TestPatient {
 
     @Test
     public void testGetSex() {
-        assertEquals('M', p1.getSex());
-        assertEquals('F', p2.getSex());
+        assertEquals("M", p1.getSex());
+        assertEquals("F", p2.getSex());
     }
 
     @Test

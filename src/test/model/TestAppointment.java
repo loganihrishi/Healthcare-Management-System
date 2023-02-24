@@ -14,8 +14,8 @@ public class TestAppointment {
 
     @BeforeEach
     public void setUp() {
-        p1 = new Patient("Gregor", 55, 'M', "BC MSP", 1234567);
-        p2 = new Patient("Kemi", 46, 'F', "N/A" , 1234568);
+        p1 = new Patient("Gregor", 55, "M", "BC MSP", 1234567);
+        p2 = new Patient("Kemi", 46, "F", "N/A" , 1234568);
         d1 = new Disease("TB", LocalDate.of(2021, 8, 02));
         d2 = new Disease("Cholera", LocalDate.now());
         a1 = new Appointment(LocalDate.of(2023, 01, 31), LocalTime.of(12,0),

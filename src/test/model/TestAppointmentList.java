@@ -21,9 +21,9 @@ public class TestAppointmentList {
         date2 = LocalDate.of(2023, 01,26);
         time1 = LocalTime.of(12, 00);
         time2 = LocalTime.of(12, 15);
-        p1 = new Patient("Gregor", 69, 'M', "lung cancer",
+        p1 = new Patient("Gregor", 69, "M", "lung cancer",
                 1234567);
-        p2 = new Patient("Kemi", 55, 'F', "Breast Cancer",
+        p2 = new Patient("Kemi", 55, "F", "Breast Cancer",
                 1234568);
         a1 = new Appointment(date1, time1, p1);
         a2 = new Appointment(date2, time2, p2);
@@ -99,7 +99,7 @@ public class TestAppointmentList {
     @Test
     public void testRescheduleAppointment_SuccessfulRescheduling() {
         AppointmentList appointmentList = new AppointmentList();
-        Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
+        Patient p = new Patient("John Smith", 55, "M", "Flu",  9876543);
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
         appointmentList.addAppointment(a); // Test successful rescheduling
@@ -116,7 +116,7 @@ public class TestAppointmentList {
     @Test
     public void testRescheduleAppointment_UnavailableTime() {
         AppointmentList appointmentList = new AppointmentList();
-        Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
+        Patient p = new Patient("John Smith", 55, "M", "Flu",  9876543);
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
         appointmentList.addAppointment(a); // Test rescheduling to an unavailable time
@@ -130,7 +130,7 @@ public class TestAppointmentList {
     @Test
     public void testRescheduleAppointment_InvalidTime() {
         AppointmentList appointmentList = new AppointmentList();
-        Patient p = new Patient("John Smith", 55, 'M', "Flu",  9876543);
+        Patient p = new Patient("John Smith", 55, "M", "Flu",  9876543);
         Appointment a = new Appointment(LocalDate.of(2022, 1, 1),
                 LocalTime.of(10, 0), p);
         appointmentList.addAppointment(a); // Test rescheduling to an invalid time
@@ -198,7 +198,7 @@ public class TestAppointmentList {
 
     @Test
     public void testDisplayGivenDate_TwoAppointmentsFound() {
-        Patient p3 = new Patient("Hrishi", 18, 'M', "private", 5961);
+        Patient p3 = new Patient("Hrishi", 18, "M", "private", 5961);
         Appointment a3 = new Appointment(LocalDate.of(2023,01,27), LocalTime.of(12,30), p3);
         LOA2.addAppointment(a3);
         assertEquals("Patient: \n" +
