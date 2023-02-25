@@ -2,8 +2,7 @@ package persistence;
 
 import model.Disease;
 import model.Patient;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.io.IOException;
 import java.nio.file.Files;

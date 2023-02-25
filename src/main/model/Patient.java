@@ -1,8 +1,6 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 import persistence.Writable;
 
 import java.time.LocalDate;

@@ -1,7 +1,6 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 import persistence.Writable;
 
 import java.time.*;
@@ -119,9 +118,14 @@ public class AppointmentList implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS : adds all the given appointments to the current list of appointments
+    // EFFECTS : adds all the given appointments to the current list of appointments if it does not have it already
     public void addAll(List<Appointment> appointments) {
-        this.appointments.addAll(appointments);
+        for (Appointment appointment:appointments) {
+            boolean b = !(this.appointments.contains(appointment));
+            if (b) {
+                this.appointments.add(appointment);
+            }
+        }
     }
     @Override
     public JSONObject toJson() {

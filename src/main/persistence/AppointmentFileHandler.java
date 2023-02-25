@@ -3,10 +3,7 @@ package persistence;
 import model.Appointment;
 import model.Disease;
 import model.Patient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import org.json.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -40,7 +37,6 @@ public class AppointmentFileHandler {
 
                 LocalDate date = LocalDate.parse(json.getString("Date"));
                 LocalTime time = LocalTime.parse(json.getString("Time"));
-                System.out.println(json.getJSONObject("Patient").toString());
                 Patient patient = jsonToPatient(json.getJSONObject("Patient"));
 
                 Appointment appointment = new Appointment(date, time, patient);
