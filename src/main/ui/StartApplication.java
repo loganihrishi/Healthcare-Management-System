@@ -24,8 +24,8 @@ public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
-    private final static String patientPath = "patients.json";
-    private final static String appointmentPath = "appointments.json";
+    private final static String patientPath = "./data/patients.json";
+    private final static String appointmentPath = "./data/appointments.json";
 
     PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
