@@ -23,10 +23,12 @@ public class AppointmentFileHandler {
 
     private String filePath;
 
+    // EFFECTS: constructs an AppointmentFileHandler object with the given file path
     public AppointmentFileHandler(String filePath) {
         this.filePath = filePath;
     }
 
+    // EFFECTS: reads the appointments from file and return them in the proper list format
     public List<Appointment> readAppointmentsFromFile() {
         List<Appointment> result = new ArrayList<>();
         try {
@@ -51,6 +53,9 @@ public class AppointmentFileHandler {
         return result;
     }
 
+    // REQUIRES: a list of appointments to write onto the file
+    // MODIFIES: this
+    // EFFECTS:  writes the appointments to the file storing the data
     public void writeAppointmentsToFile(List<Appointment> appointments) {
         JSONArray jsonArray = new JSONArray();
         for (Appointment appointment : appointments) {
@@ -68,7 +73,9 @@ public class AppointmentFileHandler {
         }
     }
 
-    public Patient jsonToPatient(JSONObject json) throws JSONException {
+    // REQUIRES: a patient JSON Object
+    // EFFECTS : returns the patient object from the json object
+    private Patient jsonToPatient(JSONObject json) throws JSONException {
         String name = json.getString("Name: ");
         int age = json.getInt("Age");
         String sex = json.getString("Sex");
@@ -90,7 +97,9 @@ public class AppointmentFileHandler {
         return patient;
     }
 
-    public static Disease jsonToDisease(JSONObject json) {
+    // REQUIRES: a json object
+    // EFFECTS : returns the disease object from the json object
+    private static Disease jsonToDisease(JSONObject json) {
         String name = json.getString("Name");
         LocalDate diagnosedDate = LocalDate.parse(json.getString("Diagnosis Date"));
         return new Disease(name, diagnosedDate);

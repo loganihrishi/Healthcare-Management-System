@@ -19,14 +19,17 @@ import java.util.List;
 public class PatientFileHandler {
     private String filePath;
 
+    // EFFECTS: creates a PatientFileHandler object with the given file path
     public PatientFileHandler(String filePath) {
         this.filePath = filePath;
     }
 
+    // EFFECTS: returns the path of the file as a string
     public String getFilePath() {
         return filePath;
     }
 
+    //  // EFFECTS: reads the patients from file and return them in the proper list format
     public List<Patient> readPatientsFromFile() throws IOException {
         List<Patient> result = new ArrayList<>();
         String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -54,6 +57,9 @@ public class PatientFileHandler {
         return result;
     }
 
+    // REQUIRES: a non-null list of patients
+    // MODIFIES: this
+    // EFFECTS: EFFECTS:  writes the list of patients to the file storing the data
     public void writePatientsToFile(List<Patient> patients) throws IOException {
         JSONArray jsonArray = new JSONArray();
         for (Patient patient : patients) {
