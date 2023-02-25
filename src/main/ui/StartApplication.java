@@ -223,11 +223,11 @@ public class StartApplication {
         // adding all the appointments to the currently stored appointments
         appointments.addAll(result2);
 
-        // displaying the details
-        System.out.println("Details of All Patients: ");
-        displayPatients(patients);
-        System.out.println("Details of All the Appointments: ");
-        displayAppointments(appointments.getAppointments());
+//        // displaying the details
+//        System.out.println("Details of All Patients: ");
+//        // displayPatients(patients);
+//        System.out.println("Details of All the Appointments: ");
+//        displayAppointments(appointments.getAppointments());
         displayMenu();
     }
 
