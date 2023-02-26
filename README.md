@@ -41,8 +41,6 @@ medical community.
 - Schedule a new appointment and add it to the existing list
 - Change the date and time of an existing appointment to the another day
 - Remove an appointment that has been scheduled
-- Store the appointments on my device
-- Reopen the application and have it return to the same state as when I last closed it.
 - Search the appointment details using the patient's Personal Health Number (PHN)
 - Save the entire state of Patients and Appointments to the file 
 - Load the saved state of Patients and Appointments from the last time it was run 
