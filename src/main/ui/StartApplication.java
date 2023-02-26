@@ -193,7 +193,6 @@ public class StartApplication {
         displayMenu();
     }
 
-    // todo: debugging
     // EFFECTS: saves the data if possible, displays the appropriate error message otherwise
     public void saveData() throws ParseException, IOException {
         System.out.println("Enter 1 to save Patients and 2 to Save appointments!");
@@ -210,7 +209,6 @@ public class StartApplication {
         displayMenu();
     }
 
-    // todo: debugging
     // EFFECTS: displays the existing data saved in the files
     public void getExistingData() throws ParseException, IOException {
         List<Patient> result1 = patientFile.readPatientsFromFile();
