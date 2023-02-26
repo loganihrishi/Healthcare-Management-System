@@ -62,11 +62,6 @@ public class AppointmentFileHandler {
             jsonArray.put(json);
         }
         Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
-//        try {
-//            Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
-//        } catch (IOException e) {
-//            System.out.println("Error writing to file: " + e.getMessage());
-//        }
     }
 
     // REQUIRES: a patient JSON Object
