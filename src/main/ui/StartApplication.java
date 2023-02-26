@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
-// TODO: create two separate files for List<Patient> and AppointmentList
-
 public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made

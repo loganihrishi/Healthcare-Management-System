@@ -1,6 +1,7 @@
 package model;
 
-import org.json.*;
+import org.json.JSONObject;
+import org.json.JSONArray;
 import persistence.Writable;
 
 import java.time.*;
