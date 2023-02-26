@@ -29,6 +29,7 @@ public class PatientFileHandler {
     }
 
     //  // EFFECTS: reads the patients from file and return them in the proper list format
+    @SuppressWarnings("methodlength")
     public List<Patient> readPatientsFromFile() throws IOException {
         List<Patient> result = new ArrayList<>();
         String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));

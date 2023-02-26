@@ -22,8 +22,8 @@ public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made
     AppointmentList appointments; // stores all the appointments that have been scheduled so far
-    private final static String patientPath = "./data/patients.json";
-    private final static String appointmentPath = "./data/appointments.json";
+    private final String patientPath = "./data/patients.json";
+    private final String appointmentPath = "./data/appointments.json";
 
     PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
@@ -69,11 +69,10 @@ public class StartApplication {
             } else if (option == 6) {
                 findWithPHN();
             } else if (option == 7) {
-                 saveData();
+                saveData();
             } else if (option == 8) {
                 getExistingData();
-            }
-            else {
+            } else {
                 exitApplication();
             }
         }
@@ -86,6 +85,7 @@ public class StartApplication {
     // REQUIRES: a valid Personal Health Number and other basic details
     // MODIFIES: this
     // EFFECTS: adds the patient to the given list of patients
+
     public void addPatient() throws ParseException, IOException {
         System.out.print("Enter Patient Name: ");
         String name = reader.readLine();
@@ -246,6 +246,7 @@ public class StartApplication {
     // MODIFIES: this
     // EFFECTS: reschedules the appointment to the date and time provided by the user if possible,
     //          displays the appropriate message otherwise
+
     public void rescheduleAppointment() throws ParseException, IOException {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = input.nextInt();
