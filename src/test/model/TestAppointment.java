@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -92,5 +93,18 @@ public class TestAppointment {
         // same time and date
         a2.setTime(LocalTime.of(12,0));
         assertTrue(a1.overlap(a2));
+    }
+
+    @Test
+    public void TestToJson() {
+        Patient patient = new Patient("Gregor", 55, "M", "BC MSP", 1234567);
+        Appointment appointment = new Appointment(LocalDate.of(2023, 2, 26),
+                LocalTime.of(14, 30), patient);
+        JSONObject expectedJson = new JSONObject();
+        expectedJson.put("Time", "14:30");
+        expectedJson.put("Date", "2023-02-26");
+        expectedJson.put("Patient", patient.toJson());
+        JSONObject actualJson = appointment.toJson();
+        assertEquals(expectedJson.toString(), actualJson.toString());
     }
 }

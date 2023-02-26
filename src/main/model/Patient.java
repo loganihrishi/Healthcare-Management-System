@@ -32,10 +32,6 @@ public class Patient implements Writable {
         this.diseases = new ArrayList<>();
     }
 
-    public Patient(JSONObject patient) {
-
-    }
-
     // EFFECTS: returns the name of the patient
     public String getName() {
         return name;

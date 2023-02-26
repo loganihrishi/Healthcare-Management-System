@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +34,15 @@ public class TestDisease {
                 "Diagnosis Date: 2021-08-02", d1.toString());
         assertEquals("Disease: Cholera\n" +
                 "Diagnosis Date: " + LocalDate.now(), d2.toString());
+    }
+
+    @Test
+    public void testToJson() {
+        Disease disease = new Disease("Flu", LocalDate.of(2022, 2, 26));
+        JSONObject expectedJson = new JSONObject();
+        expectedJson.put("Name", "Flu");
+        expectedJson.put("Diagnosis Date", "2022-02-26");
+        JSONObject actualJson = disease.toJson();
+        assertEquals(expectedJson.toString(), actualJson.toString());
     }
 }

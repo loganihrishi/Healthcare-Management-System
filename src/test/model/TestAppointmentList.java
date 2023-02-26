@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.*;
 import java.util.ArrayList;
-
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 // THIS IS A TEST CLASS FOR APPOINTMENTLIST
@@ -216,5 +216,43 @@ public class TestAppointmentList {
                 "PHN: 5961\n" +
                 "Diseases: \n" +
                 "  Date:2023-01-27 Time:12:30", LOA2.displayGivenDate(LocalDate.of(2023,01,27)));
+    }
+
+    @Test
+    void testAddAll() {
+        // Test adding an empty list
+        List<Appointment> emptyList = new ArrayList<>();
+        AppointmentList appointmentList = new AppointmentList();
+        appointmentList.addAll(emptyList);
+        assertTrue(appointmentList.getAppointments().isEmpty());
+
+        // Test adding a single appointment
+        Patient patient = new Patient("John Smith", 18, "M", "private" ,595959);
+        LocalDate date = LocalDate.of(2022, 3, 1);
+        LocalTime time = LocalTime.of(10, 0);
+        Appointment appointment1 = new Appointment(date, time, patient);
+        List<Appointment> singleList = new ArrayList<>();
+        singleList.add(appointment1);
+        appointmentList.addAll(singleList);
+        assertEquals(1, appointmentList.getAppointments().size());
+        assertTrue(appointmentList.getAppointments().contains(appointment1));
+
+        // Test adding multiple appointments, some of which are duplicates
+        Patient patient2 = new Patient("Jane Doe", 19, "M", "government", 595960);
+        LocalDate date2 = LocalDate.of(2022, 3, 2);
+        LocalTime time2 = LocalTime.of(11, 0);
+        Appointment appointment2 = new Appointment(date2, time2, patient2);
+        LocalDate date3 = LocalDate.of(2022, 3, 3);
+        LocalTime time3 = LocalTime.of(12, 0);
+        Appointment appointment3 = new Appointment(date3, time3, patient);
+        List<Appointment> multipleList = new ArrayList<>();
+        multipleList.add(appointment1);
+        multipleList.add(appointment2);
+        multipleList.add(appointment3);
+        appointmentList.addAll(multipleList);
+        assertEquals(3, appointmentList.getAppointments().size());
+        assertTrue(appointmentList.getAppointments().contains(appointment1));
+        assertTrue(appointmentList.getAppointments().contains(appointment2));
+        assertTrue(appointmentList.getAppointments().contains(appointment3));
     }
 }

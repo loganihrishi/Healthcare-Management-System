@@ -7,10 +7,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 // THIS IS A TEST CLASS FOR PATIENT
 public class TestPatient {
     private Patient p1, p2;
     private Disease d1, d2;
+    private Patient patient;
+    private Disease disease1;
+    private Disease disease2;
 
     @BeforeEach
     public void testPatient() {
@@ -18,6 +24,13 @@ public class TestPatient {
         p2 = new Patient("Kemi", 46, "F", "N/A" , 1234568);
         d1 = new Disease("TB", LocalDate.of(2021, 8, 02));
         d2 = new Disease("Cholera", LocalDate.now());
+        patient = new Patient("John Doe", 25, "Male", "Blue Cross", 123456789);
+        disease1 = new Disease("Flu", LocalDate.of(2022, 2, 1));
+        disease2 = new Disease("Cold", LocalDate.of(2021, 12, 15));
+        List<Disease> diseases = new ArrayList<>();
+        diseases.add(disease1);
+        diseases.add(disease2);
+        patient.setDiseases(diseases);
     }
 
     @Test
@@ -141,5 +154,29 @@ public class TestPatient {
         assertEquals(2, p1.getDiseases().size());
         assertTrue(p1.getDiseases().contains(d1));
         assertTrue(p1.getDiseases().contains(d2));
+    }
+
+    @Test
+    public void testToJson() {
+        JSONObject json = patient.toJson();
+        assertEquals("John Doe", json.getString("Name: "));
+        assertEquals(25, json.getInt("Age"));
+        assertEquals("Male", json.getString("Sex"));
+        assertEquals("Blue Cross", json.getString("Insurance"));
+        assertEquals(123456789, json.getInt("PHN"));
+        JSONArray jsonDiseases = json.getJSONArray("Diseases");
+        assertEquals(2, jsonDiseases.length());
+        JSONObject jsonDisease1 = jsonDiseases.getJSONObject(0);
+        assertEquals("Flu", jsonDisease1.getString("Name"));
+        LocalDate d1 = LocalDate.of(2022, 2,1);
+        JSONObject jsonDisease2 = jsonDiseases.getJSONObject(1);
+        assertEquals("Cold", jsonDisease2.getString("Name"));
+        LocalDate d2 = LocalDate.of(2021, 12,15);
+    }
+
+    @Test
+    public void TestDisplayDiseasesNull() {
+        patient.setDiseases(null);
+        assertEquals("No diseases found", patient.displayDiseases());
     }
 }

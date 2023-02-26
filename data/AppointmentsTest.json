@@ -1,0 +1,1 @@
+[{"Patient":{"Name: ":"Gregor","Insurance":"BC MSP","Sex":"M","PHN":1234567,"Age":55,"Diseases":[]},"Time":"12:00","Date":"2023-01-31"},{"Patient":{"Name: ":"Kemi","Insurance":"N/A","Sex":"F","PHN":1234568,"Age":46,"Diseases":[]},"Time":"15:00","Date":"2023-01-15"}]
