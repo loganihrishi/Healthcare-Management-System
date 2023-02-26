@@ -46,18 +46,32 @@ public class TestAppointmentFileHandler {
     }
 
     @Test
-    public void TestWriteAppointmentsToFile() {
-        AppointmentFileHandler appointmentFileHandler =
-                new AppointmentFileHandler("./data/AppointmentsTest.json");
-        List<Appointment> toBeInserted = new ArrayList<>();
-        toBeInserted.addAll(Arrays.asList(a1, a2));
-        assertEquals(2, toBeInserted.size());
-        appointmentFileHandler.writeAppointmentsToFile(toBeInserted);
-        // reading the data from the file
-        List<Appointment> result = appointmentFileHandler.readAppointmentsFromFile();
-        // should be two items in the list
-        assertEquals(2, result.size());
+    public void TestWritingNonExistentFile_ExpectException() {
+        // testing an empty path
+        AppointmentFileHandler appointmentFileHandler = new AppointmentFileHandler("");
+        try {
+            appointmentFileHandler.writeAppointmentsToFile(new ArrayList<>());
+            fail("The test is passing");
+        } catch (IOException e) {
+            // pass, we are expecting the exception
+        }
     }
 
-
+    @Test
+    public void TestWriteAppointmentsToFile() {
+       try {
+           AppointmentFileHandler appointmentFileHandler =
+                   new AppointmentFileHandler("./data/AppointmentsTest.json");
+           List<Appointment> toBeInserted = new ArrayList<>();
+           toBeInserted.addAll(Arrays.asList(a1, a2));
+           assertEquals(2, toBeInserted.size());
+           appointmentFileHandler.writeAppointmentsToFile(toBeInserted);
+           // reading the data from the file
+           List<Appointment> result = appointmentFileHandler.readAppointmentsFromFile();
+           // should be two items in the list
+           assertEquals(2, result.size());
+       } catch (IOException e) {
+           fail("Did not expect the IO Exception");
+       }
+    }
 }

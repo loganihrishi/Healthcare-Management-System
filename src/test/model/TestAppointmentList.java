@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 // THIS IS A TEST CLASS FOR APPOINTMENTLIST
 public class TestAppointmentList {
 
@@ -13,7 +15,7 @@ public class TestAppointmentList {
     private LocalTime time1, time2;
     private Patient p1, p2;
     private Appointment a1, a2;
-    private AppointmentList LOA1, LOA2, LOA3;
+    private AppointmentList LOA1, LOA2, LOA3, appointmentList;
 
     @BeforeEach
     public void setUp() {
@@ -32,6 +34,7 @@ public class TestAppointmentList {
         LOA3 = new AppointmentList();
         LOA2.addAppointment(a1);
         LOA2.addAppointment(a2);
+        appointmentList = new AppointmentList();
     }
 
 
@@ -254,5 +257,27 @@ public class TestAppointmentList {
         assertTrue(appointmentList.getAppointments().contains(appointment1));
         assertTrue(appointmentList.getAppointments().contains(appointment2));
         assertTrue(appointmentList.getAppointments().contains(appointment3));
+    }
+
+    @Test
+    public void testToJson() {
+        AppointmentList test = new AppointmentList();
+        test.addAppointment(a1);
+        JSONObject actualJson = test.toJson();
+        String result = "{\"Appointments\":[{\"Patient\":" +
+                "{\"Name: \":\"Gregor\",\"Insurance\":\"lung cancer\",\"Sex\":\"" +
+                "M\",\"PHN\":1234567,\"Age\":69,\"Diseases\":[]},\"Time\":\"12:00\",\"Date\":\"2023-01-27\"}]}";
+        assertEquals(result, actualJson.toString());
+    }
+
+    @Test
+    public void testToJsonEmptyAppointmentList() {
+        // Generate JSON object from empty appointment list
+        JSONObject json = appointmentList.toJson();
+
+        // Verify JSON object contains expected values
+        assertTrue(json.has("Appointments"));
+        JSONArray appointmentsJsonArray = json.getJSONArray("Appointments");
+        assertEquals(0, appointmentsJsonArray.length());
     }
 }

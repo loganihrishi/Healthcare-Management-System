@@ -52,7 +52,7 @@ public class AppointmentFileHandler {
     // REQUIRES: a list of appointments to write onto the file
     // MODIFIES: this
     // EFFECTS:  writes the appointments to the file storing the data
-    public void writeAppointmentsToFile(List<Appointment> appointments) {
+    public void writeAppointmentsToFile(List<Appointment> appointments) throws IOException {
         JSONArray jsonArray = new JSONArray();
         for (Appointment appointment : appointments) {
             JSONObject json = new JSONObject();
@@ -61,12 +61,12 @@ public class AppointmentFileHandler {
             json.put("Patient", appointment.getPatient().toJson());
             jsonArray.put(json);
         }
-
-        try {
-            Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-        }
+        Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
+//        try {
+//            Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
+//        } catch (IOException e) {
+//            System.out.println("Error writing to file: " + e.getMessage());
+//        }
     }
 
     // REQUIRES: a patient JSON Object
