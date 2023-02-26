@@ -1,12 +1,19 @@
 package model;
 
 import org.json.*;
-import persistence.Writable;
+import persistence.WriteToFile;
 
 import java.time.*;
 
-// THIS CLASS REPRESENTS THE APPOINTMENT with Time, Date and PATIENT
-public class Appointment implements Writable {
+/**
+ * Represents an appointment that has a Date, Time and Patient.
+ * It contains methods to retrieve and modify date and time and patient information for an appointment .
+ * The class also provides a method to determine if an appointment overlaps with another appointment.
+ * The class implements the Writable interface and provides a toJson() method to convert the appointment
+ * to a JSON object.
+ */
+
+public class Appointment implements WriteToFile {
     private LocalTime time;
     private LocalDate date;
     private Patient patient;

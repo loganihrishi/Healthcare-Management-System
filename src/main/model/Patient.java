@@ -1,7 +1,7 @@
 package model;
 
 import org.json.*;
-import persistence.Writable;
+import persistence.WriteToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,9 +11,10 @@ import java.util.List;
  * It has fields for name, age, sex, insurance details, personal health number (PHN), and a list of diseases.
  * It provides methods to get and set these fields and add diseases to the list.
  * The toString() method returns the patient's details in a formatted string, and the displayDiseases() method returns
- * a formatted string of all the diseases in the patient's list.
+ * a formatted string of all the diseases in the patient's list; it also has a toJson() method to convert the patient
+ * object to a JSON object.
  */
-public class Patient implements Writable {
+public class Patient implements WriteToFile {
     private String name;
     private int age;
     private List<Disease> diseases;

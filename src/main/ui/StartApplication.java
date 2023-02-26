@@ -18,6 +18,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
+/**
+ * This class represent the console based UI of the project. It has all the methods to interact with the user and
+ * implements the USER stories in the README file.
+ */
+
+
 public class StartApplication {
     int option;
     List<Patient> patients; // stores the patients made

@@ -9,6 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This is a test class for PatientFileHandler class
+ */
+
 public class TestPatientFileHandler {
     
     @Test

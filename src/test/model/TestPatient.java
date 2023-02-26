@@ -10,7 +10,10 @@ import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-// THIS IS A TEST CLASS FOR PATIENT
+/**
+ * THIS IS A TEST CLASS FOR PATIENT
+ */
+
 public class TestPatient {
     private Patient p1, p2;
     private Disease d1, d2;

@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 
-// THIS IS A TEST CLASS FOR DISEASE
+/**
+ * THIS IS A TEST CLASS FOR DISEASE
+ */
+
 public class TestDisease {
     private Disease d1, d2;
 

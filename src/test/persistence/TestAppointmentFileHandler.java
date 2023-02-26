@@ -16,6 +16,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * THIS IS A TEST CLASS FOR AppointmentFileHandler class
+ */
+
 public class TestAppointmentFileHandler {
     private Patient p1, p2;
     private Disease d1, d2;

@@ -7,7 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-// THIS IS A TEST CLASS FOR APPOINTMENT
+/**
+ * THIS IS A TEST CLASS FOR APPOINTMENT
+ */
+
 public class TestAppointment {
     private Appointment a1, a2;
     private Patient p1, p2;

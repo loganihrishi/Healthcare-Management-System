@@ -8,7 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-// THIS IS A TEST CLASS FOR APPOINTMENTLIST
+/**
+ * THIS IS A TEST CLASS FOR APPOINTMENTLIST
+ */
+
 public class TestAppointmentList {
 
     private LocalDate date1, date2;
