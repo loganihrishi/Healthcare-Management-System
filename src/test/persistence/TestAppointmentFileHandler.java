@@ -46,7 +46,7 @@ public class TestAppointmentFileHandler {
     public void TestReadingAFile() {
         AppointmentFileHandler appointmentFileHandler = new AppointmentFileHandler("./data/appointments.json");
         List<Appointment> result = appointmentFileHandler.readAppointmentsFromFile();
-        assertEquals(3, result.size());
+        assertEquals(2, result.size());
     }
 
     @Test

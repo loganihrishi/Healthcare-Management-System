@@ -116,7 +116,7 @@ public class StartApplication {
     // MODIFIES: this
     // EFFECTS: sets the disease to the patient
 
-    public List<Disease> addDisease() throws ParseException, IOException {
+    public List<Disease> addDisease() throws IOException {
         List<Disease> diseases = new ArrayList<>();
         System.out.print("Enter the number of diseases: ");
         int num = input.nextInt();
@@ -215,7 +215,8 @@ public class StartApplication {
         displayMenu();
     }
 
-    // EFFECTS: displays the existing data saved in the files
+    // MODIFIES: this
+    // EFFECTS: Loads the data stored in the files
     public void getExistingData() throws ParseException, IOException {
         List<Patient> result1 = patientFile.readPatientsFromFile();
         List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
@@ -225,16 +226,12 @@ public class StartApplication {
         // adding all the appointments to the currently stored appointments
         appointments.addAll(result2);
 
-        // displaying the details
-        System.out.println("Details of All Patients: ");
-        displayPatients(patients);
-        System.out.println("Details of All the Appointments: ");
-        displayAppointments(appointments.getAppointments());
+        System.out.println("The data has been loaded successfully!" + "\n");
         displayMenu();
     }
 
     // EFFECTS: displays the patients
-    public void displayPatients(List<Patient> patients) {
+    private void displayPatients(List<Patient> patients) {
         for (Patient p: patients) {
             System.out.println(p.toString());
         }
@@ -296,7 +293,7 @@ public class StartApplication {
 
     // REQUIRES: a valid PHN
     // EFFECTS: prints the appointment details associated with a particular PHN
-    public void findWithPHN() throws ParseException, IOException {
+    private void findWithPHN() throws ParseException, IOException {
         System.out.print("Enter the PHN of the patient whose appointment details are needed: ");
         int phn = input.nextInt();
         Appointment appointment = appointments.findAppointment(phn);
@@ -310,7 +307,7 @@ public class StartApplication {
 
     // REQUIRES: a valid date and time
     // EFFECTS: returns true if any appointment overlaps with the appointment in already scheduled appointments
-    public boolean overlaps(LocalDate date, LocalTime time) {
+    private boolean overlaps(LocalDate date, LocalTime time) {
         for (Appointment a: appointments.getAppointments()) {
             if (a.getDate().equals(date) && a.getTime().equals(time)) {
                 return true;
@@ -321,7 +318,7 @@ public class StartApplication {
 
     // REQUIRES: a valid PHN
     // EFFECTS: returns the patient object if found, null otherwise
-    public Patient getPatient(int phn) {
+    private Patient getPatient(int phn) {
         for (Patient p: patients) {
             if (p.getPhn() == phn) {
                 return p;
