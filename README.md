@@ -38,10 +38,12 @@ medical community.
 
 **As a user, I will have the capability to:**
 
+- Add patient details
 - Schedule a new appointment and add it to the existing list
 - Change the date and time of an existing appointment to the another day
 - Remove an appointment that has been scheduled
 - Search the appointment details using the patient's Personal Health Number (PHN)
+- Display all the appointments for a given date
 - Save the entire state of Patients and Appointments to the file 
 - Load the saved state of Patients and Appointments from the last time it was run 
   and resume where it was left off
