@@ -1,9 +1,6 @@
 package ui;
 
-import model.Appointment;
-import model.AppointmentList;
-import model.Disease;
-import model.Patient;
+import model.*;
 import persistence.AppointmentFileHandler;
 import persistence.PatientFileHandler;
 
@@ -49,7 +46,6 @@ public class StartApplication {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     // EFFECTS: starts the UI of the application
-    @SuppressWarnings("methodlength")
     public void displayMenu() throws ParseException, IOException {
         System.out.println("1. Enter 1 to Add a patient.");
         System.out.println("2. Enter 2 to add an appointment.");
@@ -61,25 +57,45 @@ public class StartApplication {
         System.out.println("8. Enter 8 to Load the data. ");
         System.out.println("9. Enter 9 to Quit the application.");
         option = input.nextInt();
+        processCommand(option);
+    }
+
+    // REQUIRES: an option inputted by the user
+    // EFFECTS: processes the command entered from the user
+    @SuppressWarnings("methodlength")
+    private void processCommand(int option) throws ParseException, IOException {
         while (true) {
-            if (option == 1) {
-                addPatient();
-            } else if (option == 2) {
-                addAppointment();
-            } else if (option == 3) {
-                cancelAppointment();
-            } else if (option == 4) {
-                rescheduleAppointment();
-            } else if (option == 5) {
-                displayAll();
-            } else if (option == 6) {
-                findWithPHN();
-            } else if (option == 7) {
-                saveData();
-            } else if (option == 8) {
-                getExistingData();
-            } else {
-                exitApplication();
+            switch (option) {
+                case 1:
+                    addPatient();
+                    break;
+                case 2:
+                    addAppointment();
+                    break;
+                case 3:
+                    cancelAppointment();
+                    break;
+                case 4:
+                    rescheduleAppointment();
+                    break;
+                case 5:
+                    displayAll();
+                    break;
+                case 6:
+                    findWithPHN();
+                    break;
+                case 7:
+                    saveData();
+                    break;
+                case 8:
+                    getExistingData();
+                    break;
+                case 9:
+                    exitApplication();
+                default:
+                    System.out.println("Invalid choice entered. \n");
+                    displayMenu();
+                    break;
             }
         }
     }
@@ -116,7 +132,7 @@ public class StartApplication {
     // MODIFIES: this
     // EFFECTS: sets the disease to the patient
 
-    public List<Disease> addDisease() throws IOException {
+    private List<Disease> addDisease() throws IOException {
         List<Disease> diseases = new ArrayList<>();
         System.out.print("Enter the number of diseases: ");
         int num = input.nextInt();
@@ -203,14 +219,18 @@ public class StartApplication {
     public void saveData() throws ParseException, IOException {
         System.out.println("Enter 1 to save Patients and 2 to Save appointments!");
         int choice = input.nextInt();
-        if (choice == 1) {
-            patientFile.writePatientsToFile(patients);
-            System.out.println("Patients Successfully Saved");
-        } else if (choice == 2) {
-            appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
-            System.out.println("Appointments stored successfully!");
-        } else {
-            System.out.println("Invalid Choice!");
+        switch (choice) {
+            case 1:
+                patientFile.writePatientsToFile(patients);
+                System.out.println("Patients Successfully Saved");
+                break;
+            case 2:
+                appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
+                System.out.println("Appointments stored successfully!");
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
         }
         displayMenu();
     }
