@@ -56,6 +56,8 @@ public class StartApplication {
         System.out.println("7. Enter 7 to save the data. ");
         System.out.println("8. Enter 8 to Load the data. ");
         System.out.println("9. Enter 9 to Quit the application.");
+        System.out.println("Make sure that you load the data before running the application.");
+        System.out.println("Otherwise you may lose all of your data.");
         option = input.nextInt();
         processCommand(option);
     }
@@ -153,7 +155,6 @@ public class StartApplication {
     // MODIFIES: this
     // EFFECTS: adds the appointment to the given list of appointments, if possible
     //          otherwise displays an appropriate error message
-    @SuppressWarnings("methodlength")
     public void addAppointment() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
@@ -167,6 +168,13 @@ public class StartApplication {
                 +
                 "to add a new patient.");
         int choice = input.nextInt();
+        processCommandForAppointment(d, t, choice);
+    }
+
+    // REQUIRES: a valid LocalDate, LocalTime
+    // MODIFIES: this
+    // EFFECTS: adds the appointment if possible, otherwise generates appropriate error message
+    private void processCommandForAppointment(LocalDate d, LocalTime t, int choice) throws ParseException, IOException {
         if (choice == 1) {
             System.out.print("Enter the Personal Health Number of the patient: ");
             int phn = input.nextInt();

@@ -28,8 +28,7 @@ public class PatientFileHandler {
         return filePath;
     }
 
-    //  // EFFECTS: reads the patients from file and return them in the proper list format
-    @SuppressWarnings("methodlength")
+    // EFFECTS: reads the patients from file and return them in the proper list format
     public List<Patient> readPatientsFromFile() throws IOException {
         List<Patient> result = new ArrayList<>();
         String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -42,14 +41,7 @@ public class PatientFileHandler {
             String insurance = json.getString("Insurance");
             int phn = json.getInt("PHN");
             JSONArray jsonDiseases = json.getJSONArray("Diseases");
-            List<Disease> diseases = new ArrayList<>();
-            for (Object dis : jsonDiseases) {
-                JSONObject jsonDis = (JSONObject) dis;
-                String diseaseName = jsonDis.getString("Name");
-                LocalDate diagnosedDate = LocalDate.parse(jsonDis.getString("Diagnosis Date"));
-                Disease disease = new Disease(diseaseName, diagnosedDate);
-                diseases.add(disease);
-            }
+            List<Disease> diseases = toJsonDiseases(jsonDiseases);
             Patient patient = new Patient(name, age, sex, insurance, phn);
             patient.setDiseases(diseases);
             result.add(patient);
@@ -66,5 +58,19 @@ public class PatientFileHandler {
             jsonArray.put(patient.toJson());
         }
         Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
+    }
+
+    // REQUIRES: a JSONArray of diseases
+    // EFFECTS: converts the JSONArray to List<Disease> and returns it
+    private List<Disease> toJsonDiseases(JSONArray jsonDiseases) {
+        List<Disease> result = new ArrayList<>();
+        for (Object dis : jsonDiseases) {
+            JSONObject jsonDis = (JSONObject) dis;
+            String diseaseName = jsonDis.getString("Name");
+            LocalDate diagnosedDate = LocalDate.parse(jsonDis.getString("Diagnosis Date"));
+            Disease disease = new Disease(diseaseName, diagnosedDate);
+            result.add(disease);
+        }
+        return result;
     }
 }
