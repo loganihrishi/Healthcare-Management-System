@@ -9,7 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 /**
  * Represents the class to read and write patients onto patient file. The class provides methods for getting the file
  * path, writing the list of patients on to file and reading the list of patients on to file.

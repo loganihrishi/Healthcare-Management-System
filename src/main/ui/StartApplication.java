@@ -11,9 +11,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class represent the console based UI of the project. It has all the methods to interact with the user and

@@ -70,5 +70,13 @@ public class TestPatientFileHandler {
             fail("Did not expect an IO Exception while reading the file");
         }
         assertEquals(1, result1.size());
+        assertEquals("Patient: \n" +
+                "Name: Hrishi Logani\n" +
+                "Age: 18\n" +
+                "Sex: M\n" +
+                "Insurance: private\n" +
+                "PHN: 123456\n" +
+                "Diseases: \n" +
+                "", result1.get(0).toString());
     }
 }

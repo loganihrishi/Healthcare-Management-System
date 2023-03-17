@@ -11,10 +11,9 @@ import java.util.List;
 // each session is usually 15 minutes
 // So, at max we can only schedule 32 appointments for one day
 /**
-
- Represents a list of appointments that can be scheduled, rescheduled, and cancelled.
- Appointments can be searched for and displayed by date or patient PHN.
- It also has a toJson() method to convert the AppointmentList object to a JSON Object.
+ * Represents a list of appointments that can be scheduled, rescheduled, and cancelled.
+ * Appointments can be searched for and displayed by date or patient PHN.
+ * It also has a toJson() method to convert the AppointmentList object to a JSON Object.
  */
 public class AppointmentList implements WriteToFile {
     private ArrayList<Appointment> appointments;
