@@ -166,18 +166,20 @@ public class StartApplicationGUI extends JFrame {
         }
     }
 
+    // EFFECTS: returns the appointments
     public AppointmentList getAppointments() {
         return appointments;
     }
 
+    // EFFECTS: returns the patients
     public List<Patient> getPatients() {
         return patients;
     }
 
+    // EFFECTS: returns the current StartApplicationGUI object
     public StartApplicationGUI getStartApplicationGUI() {
         return this;
     }
-
 
     public static void main(String[] args) throws IOException {
         new StartApplicationGUI();

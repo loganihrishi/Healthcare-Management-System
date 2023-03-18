@@ -1,3 +1,1 @@
-[{"Name: ":"Hrishi Logani","Insurance":"private","Sex":"M","PHN":595959,"Age":18,"Diseases":[{"Diagnosis Date":"2023-02-10","Name":"flu"}]},
-  {"Name: ":"Gregor Kiczales ","Insurance":"private","Sex":"M","PHN":595960,"Age":55,"Diseases":[]},
-  {"Name: ":"Kemi Ola","Insurance":"private","Sex":"F","PHN":595961,"Age":55,"Diseases":[{"Diagnosis Date":"2023-05-10","Name":"cholera"}]}]
+[{"Name: ":"Hrishi Logani","Insurance":"private","Sex":"M","PHN":595959,"Age":18,"Diseases":[{"Diagnosis Date":"2023-02-10","Name":"flu"}]},{"Name: ":"Gregor Kiczales ","Insurance":"private","Sex":"M","PHN":595960,"Age":55,"Diseases":[]},{"Name: ":"Kemi Ola","Insurance":"private","Sex":"F","PHN":595961,"Age":55,"Diseases":[{"Diagnosis Date":"2023-05-10","Name":"cholera"}]}]

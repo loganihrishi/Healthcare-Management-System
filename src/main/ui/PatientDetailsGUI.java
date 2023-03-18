@@ -9,17 +9,22 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+/**
+ * Represents the GUI class for adding the patient details.
+ */
 
 public class PatientDetailsGUI extends StartApplicationGUI {
 
+    // EFFECTS: starts the PatientDetailsGUI part of the main GUI
     public PatientDetailsGUI() throws IOException {
         super();
         addPatient();
     }
 
+    // EFFECTS: creates the GUI for Patient details
+    @SuppressWarnings("methodlength")
     public void addPatient() {
         JFrame frame = new JFrame("Add Patient");
-
         JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();
         nameField.setEditable(true);
@@ -46,6 +51,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {
 
+            @SuppressWarnings("methodlength")
             public void actionPerformed(ActionEvent e) {
                 // Get the values from the text fields
                 String name = nameField.getText();
@@ -72,7 +78,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 phnField.setText("");
 
                 // Show a message to the user
-                JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success" ,
+                JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
                         JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
 
                 // Go back to the main menu
@@ -84,7 +90,20 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 }
             }
         });
+        makePanel(nameLabel, nameField, ageLabel, ageField, sexLabel, sexField, insuranceLabel, insuranceField,
+                phnLabel,
+                phnField, diseaseNameLabel, diseaseNameField, diagnosisDateLabel, diagnosisDateField, submitButton,
+                frame);
+    }
 
+    // EFFECTS: generates the appropriate labels and buttons for PatientDetailsGUI
+    private void makePanel(JLabel nameLabel, JTextField nameField, JLabel ageLabel, JTextField ageField,
+                           JLabel sexLabel,
+                           JTextField sexField,
+                           JLabel insuranceLabel, JTextField insuranceField, JLabel phnLabel, JTextField phnField,
+                           JLabel diseaseNameLabel, JTextField diseaseNameField, JLabel diagnosisDateLabel,
+                           JTextField diagnosisDateField,
+                           JButton submitButton, JFrame frame) {
         JPanel panel = new JPanel(new GridLayout(8, 2));
         panel.add(nameLabel);
         panel.add(nameField);
