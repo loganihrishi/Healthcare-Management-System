@@ -1,6 +1,5 @@
 package ui;
 
-import model.Disease;
 import model.Patient;
 
 import javax.swing.*;
@@ -8,9 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class PatientDetailsGUI extends StartApplicationGUI {
@@ -75,7 +72,8 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 phnField.setText("");
 
                 // Show a message to the user
-                JOptionPane.showMessageDialog(frame, "Patient added successfully!");
+                JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success" ,
+                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
 
                 // Go back to the main menu
                 try {

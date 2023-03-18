@@ -1,7 +1,6 @@
 package ui;
 
 import model.Appointment;
-import ui.StartApplicationGUI;
 
 import javax.swing.*;
 import java.awt.*;
