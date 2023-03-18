@@ -36,12 +36,12 @@ public class StartApplicationGUI extends JFrame {
     AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
     // EFFECTS: starts the GUI of the application
-    public StartApplicationGUI() {
+    public StartApplicationGUI() throws IOException {
         initializeFrame();
     }
 
     // EFFECTS: initializes the frame
-    public void initializeFrame() {
+    public void initializeFrame() throws IOException {
         getExistingData();
         this.setTitle("Healthcare Management System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +65,7 @@ public class StartApplicationGUI extends JFrame {
     }
 
     // EFFECTS: adds the panel with appropriate dimensions
-    private JPanel addPanel() {
+    private JPanel addPanel() throws IOException {
         JPanel res = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -86,11 +86,21 @@ public class StartApplicationGUI extends JFrame {
     }
 
     // EFFECTS: adds the patient button
-    private JButton addPatientButton() {
+    private JButton addPatientButton() throws IOException {
         this.addPatientButton = new JButton("Add a patient");
         Font font = new Font("Arial", Font.PLAIN, 22);
         addPatientButton.setFont(font);
         addPatientButton.setPreferredSize(new Dimension(500, 100));
+        addPatientButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new PatientDetailsGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         return addPatientButton;
     }
 
@@ -100,6 +110,16 @@ public class StartApplicationGUI extends JFrame {
         Font font = new Font("Arial", Font.PLAIN, 22);
         saveDataButton.setFont(font);
         saveDataButton.setPreferredSize(new Dimension(500, 100));
+        saveDataButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new SaveDataGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         return saveDataButton;
     }
 
@@ -121,7 +141,11 @@ public class StartApplicationGUI extends JFrame {
         findUsingPhnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FindUsingPhnGUI();
+                try {
+                    new FindUsingPhnGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex); // todo
+                }
             }
         });
         return findUsingPhnButton;
@@ -154,7 +178,8 @@ public class StartApplicationGUI extends JFrame {
         return this;
     }
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         new StartApplicationGUI();
     }
 }

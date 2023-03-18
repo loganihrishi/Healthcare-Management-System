@@ -7,122 +7,105 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 
-// TODO: COMPLETE THIS SHIT
 public class PatientDetailsGUI extends StartApplicationGUI {
 
-    private JPanel mainPanel = new JPanel();
-    private JButton mainMenu = new JButton("Click here to go back");
-
-    public PatientDetailsGUI() {
-        initialize();
+    public PatientDetailsGUI() throws IOException {
+        super();
+        addPatient();
     }
-
-    private void initialize() {
-        this.setTitle("Healthcare Management System");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true);
-        this.getContentPane().setBackground(Color.WHITE);
-        this.setSize(new Dimension(dimX, dimY));
-       // this.add(getMainPanel());
-        this.setVisible(true);
-    }
-
-//    private JPanel getMainPanel() {
-//
-//    }
 
     public void addPatient() {
+        JFrame frame = new JFrame("Add Patient");
+
+        JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();
+        nameField.setEditable(true);
+        JLabel ageLabel = new JLabel("Age:");
         JTextField ageField = new JTextField();
+        ageField.setEditable(true);
+        JLabel sexLabel = new JLabel("Sex (M/F):");
         JTextField sexField = new JTextField();
+        sexField.setEditable(true);
+        JLabel insuranceLabel = new JLabel("Insurance:");
         JTextField insuranceField = new JTextField();
+        insuranceField.setEditable(true);
+        JLabel phnLabel = new JLabel("Personal Health Number:");
         JTextField phnField = new JTextField();
-        Object[] fields = {
-                "Enter Patient Name:", nameField,
-                "Enter Patient's Age:", ageField,
-                "Enter Patient's Sex (M/F):", sexField,
-                "Enter Patient's Insurance Details:", insuranceField,
-                "Enter Patient's Personal Health Number:", phnField
-        };
-        int option = JOptionPane.showConfirmDialog(null, fields, "Add Patient",
-                JOptionPane.OK_CANCEL_OPTION);
+        phnField.setEditable(true);
+        // Fields for adding diseases
+        JLabel diseaseNameLabel = new JLabel("Disease Name:");
+        JTextField diseaseNameField = new JTextField();
+        diseaseNameField.setEditable(true);
+        JLabel diagnosisDateLabel = new JLabel("Diagnosis Date (yyyy-MM-dd):");
+        JTextField diagnosisDateField = new JTextField();
+        diagnosisDateField.setEditable(true);
 
-        if (option == JOptionPane.OK_OPTION) {
-            String name = nameField.getText();
-            int age = Integer.parseInt(ageField.getText());
-            String sex = sexField.getText();
-            String insurance = insuranceField.getText();
-            int phn = Integer.parseInt(phnField.getText());
-            Patient patient = new Patient(name, age, sex, insurance, phn);
-            List<Disease> diseases = addDisease();
-            patient.setDiseases(diseases);
-            patients.add(patient);
-            JOptionPane.showMessageDialog(null, "Patient " + name + " has been added");
-        }
-    }
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(new ActionListener() {
 
-    private List<Disease> addDisease() {
-        List <Disease> diseases = new ArrayList<>();
-        JTextField numField = new JTextField();
-        Object[] fields = {
-                "Enter the number of diseases:", numField
-        };
-        int option = JOptionPane.showConfirmDialog(null, fields, "Add Diseases",
-                JOptionPane.OK_CANCEL_OPTION);
+            public void actionPerformed(ActionEvent e) {
+                // Get the values from the text fields
+                String name = nameField.getText();
+                int age = Integer.parseInt(ageField.getText());
+                String sex = sexField.getText();
+                String insurance = insuranceField.getText();
+                int phn = Integer.parseInt(phnField.getText());
+                String disName = diseaseNameField.getText();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDate diagDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
 
-        if (option == JOptionPane.OK_OPTION) {
-            int num = Integer.parseInt(numField.getText());
-            for (int i = 0; i < num; i++) {
-                JTextField nameField = new JTextField();
-                JTextField dateField = new JTextField();
-                Object[] fields2 = {
-                        "Enter the name of disease no. " + (i + 1) + ":", nameField,
-                        "Enter the date when the disease was diagnosed (YYYY/MM/DD):", dateField
-                };
-                int option2 = JOptionPane.showConfirmDialog(null, fields2,
-                        "Add Disease " + (i + 1), JOptionPane.OK_CANCEL_OPTION);
-                if (option2 == JOptionPane.OK_OPTION) {
-                    String name = nameField.getText();
-                    String dateString = dateField.getText();
-                    LocalDate date;
-                    try {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                        date = LocalDate.parse(dateString, formatter);
-                    } catch (DateTimeParseException e) {
-                        JOptionPane.showMessageDialog(null,
-                                "Invalid date format. Please enter date in YYYY/MM/DD format.");
-                        i--;
-                        continue;
-                    }
-                    diseases.add((new Disease(name, date)));
-                } else {
-                    break;
+                // Create a new patient object
+                Patient patient = new Patient(name, age, sex, insurance, phn);
+                patient.addDisease(disName, diagDate);
+
+                // Add the patient to the list
+                patients.add(patient);
+
+                // Clear the text fields
+                nameField.setText("");
+                ageField.setText("");
+                sexField.setText("");
+                insuranceField.setText("");
+                phnField.setText("");
+
+                // Show a message to the user
+                JOptionPane.showMessageDialog(frame, "Patient added successfully!");
+
+                // Go back to the main menu
+                try {
+                    patientFile.writePatientsToFile(patients);
+                    new StartApplicationGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
-            JOptionPane.showMessageDialog(null, "All the diseases have been stored");
-        }
-
-        return diseases;
-    }
-
-
-    // EFFECTS: returns the JButton for the main menu
-    private JButton getMainMenu() {
-        mainMenu.setFont(new Font("Arial", Font.PLAIN, 20));
-        this.mainMenu.setPreferredSize(new Dimension(500, 100));
-        this.mainMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new StartApplicationGUI();
-            }
         });
-        return mainMenu;
-    }
 
+        JPanel panel = new JPanel(new GridLayout(8, 2));
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(ageLabel);
+        panel.add(ageField);
+        panel.add(sexLabel);
+        panel.add(sexField);
+        panel.add(insuranceLabel);
+        panel.add(insuranceField);
+        panel.add(phnLabel);
+        panel.add(phnField);
+        panel.add(diseaseNameLabel);
+        panel.add(diseaseNameField);
+        panel.add(diagnosisDateLabel);
+        panel.add(diagnosisDateField);
+        panel.add(submitButton);
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }
+

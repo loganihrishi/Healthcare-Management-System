@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 /**
  * Represents the GUI class for looking for appointment details using patient's personal health number.
  */
@@ -17,7 +19,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
     private JPanel mainPanel = new JPanel();
 
     // EFFECTS: starts the find patient gui
-    public FindUsingPhnGUI() {
+    public FindUsingPhnGUI() throws IOException {
         initialize();
     }
 
@@ -68,7 +70,12 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         this.mainMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StartApplicationGUI();
+                dispose();
+                try {
+                    new StartApplicationGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         return mainMenu;
