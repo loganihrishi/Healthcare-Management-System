@@ -23,7 +23,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
 
     // EFFECTS: creates the GUI for Patient details
     @SuppressWarnings("methodlength")
-    public void addPatient() {
+    private void addPatient() {
         JFrame frame = new JFrame("Add Patient");
         JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();
