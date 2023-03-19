@@ -1,4 +1,4 @@
-package ui;
+package gui;
 
 import model.Appointment;
 import model.Patient;
@@ -65,24 +65,24 @@ public class AppDetailsGUI extends StartApplicationGUI {
                                 "Failure",
                                 JOptionPane.INFORMATION_MESSAGE,
                                 new ImageIcon("data/gregor.jpeg"));
+                    } else {
+                        appointments.addAppointment(newAppointment);
+                        JOptionPane.showMessageDialog(frame, "Appointment Scheduled successfully", "Success",
+                                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+
+                        int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
+                                JOptionPane.YES_NO_OPTION);
+
+                        if (option == JOptionPane.YES_OPTION) {
+                            try {
+                                appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                        }
                     }
-
-                    appointments.addAppointment(newAppointment);
-                    JOptionPane.showMessageDialog(frame, "Appointment Scheduled successfully", "Success",
-                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-                }
-
-                int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (option == JOptionPane.YES_OPTION) {
-                    try {
-                        appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
                 }
                 dateField.setText("");
                 timeField.setText("");

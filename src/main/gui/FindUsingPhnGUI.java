@@ -1,7 +1,6 @@
-package ui;
+package gui;
 
 import model.Appointment;
-import model.AppointmentList;
 
 import javax.swing.*;
 import java.awt.*;

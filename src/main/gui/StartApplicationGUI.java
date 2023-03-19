@@ -1,6 +1,5 @@
-package ui;//package ui;
+package gui;
 
-import model.Appointment;
 import model.AppointmentList;
 import model.Patient;
 import persistence.AppointmentFileHandler;
@@ -113,6 +112,8 @@ public class StartApplicationGUI extends JFrame {
         return addPatientButton;
     }
 
+    // MODIFIES: this
+    // EFFECTS: returns the button to cancel the appointment
     private JButton cancelAppButton() {
         this.cancelAppButton = new JButton("Cancel an appointment");
         cancelAppButton.setFont(new Font("Arial", Font.PLAIN, 22));
