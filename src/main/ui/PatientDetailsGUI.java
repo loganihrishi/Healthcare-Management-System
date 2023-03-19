@@ -21,6 +21,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         addPatient();
     }
 
+    // MODIFIES: this
     // EFFECTS: creates the GUI for Patient details
     @SuppressWarnings("methodlength")
     private void addPatient() {

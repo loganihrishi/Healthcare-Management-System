@@ -23,6 +23,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
         addAppointment();
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the appointment if possible, displays appropriate error message otherwise
     @SuppressWarnings("methodlength")
     private void addAppointment() {
@@ -36,7 +37,6 @@ public class AppDetailsGUI extends StartApplicationGUI {
         JLabel phnLabel = new JLabel("Personal Health Number:");
         JTextField phnField = new JTextField();
         phnField.setEditable(true);
-
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -84,13 +84,11 @@ public class AppDetailsGUI extends StartApplicationGUI {
                     JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
                             JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
                 }
-
                 dateField.setText("");
                 timeField.setText("");
                 phnField.setText("");
             }
         });
-
         makePanel(dateLabel, dateField, timeLabel, timeField, phnLabel, phnField, frame, submitButton);
     }
 

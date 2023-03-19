@@ -91,6 +91,7 @@ public class StartApplicationGUI extends JFrame {
         return res;
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the patient button
     private JButton addPatientButton() throws IOException {
         this.addPatientButton = new JButton("Add a patient");
@@ -110,6 +111,7 @@ public class StartApplicationGUI extends JFrame {
         return addPatientButton;
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the add appointment button
     private JButton addAppButton() {
         this.addAppButton = new JButton("Add an appointment");
@@ -129,6 +131,7 @@ public class StartApplicationGUI extends JFrame {
         return addAppButton;
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the find appointments using PHN button
     private JButton phnButton() {
         this.findUsingPhnButton = new JButton("Find Appointment Details Using PHN");
@@ -148,7 +151,8 @@ public class StartApplicationGUI extends JFrame {
         return findUsingPhnButton;
     }
 
-     // EFFECTS: loads the data from the JSON files
+    // MODIFIES: this
+    // EFFECTS: loads the data from the JSON files
     private JButton getExistingData() {
         this.loadDataButton = new JButton("Load the data");
         Font font = new Font("Arial", Font.PLAIN, 22);
@@ -171,17 +175,10 @@ public class StartApplicationGUI extends JFrame {
         return appointments;
     }
 
-    // EFFECTS: returns the patients
-    public List<Patient> getPatients() {
-        System.out.println(patients.toString());
-        return patients;
-    }
 
-    // EFFECTS: returns the current StartApplicationGUI object
-    public StartApplicationGUI getStartApplicationGUI() {
-        return this;
-    }
-
+    /**
+     * This is the main class of the application. It is used to start the application.
+     */
     public static void main(String[] args) {
         try {
             new StartApplicationGUI();
