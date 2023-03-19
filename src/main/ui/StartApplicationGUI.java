@@ -21,7 +21,7 @@ import java.util.List;
 public class StartApplicationGUI extends JFrame {
     private JButton addAppButton;
     private JButton addPatientButton;
-    private JButton saveDataButton;
+    private JButton cancelAppButton;
     private JButton loadDataButton;
     private JButton findUsingPhnButton;
     protected final int dimX = 600; // represents the width of the JFrame
@@ -87,6 +87,8 @@ public class StartApplicationGUI extends JFrame {
         gbc.gridy++;
         res.add(addAppButton(), gbc);
         gbc.gridy++;
+        res.add(cancelAppButton(), gbc);
+        gbc.gridy++;
         res.add(phnButton(), gbc);
         return res;
     }
@@ -109,6 +111,23 @@ public class StartApplicationGUI extends JFrame {
             }
         });
         return addPatientButton;
+    }
+
+    private JButton cancelAppButton() {
+        this.cancelAppButton = new JButton("Cancel an appointment");
+        cancelAppButton.setFont(new Font("Arial", Font.PLAIN, 22));
+        cancelAppButton.setPreferredSize(new Dimension(500, 100));
+        cancelAppButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new CancelAppGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        return cancelAppButton;
     }
 
     // MODIFIES: this
@@ -174,7 +193,6 @@ public class StartApplicationGUI extends JFrame {
     public AppointmentList getAppointments() {
         return appointments;
     }
-
 
     /**
      * This is the main class of the application. It is used to start the application.
