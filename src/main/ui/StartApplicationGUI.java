@@ -32,8 +32,8 @@ public class StartApplicationGUI extends JFrame {
     protected List<Patient> patients = new ArrayList<>(); // stores the patients made
     protected AppointmentList appointments = new AppointmentList(); // stores all the appointments that have been
                                                                    // scheduled so far
-    PatientFileHandler patientFile = new PatientFileHandler(patientPath);
-    AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
+    protected PatientFileHandler patientFile = new PatientFileHandler(patientPath);
+    protected AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
     // EFFECTS: starts the GUI of the application
     public StartApplicationGUI() throws IOException {
@@ -76,8 +76,11 @@ public class StartApplicationGUI extends JFrame {
         res.add(addWelcomeLabel(), gbc);
         gbc.gridy++;
         res.add(addPatientButton(), gbc);
-        gbc.gridy++;
-        res.add(addSaveData(), gbc);
+        // TODO: decide whether to keep or remove
+//        gbc.gridy++;
+//        res.add(addSaveData(), gbc);
+//        gbc.gridy++;
+//        res.add(getExistingData(), gbc);
         gbc.gridy++;
         res.add(addAppButton(), gbc);
         gbc.gridy++;
@@ -102,25 +105,6 @@ public class StartApplicationGUI extends JFrame {
             }
         });
         return addPatientButton;
-    }
-
-    // EFFECTS: adds the save data button
-    private JButton addSaveData() {
-        this.saveDataButton = new JButton("Save the data");
-        Font font = new Font("Arial", Font.PLAIN, 22);
-        saveDataButton.setFont(font);
-        saveDataButton.setPreferredSize(new Dimension(500, 100));
-        saveDataButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new SaveDataGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        return saveDataButton;
     }
 
     // EFFECTS: adds the add appointment button
@@ -151,6 +135,35 @@ public class StartApplicationGUI extends JFrame {
         return findUsingPhnButton;
     }
 
+    // TODO: decide whether to keep or remove
+//    private JButton getExistingData() {
+//        this.loadDataButton = new JButton("Load the data");
+//        Font font = new Font("Arial", Font.PLAIN, 22);
+//        loadDataButton.setFont(font);
+//        loadDataButton.setPreferredSize(new Dimension(500, 100));
+//        JFrame frame = new JFrame("Loading Data ...");
+////        loadDataButton.addActionListener(new ActionListener() {
+////            @Override
+////            public void actionPerformed(ActionEvent e) {
+////                try {
+////                    List<Patient> result1 = patientFile.readPatientsFromFile();
+////                    List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
+////                    patients.addAll(result1);
+////                    appointments.addAll(result2);
+////                    System.out.println(patients.toString());
+////                    System.out.println(appointments.getAppointments().toString());
+////                    System.out.println(appointments.hashCode());
+////                    JOptionPane.showMessageDialog(frame, "Data Loaded successfully", "Success",
+////                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+////                } catch (IOException ex) {
+////                    System.err.println("Error reading from file: "+ ex.getMessage());
+////                }
+////            }
+////        });
+//        return loadDataButton;
+//    }
+
+    // TODO: decide whether to keep or remove
     // EFFECTS: loads the data from the existing JSON files
     private void getExistingData() {
         try {
@@ -173,6 +186,7 @@ public class StartApplicationGUI extends JFrame {
 
     // EFFECTS: returns the patients
     public List<Patient> getPatients() {
+        System.out.println(patients.toString());
         return patients;
     }
 
@@ -181,7 +195,11 @@ public class StartApplicationGUI extends JFrame {
         return this;
     }
 
-    public static void main(String[] args) throws IOException {
-        new StartApplicationGUI();
+    public static void main(String[] args) {
+        try {
+            new StartApplicationGUI();
+        } catch (IOException e) {
+            System.err.println("Error running the application");
+        }
     }
 }

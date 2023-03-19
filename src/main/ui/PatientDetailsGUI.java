@@ -61,11 +61,11 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 int phn = Integer.parseInt(phnField.getText());
                 String disName = diseaseNameField.getText();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                LocalDate diagDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
+                LocalDate diagnosisDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
 
                 // Create a new patient object
                 Patient patient = new Patient(name, age, sex, insurance, phn);
-                patient.addDisease(disName, diagDate);
+                patient.addDisease(disName, diagnosisDate);
 
                 // Add the patient to the list
                 patients.add(patient);
@@ -81,12 +81,17 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
                         JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
 
-                // Go back to the main menu
-                try {
-                    patientFile.writePatientsToFile(patients);
-                    new StartApplicationGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
+                        JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    // Save the data to file
+                    try {
+                        patientFile.writePatientsToFile(patients);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
+                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
                 }
             }
         });

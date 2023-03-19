@@ -1,6 +1,7 @@
 package ui;
 
 import model.Appointment;
+import model.AppointmentList;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,10 +46,13 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         JTextField phn = new JTextField();
         Object[] message = {"Enter Patient's Personal Health Number:", phn};
         int option = JOptionPane.showConfirmDialog(null, message,
-                "Input Health Number", JOptionPane.OK_CANCEL_OPTION);
+                "Input Health Number", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
+                new ImageIcon("data/gregor.png"));
         if (option == JOptionPane.OK_OPTION) {
             String number = phn.getText();
-            Appointment appointment = super.getAppointments().findAppointment(Integer.parseInt(number));
+            // reference to the super class' appointments
+            System.out.println(appointments.getAppointments());
+            Appointment appointment = this.getAppointments().findAppointment(Integer.parseInt(number));
             JPanel resultPanel = new JPanel();
             if (appointment == null) {
                 JLabel curr = new JLabel("Appointment Not found");
