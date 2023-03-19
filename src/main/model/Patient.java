@@ -138,17 +138,4 @@ public class Patient implements WriteToFile {
         return result;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Patient)) return false;
-//        Patient patient = (Patient) o;
-//        return age == patient.age && phn == patient.phn && name.equals(patient.name) &&
-//                diseases.equals(patient.diseases) && sex.equals(patient.sex) && insurance.equals(patient.insurance);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(name, age, diseases, sex, insurance, phn);
-//    }
 }

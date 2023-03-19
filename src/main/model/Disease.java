@@ -7,8 +7,8 @@ import java.time.LocalDate;
 /**
  * Represents a disease with a name and a diagnosed date.
  * The class provides methods for getting the name and diagnosed date of the disease, as well as a toString method
- * for returning the disease in a formatted string format; it also has a toJson() method to convert the disease object to
- * JSON object.
+ * for returning the disease in a formatted string format; it also has a toJson() method to convert the disease object
+ * to JSON object.
  */
 
 
