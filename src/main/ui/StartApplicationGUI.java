@@ -116,6 +116,16 @@ public class StartApplicationGUI extends JFrame {
         Font font = new Font("Arial", Font.PLAIN, 22);
         addAppButton.setFont(font);
         addAppButton.setPreferredSize(new Dimension(500, 100));
+        addAppButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new AppDetailsGUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         return addAppButton;
     }
 
