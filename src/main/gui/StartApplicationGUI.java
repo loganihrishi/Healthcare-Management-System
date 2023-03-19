@@ -69,6 +69,7 @@ public class StartApplicationGUI extends JFrame {
         return label;
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the panel with appropriate dimensions
     private JPanel addPanel() throws IOException {
         JPanel res = new JPanel(new GridBagLayout());
@@ -193,16 +194,5 @@ public class StartApplicationGUI extends JFrame {
     // EFFECTS: returns the appointments
     public AppointmentList getAppointments() {
         return appointments;
-    }
-
-    /**
-     * This is the main class of the application. It is used to start the application.
-     */
-    public static void main(String[] args) {
-        try {
-            new StartApplicationGUI();
-        } catch (IOException e) {
-            System.err.println("Error running the application");
-        }
     }
 }
