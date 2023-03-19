@@ -51,6 +51,12 @@ public class StartApplicationGUI extends JFrame {
         this.add(panel);
         this.setVisible(true);
         this.setSize(dimX, dimY);
+        try {
+            patients.addAll(patientFile.readPatientsFromFile());
+            appointments.addAll(appointmentFile.readAppointmentsFromFile());
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
 
     // EFFECTS: adds the welcome label
@@ -76,11 +82,8 @@ public class StartApplicationGUI extends JFrame {
         res.add(addWelcomeLabel(), gbc);
         gbc.gridy++;
         res.add(addPatientButton(), gbc);
-        // TODO: decide whether to keep or remove
-//        gbc.gridy++;
-//        res.add(addSaveData(), gbc);
-//        gbc.gridy++;
-//        res.add(getExistingData(), gbc);
+        gbc.gridy++;
+        res.add(getExistingData(), gbc);
         gbc.gridy++;
         res.add(addAppButton(), gbc);
         gbc.gridy++;
@@ -135,48 +138,22 @@ public class StartApplicationGUI extends JFrame {
         return findUsingPhnButton;
     }
 
-    // TODO: decide whether to keep or remove
-//    private JButton getExistingData() {
-//        this.loadDataButton = new JButton("Load the data");
-//        Font font = new Font("Arial", Font.PLAIN, 22);
-//        loadDataButton.setFont(font);
-//        loadDataButton.setPreferredSize(new Dimension(500, 100));
-//        JFrame frame = new JFrame("Loading Data ...");
-////        loadDataButton.addActionListener(new ActionListener() {
-////            @Override
-////            public void actionPerformed(ActionEvent e) {
-////                try {
-////                    List<Patient> result1 = patientFile.readPatientsFromFile();
-////                    List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
-////                    patients.addAll(result1);
-////                    appointments.addAll(result2);
-////                    System.out.println(patients.toString());
-////                    System.out.println(appointments.getAppointments().toString());
-////                    System.out.println(appointments.hashCode());
-////                    JOptionPane.showMessageDialog(frame, "Data Loaded successfully", "Success",
-////                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-////                } catch (IOException ex) {
-////                    System.err.println("Error reading from file: "+ ex.getMessage());
-////                }
-////            }
-////        });
-//        return loadDataButton;
-//    }
+     // EFFECTS: loads the data from the JSON files
+    private JButton getExistingData() {
+        this.loadDataButton = new JButton("Load the data");
+        Font font = new Font("Arial", Font.PLAIN, 22);
+        loadDataButton.setFont(font);
+        loadDataButton.setPreferredSize(new Dimension(500, 100));
+        JFrame frame = new JFrame("Loading Data ...");
+        loadDataButton.addActionListener(new ActionListener() {
 
-    // TODO: decide whether to keep or remove
-    // EFFECTS: loads the data from the existing JSON files
-    private void getExistingData() {
-        try {
-            List<Patient> result1 = patientFile.readPatientsFromFile();
-            List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
-
-           // adding all the patients to the currently stored patients
-            patients.addAll(result1);
-           // adding all the appointments to the currently stored appointments
-            appointments.addAll(result2);
-        } catch (IOException e) {
-            System.out.println("Error reading from the file: " + e.getMessage());
-        }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "Data Loaded successfully", "Success",
+                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+            }
+        });
+        return loadDataButton;
     }
 
     // EFFECTS: returns the appointments

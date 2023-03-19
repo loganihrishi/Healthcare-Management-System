@@ -6,6 +6,7 @@ import persistence.WriteToFile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**The Patient class represents a patient with basic personal and medical information.
  * It has fields for name, age, sex, insurance details, personal health number (PHN), and a list of diseases.
@@ -137,5 +138,17 @@ public class Patient implements WriteToFile {
         return result;
     }
 
-
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Patient)) return false;
+//        Patient patient = (Patient) o;
+//        return age == patient.age && phn == patient.phn && name.equals(patient.name) &&
+//                diseases.equals(patient.diseases) && sex.equals(patient.sex) && insurance.equals(patient.insurance);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, age, diseases, sex, insurance, phn);
+//    }
 }
