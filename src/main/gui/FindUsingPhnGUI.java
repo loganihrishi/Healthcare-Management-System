@@ -86,7 +86,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
     // REQUIRES: appointment
     // EFFECTS: returns the appointment formatted in JText
     private JTextArea formatAppointment(Appointment appointment) {
-        JTextArea resultTextArea = new JTextArea();
+        JTextArea resultTextArea = new JTextArea(10, 25);
         resultTextArea.setLineWrap(true);
         resultTextArea.setWrapStyleWord(true);
         String res = "Date: " + appointment.getDate().toString() + "\n"
@@ -95,7 +95,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
                 +
                 appointment.getPatient().toString();
         resultTextArea.setText(res);
-        resultTextArea.setFont(new Font("Arial", Font.PLAIN, 20));
+        resultTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         resultTextArea.setBackground(Color.WHITE);
         return resultTextArea;
     }
