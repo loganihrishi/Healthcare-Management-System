@@ -51,4 +51,4 @@ medical community.
 ## References
 
 - The graphical user interface (GUI) of the application was derived from various sources found on
-  stackoverflow.com. 
+  [stackoverflow.com](stackoverflow.com). 
