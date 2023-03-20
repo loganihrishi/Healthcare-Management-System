@@ -47,3 +47,8 @@ medical community.
 - Save the entire state of Patients and Appointments to the file 
 - Load the saved state of Patients and Appointments from the last time it was run 
   and resume where it was left off
+
+## References
+
+- The graphical user interface (GUI) of the application was derived from various sources found on
+  stackoverflow.com. 

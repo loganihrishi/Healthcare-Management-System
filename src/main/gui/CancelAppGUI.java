@@ -77,5 +77,4 @@ public class CancelAppGUI extends StartApplicationGUI {
         frame.pack();
         frame.setVisible(true);
     }
-
 }
