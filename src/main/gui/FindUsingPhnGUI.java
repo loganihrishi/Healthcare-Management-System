@@ -95,7 +95,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
                 +
                 appointment.getPatient().toString();
         resultTextArea.setText(res);
-        resultTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        resultTextArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
         resultTextArea.setBackground(Color.WHITE);
         return resultTextArea;
     }
