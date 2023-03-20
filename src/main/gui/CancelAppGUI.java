@@ -35,8 +35,9 @@ public class CancelAppGUI extends StartApplicationGUI {
                 if (toBeCancelled == null) {
                     JOptionPane.showMessageDialog(frame, "Appointment does not exist", "Failure",
                             JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                } else {
+                    cancelAppMessage(toBeCancelled, frame, phnTextField);
                 }
-                cancelAppMessage(toBeCancelled, frame, phnTextField);
             }
         });
         makePanel(phnLabel, phnTextField, submitButton, frame);

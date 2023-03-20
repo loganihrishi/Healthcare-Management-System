@@ -165,7 +165,7 @@ public class StartApplicationGUI extends JFrame {
                 try {
                     new FindUsingPhnGUI();
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex); // todo
+                    throw new RuntimeException(ex);
                 }
             }
         });
