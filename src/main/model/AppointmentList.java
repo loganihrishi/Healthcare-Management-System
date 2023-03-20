@@ -7,13 +7,13 @@ import persistence.WriteToFile;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
-// All the appointments have to be scheduled from 9:00 to 17:00 and
-// each session is usually 15 minutes
-// So, at max we can only schedule 32 appointments for one day
+
 /**
  * Represents a list of appointments that can be scheduled, rescheduled, and cancelled.
  * Appointments can be searched for and displayed by date or patient PHN.
  * It also has a toJson() method to convert the AppointmentList object to a JSON Object.
+ * All the appointments have to be scheduled from 9:00 to 17:00 and each session is usually 15 minutes
+ * So, at max we can only schedule 32 appointments for one day.
  */
 
 public class AppointmentList implements WriteToFile {
