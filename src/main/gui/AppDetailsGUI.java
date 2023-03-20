@@ -25,7 +25,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
 
     // MODIFIES: this
     // EFFECTS: adds the appointment if possible, displays appropriate error message otherwise
-    @SuppressWarnings("methodlength")
+
     private void addAppointment() {
         JFrame frame = new JFrame("Add an Appointment");
         JLabel dateLabel = new JLabel("Date (yyyy/mm/dd):");
@@ -45,23 +45,8 @@ public class AppDetailsGUI extends StartApplicationGUI {
                 LocalDate date = LocalDate.parse(dateField.getText(), formatter);
                 LocalTime time = LocalTime.parse(timeField.getText() + ":00");
                 Patient patient = getPatientFromPHN(Integer.parseInt(phnField.getText()));
-
-                if (patient == null) {
-                    patientNotFoundMessage(frame);
-                } else {
-                    Appointment newAppointment = new Appointment(date, time, patient);
-                    if (appointments.findAppointment(Integer.parseInt(phnField.getText())) != null) {
-                        patientAlreadyHasAppointmentMessage(frame);
-                    }
-                    if (overlaps(date, time)) {
-                        appointmentClashesWithAnotherMessage(frame);
-                    } else {
-                        appMessage(newAppointment, frame);
-                    }
-                }
-                dateField.setText("");
-                timeField.setText("");
-                phnField.setText("");
+                handlePatient(patient, frame, phnField, date, time);
+                clearFields(dateField, timeField, phnField);
             }
         });
         makePanel(dateLabel, dateField, timeLabel, timeField, phnLabel, phnField, frame, submitButton);
@@ -154,5 +139,31 @@ public class AppDetailsGUI extends StartApplicationGUI {
             }
         }
         return false;
+    }
+
+    // REQUIRES: patient, frame, phnField, date and time
+    // EFFECTS: handles the patient details, takes the appropriate action and display appropriate message
+    private void handlePatient(Patient patient, JFrame frame, JTextField phnField, LocalDate date, LocalTime time) {
+        if (patient == null) {
+            patientNotFoundMessage(frame);
+        } else {
+            Appointment newAppointment = new Appointment(date, time, patient);
+            if (appointments.findAppointment(Integer.parseInt(phnField.getText())) != null) {
+                patientAlreadyHasAppointmentMessage(frame);
+            }
+            if (overlaps(date, time)) {
+                appointmentClashesWithAnotherMessage(frame);
+            } else {
+                appMessage(newAppointment, frame);
+            }
+        }
+    }
+
+    // REQUIRES: dateField, timeField, and phnField
+    // EFFECTS: clears all the fields
+    private void clearFields(JTextField dateField, JTextField timeField, JTextField phnField) {
+        dateField.setText("");
+        timeField.setText("");
+        phnField.setText("");
     }
 }

@@ -51,49 +51,10 @@ public class PatientDetailsGUI extends StartApplicationGUI {
 
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {
-
-            @SuppressWarnings("methodlength")
             public void actionPerformed(ActionEvent e) {
                 // Get the values from the text fields
-                String name = nameField.getText();
-                int age = Integer.parseInt(ageField.getText());
-                String sex = sexField.getText();
-                String insurance = insuranceField.getText();
-                int phn = Integer.parseInt(phnField.getText());
-                String disName = diseaseNameField.getText();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                LocalDate diagnosisDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
-
-                // Create a new patient object
-                Patient patient = new Patient(name, age, sex, insurance, phn);
-                patient.addDisease(disName, diagnosisDate);
-
-                // Add the patient to the list
-                patients.add(patient);
-
-                // Clear the text fields
-                nameField.setText("");
-                ageField.setText("");
-                sexField.setText("");
-                insuranceField.setText("");
-                phnField.setText("");
-
-                // Show a message to the user
-                JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
-                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-
-                int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
-                        JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    // Save the data to file
-                    try {
-                        patientFile.writePatientsToFile(patients);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-                }
+                handlePatientDetails(nameField, ageField, sexField, insuranceField, phnField, diseaseNameField,
+                        diagnosisDateField, frame);
             }
         });
         makePanel(nameLabel, nameField, ageLabel, ageField, sexLabel, sexField, insuranceLabel, insuranceField,
@@ -102,6 +63,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 frame);
     }
 
+    // REQUIRES: all the proper label fields and their text values
     // EFFECTS: generates the appropriate labels and buttons for PatientDetailsGUI
     private void makePanel(JLabel nameLabel, JTextField nameField, JLabel ageLabel, JTextField ageField,
                            JLabel sexLabel,
@@ -129,6 +91,58 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    // REQUIRES: a frame
+    // MODIFIES: this
+    // EFFECTS: displays the appropriate message to the user after saving the data
+    private void addPatientSuccessMessage(JFrame frame) {
+        // Show a message to the user
+        JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+
+        int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
+                JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            // Save the data to file
+            try {
+                patientFile.writePatientsToFile(patients);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+        }
+    }
+
+    // REQUIRES: all the JTextFields and JFrame
+    // MODIFIES: this
+    // EFFECTS: handles the patient's details as needed
+    private void handlePatientDetails(JTextField nameField, JTextField ageField, JTextField sexField,
+                                      JTextField insuranceField, JTextField phnField, JTextField diseaseNameField,
+                                      JTextField diagnosisDateField, JFrame frame) {
+        String name = nameField.getText();
+        int age = Integer.parseInt(ageField.getText());
+        String sex = sexField.getText();
+        String insurance = insuranceField.getText();
+        int phn = Integer.parseInt(phnField.getText());
+        String disName = diseaseNameField.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate diagnosisDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
+
+        // Create a new patient object
+        Patient patient = new Patient(name, age, sex, insurance, phn);
+        patient.addDisease(disName, diagnosisDate);
+
+        // Add the patient to the list
+        patients.add(patient);
+        // Clear the text fields
+        nameField.setText("");
+        ageField.setText("");
+        sexField.setText("");
+        insuranceField.setText("");
+        phnField.setText("");
+        addPatientSuccessMessage(frame);
     }
 }
 
