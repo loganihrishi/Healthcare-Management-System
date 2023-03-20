@@ -47,41 +47,16 @@ public class AppDetailsGUI extends StartApplicationGUI {
                 Patient patient = getPatientFromPHN(Integer.parseInt(phnField.getText()));
 
                 if (patient == null) {
-                    JOptionPane.showMessageDialog(frame, "Patient Not Found!", "Failure",
-                            JOptionPane.INFORMATION_MESSAGE,
-                            new ImageIcon("data/gregor.jpeg"));
+                    patientNotFoundMessage(frame);
                 } else {
-
                     Appointment newAppointment = new Appointment(date, time, patient);
                     if (appointments.findAppointment(Integer.parseInt(phnField.getText())) != null) {
-                        JOptionPane.showMessageDialog(frame, "Patient Already has an appointment",
-                                "Failure",
-                                JOptionPane.INFORMATION_MESSAGE,
-                                new ImageIcon("data/gregor.jpeg"));
+                        patientAlreadyHasAppointmentMessage(frame);
                     }
-
                     if (overlaps(date, time)) {
-                        JOptionPane.showMessageDialog(frame, "Appointment clashes with another appointment",
-                                "Failure",
-                                JOptionPane.INFORMATION_MESSAGE,
-                                new ImageIcon("data/gregor.jpeg"));
+                        appointmentClashesWithAnotherMessage(frame);
                     } else {
-                        appointments.addAppointment(newAppointment);
-                        JOptionPane.showMessageDialog(frame, "Appointment Scheduled successfully", "Success",
-                                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-
-                        int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
-                                JOptionPane.YES_NO_OPTION);
-
-                        if (option == JOptionPane.YES_OPTION) {
-                            try {
-                                appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
-                            } catch (IOException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-                        }
+                        appMessage(newAppointment, frame);
                     }
                 }
                 dateField.setText("");
@@ -90,6 +65,55 @@ public class AppDetailsGUI extends StartApplicationGUI {
             }
         });
         makePanel(dateLabel, dateField, timeLabel, timeField, phnLabel, phnField, frame, submitButton);
+    }
+
+    // REQUIRES: an appointment, a JFrame
+    // MODIFIES: this
+    // EFFECTS:  adds the appointment and saves the data as per user's choice and then displays appropriate
+    //           user message
+    private void appMessage(Appointment newAppointment, JFrame frame) {
+        appointments.addAppointment(newAppointment);
+        JOptionPane.showMessageDialog(frame, "Appointment Scheduled successfully", "Success",
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+
+        int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
+                JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_OPTION) {
+            try {
+                appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+        }
+    }
+
+    // REQUIRES: a valid JFrame
+    // EFFECTS: displays the patient not found pop-up
+    private void patientNotFoundMessage(JFrame frame) {
+        JOptionPane.showMessageDialog(frame, "Patient Not Found!", "Failure",
+                JOptionPane.INFORMATION_MESSAGE,
+                new ImageIcon("data/gregor.jpeg"));
+    }
+
+    // REQUIRES: a valid JFrame
+    // EFFECTS: displays the already has appointment pop-up
+    private void patientAlreadyHasAppointmentMessage(JFrame frame) {
+        JOptionPane.showMessageDialog(frame, "Patient Already has an appointment",
+                "Failure",
+                JOptionPane.INFORMATION_MESSAGE,
+                new ImageIcon("data/gregor.jpeg"));
+    }
+
+    // REQUIRES: a valid JFrame
+    // EFFECTS: displays appointment clashes with another appointment message
+    private void appointmentClashesWithAnotherMessage(JFrame frame) {
+        JOptionPane.showMessageDialog(frame, "Appointment clashes with another appointment",
+                "Failure",
+                JOptionPane.INFORMATION_MESSAGE,
+                new ImageIcon("data/gregor.jpeg"));
     }
 
     // REQUIRES: all the valid fields required to make the panel

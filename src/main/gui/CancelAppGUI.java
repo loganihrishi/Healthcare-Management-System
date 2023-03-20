@@ -21,7 +21,6 @@ public class CancelAppGUI extends StartApplicationGUI {
 
     // MODIFIES: this
     // EFFECTS: cancels the appointment, if possible, displays the appropriate error message otherwise
-    @SuppressWarnings("methodlength")
     private void cancelAppointment() {
         JFrame frame = new JFrame("Cancel an appointment");
         JLabel phnLabel = new JLabel("Personal Health Number:");
@@ -37,28 +36,34 @@ public class CancelAppGUI extends StartApplicationGUI {
                     JOptionPane.showMessageDialog(frame, "Appointment does not exist", "Failure",
                             JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
                 }
-
-                appointments.removeAppointment(toBeCancelled);
-                JOptionPane.showMessageDialog(frame, "Appointment Cancelled", "Success",
-                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-
-                int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?",
-                        "Save data",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (option == JOptionPane.YES_OPTION) {
-                    try {
-                        appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
-                    } catch (IOException ex) {
-                        System.err.println("Error saving the data to the file: " + ex.getMessage());
-                    }
-                    JOptionPane.showMessageDialog(frame, "Data saved successfully", "Success",
-                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-                }
-                phnTextField.setText("");
+                cancelAppMessage(toBeCancelled, frame, phnTextField);
             }
         });
         makePanel(phnLabel, phnTextField, submitButton, frame);
+    }
+
+    // REQUIRES: an appointment, a JFrame and a phnTextField
+    // MODIFIES: this
+    // EFFECTS; displays the appropriate message based on user's inputs
+    private void cancelAppMessage(Appointment toBeCancelled, JFrame frame, JTextField phnTextField) {
+        appointments.removeAppointment(toBeCancelled);
+        JOptionPane.showMessageDialog(frame, "Appointment Cancelled", "Success",
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+
+        int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?",
+                "Save data",
+                JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_OPTION) {
+            try {
+                appointmentFile.writeAppointmentsToFile(appointments.getAppointments());
+            } catch (IOException ex) {
+                System.err.println("Error saving the data to the file: " + ex.getMessage());
+            }
+            JOptionPane.showMessageDialog(frame, "Data saved successfully", "Success",
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+        }
+        phnTextField.setText("");
     }
 
     // EFFECTS: creates the appropriate panel
