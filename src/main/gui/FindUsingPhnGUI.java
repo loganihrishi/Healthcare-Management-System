@@ -99,4 +99,5 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         resultTextArea.setBackground(Color.WHITE);
         return resultTextArea;
     }
+
 }

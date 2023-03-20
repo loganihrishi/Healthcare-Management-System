@@ -28,38 +28,28 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         JFrame frame = new JFrame("Add Patient");
         JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();
-        nameField.setEditable(true);
         JLabel ageLabel = new JLabel("Age:");
         JTextField ageField = new JTextField();
-        ageField.setEditable(true);
         JLabel sexLabel = new JLabel("Sex (M/F):");
         JTextField sexField = new JTextField();
-        sexField.setEditable(true);
-        JLabel insuranceLabel = new JLabel("Insurance:");
-        JTextField insuranceField = new JTextField();
-        insuranceField.setEditable(true);
+        JLabel insLbl = new JLabel("Insurance:");
+        JTextField insField = new JTextField();
         JLabel phnLabel = new JLabel("Personal Health Number:");
         JTextField phnField = new JTextField();
-        phnField.setEditable(true);
-        // Fields for adding diseases
-        JLabel diseaseNameLabel = new JLabel("Disease Name:");
-        JTextField diseaseNameField = new JTextField();
-        diseaseNameField.setEditable(true);
-        JLabel diagnosisDateLabel = new JLabel("Diagnosis Date (yyyy-MM-dd):");
-        JTextField diagnosisDateField = new JTextField();
-        diagnosisDateField.setEditable(true);
-
+        JLabel disNameLbl = new JLabel("Disease Name:");
+        JTextField disNameFld = new JTextField();
+        JLabel dateLbl = new JLabel("Diagnosis Date (yyyy-MM-dd):");
+        JTextField dateFld = new JTextField();
+        makeEditable(nameField, ageField, sexField, insField, phnField, disNameFld, dateFld);
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Get the values from the text fields
-                handlePatientDetails(nameField, ageField, sexField, insuranceField, phnField, diseaseNameField,
-                        diagnosisDateField, frame);
+                handlePatientDetails(nameField, ageField, sexField, insField, phnField, disNameFld,
+                        dateFld, frame);
             }
         });
-        makePanel(nameLabel, nameField, ageLabel, ageField, sexLabel, sexField, insuranceLabel, insuranceField,
-                phnLabel,
-                phnField, diseaseNameLabel, diseaseNameField, diagnosisDateLabel, diagnosisDateField, submitButton,
+        makePanel(nameLabel, nameField, ageLabel, ageField, sexLabel, sexField, insLbl, insField, phnLabel, phnField,
+                disNameLbl, disNameFld, dateLbl, dateFld, submitButton,
                 frame);
     }
 
@@ -143,6 +133,20 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         insuranceField.setText("");
         phnField.setText("");
         addPatientSuccessMessage(frame);
+    }
+
+    // REQUIRES: the JTextFields for different patient details
+    // EFFECTS: makes those fields editable
+    private void makeEditable(JTextField nameField, JTextField ageField, JTextField sexField,
+                              JTextField insuranceField,
+                              JTextField phnField, JTextField diseaseNameField, JTextField diagnosisDateField) {
+        nameField.setEditable(true);
+        ageField.setEditable(true);
+        sexField.setEditable(true);
+        insuranceField.setEditable(true);
+        phnField.setEditable(true);
+        diagnosisDateField.setEditable(true);
+        diseaseNameField.setEditable(true);
     }
 }
 
