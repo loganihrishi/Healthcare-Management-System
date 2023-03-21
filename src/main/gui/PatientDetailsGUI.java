@@ -87,10 +87,8 @@ public class PatientDetailsGUI extends StartApplicationGUI {
     // MODIFIES: this
     // EFFECTS: displays the appropriate message to the user after saving the data
     private void addPatientSuccessMessage(JFrame frame) {
-        // Show a message to the user
         JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
-
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
         int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
                 JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
@@ -101,7 +99,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 throw new RuntimeException(ex);
             }
             JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
         }
     }
 
@@ -119,11 +117,9 @@ public class PatientDetailsGUI extends StartApplicationGUI {
         String disName = diseaseNameField.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate diagnosisDate = LocalDate.parse(diagnosisDateField.getText(), formatter);
-
         // Create a new patient object
         Patient patient = new Patient(name, age, sex, insurance, phn);
         patient.addDisease(disName, diagnosisDate);
-
         // Add the patient to the list
         patients.add(patient);
         // Clear the text fields

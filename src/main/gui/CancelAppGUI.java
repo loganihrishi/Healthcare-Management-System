@@ -34,7 +34,7 @@ public class CancelAppGUI extends StartApplicationGUI {
                 Appointment toBeCancelled = appointments.findAppointment(phn);
                 if (toBeCancelled == null) {
                     JOptionPane.showMessageDialog(frame, "Appointment does not exist", "Failure",
-                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                            JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
                 } else {
                     cancelAppMessage(toBeCancelled, frame, phnTextField);
                 }
@@ -49,7 +49,7 @@ public class CancelAppGUI extends StartApplicationGUI {
     private void cancelAppMessage(Appointment toBeCancelled, JFrame frame, JTextField phnTextField) {
         appointments.removeAppointment(toBeCancelled);
         JOptionPane.showMessageDialog(frame, "Appointment Cancelled", "Success",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
 
         int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?",
                 "Save data",
@@ -62,7 +62,7 @@ public class CancelAppGUI extends StartApplicationGUI {
                 System.err.println("Error saving the data to the file: " + ex.getMessage());
             }
             JOptionPane.showMessageDialog(frame, "Data saved successfully", "Success",
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("data/gregor.jpeg"));
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
         }
         phnTextField.setText("");
     }

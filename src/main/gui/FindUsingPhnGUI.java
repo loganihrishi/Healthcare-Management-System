@@ -46,11 +46,9 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         Object[] message = {"Enter Patient's Personal Health Number:", phn};
         int option = JOptionPane.showConfirmDialog(null, message,
                 "Input Health Number", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                new ImageIcon("data/gregor.png"));
+                new ImageIcon(gregorMeme));
         if (option == JOptionPane.OK_OPTION) {
             String number = phn.getText();
-            // reference to the super class' appointments
-            System.out.println(appointments.getAppointments());
             Appointment appointment = this.getAppointments().findAppointment(Integer.parseInt(number));
             JPanel resultPanel = new JPanel();
             if (appointment == null) {
