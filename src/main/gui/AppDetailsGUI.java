@@ -150,8 +150,10 @@ public class AppDetailsGUI extends StartApplicationGUI {
             Appointment newAppointment = new Appointment(date, time, patient);
             if (appointments.findAppointment(Integer.parseInt(phnField.getText())) != null) {
                 patientAlreadyHasAppointmentMessage(frame);
-            }
-            if (overlaps(date, time)) {
+                if (overlaps(date, time)) {
+                    appointmentClashesWithAnotherMessage(frame);
+                }
+            } else if (overlaps(date, time)) {
                 appointmentClashesWithAnotherMessage(frame);
             } else {
                 appMessage(newAppointment, frame);
