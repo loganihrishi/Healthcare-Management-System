@@ -59,7 +59,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
     private void appMessage(Appointment newAppointment, JFrame frame) {
         appointments.addAppointment(newAppointment);
         JOptionPane.showMessageDialog(frame, "Appointment Scheduled successfully", "Success",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(steveMeme));
 
         int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
                 JOptionPane.YES_NO_OPTION);
@@ -71,7 +71,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
                 throw new RuntimeException(ex);
             }
             JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(gregorMeme));
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(steveMeme));
         }
     }
 
@@ -80,7 +80,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
     private void patientNotFoundMessage(JFrame frame) {
         JOptionPane.showMessageDialog(frame, "Patient Not Found!", "Failure",
                 JOptionPane.INFORMATION_MESSAGE,
-                new ImageIcon(gregorMeme));
+                new ImageIcon(steveMeme));
     }
 
     // REQUIRES: a valid JFrame
@@ -89,7 +89,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
         JOptionPane.showMessageDialog(frame, "Patient Already has an appointment",
                 "Failure",
                 JOptionPane.INFORMATION_MESSAGE,
-                new ImageIcon(gregorMeme));
+                new ImageIcon(steveMeme));
     }
 
     // REQUIRES: a valid JFrame
@@ -98,7 +98,7 @@ public class AppDetailsGUI extends StartApplicationGUI {
         JOptionPane.showMessageDialog(frame, "Appointment clashes with another appointment",
                 "Failure",
                 JOptionPane.INFORMATION_MESSAGE,
-                new ImageIcon(gregorMeme));
+                new ImageIcon(steveMeme));
     }
 
     // REQUIRES: all the valid fields required to make the panel
