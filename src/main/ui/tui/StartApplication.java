@@ -1,4 +1,4 @@
-package ui;
+package ui.tui;
 
 import model.*;
 import persistence.AppointmentFileHandler;
