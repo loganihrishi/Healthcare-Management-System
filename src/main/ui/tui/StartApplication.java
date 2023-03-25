@@ -101,14 +101,14 @@ public class StartApplication {
     }
 
     // EFFECTS: exits the application
-    public void exitApplication() {
+    private void exitApplication() {
         System.exit(69);
     }
     // REQUIRES: a valid Personal Health Number and other basic details
     // MODIFIES: this
     // EFFECTS: adds the patient to the given list of patients
 
-    public void addPatient() throws ParseException, IOException {
+    private void addPatient() throws ParseException, IOException {
         System.out.print("Enter Patient Name: ");
         String name = reader.readLine();
         System.out.print("Enter Patient's Age: ");
@@ -153,7 +153,7 @@ public class StartApplication {
     // MODIFIES: this
     // EFFECTS: adds the appointment to the given list of appointments, if possible
     //          otherwise displays an appropriate error message
-    public void addAppointment() throws ParseException, IOException {
+    private void addAppointment() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -200,7 +200,7 @@ public class StartApplication {
     // REQUIRES: a valid PHN
     // MODIFIES: this
     // EFFECTS: cancels the appointment if found, displays the appropriate message otherwise
-    public void cancelAppointment() throws ParseException, IOException {
+    private void cancelAppointment() throws ParseException, IOException {
         System.out.print("Enter PHN of the Patient: ");
         // assuming that the appointment has not been cancelled
         boolean isCancelled = false;
@@ -222,7 +222,7 @@ public class StartApplication {
     }
 
     // EFFECTS: saves the data if possible, displays the appropriate error message otherwise
-    public void saveData() throws ParseException, IOException {
+    private void saveData() throws ParseException, IOException {
         System.out.println("Enter 1 to save Patients and 2 to Save appointments!");
         int choice = input.nextInt();
         switch (choice) {
@@ -243,7 +243,7 @@ public class StartApplication {
 
     // MODIFIES: this
     // EFFECTS: Loads the data stored in the files
-    public void getExistingData() throws ParseException, IOException {
+    private void getExistingData() throws ParseException, IOException {
         List<Patient> result1 = patientFile.readPatientsFromFile();
         List<Appointment> result2 = appointmentFile.readAppointmentsFromFile();
 
@@ -264,7 +264,7 @@ public class StartApplication {
     }
 
     // EFFECTS: displays the appointments in the given list
-    public void displayAppointments(List<Appointment> appointments) {
+    private void displayAppointments(List<Appointment> appointments) {
         for (Appointment appointment:appointments) {
             System.out.println(appointment.toString());
         }
@@ -274,7 +274,7 @@ public class StartApplication {
     // EFFECTS: reschedules the appointment to the date and time provided by the user if possible,
     //          displays the appropriate message otherwise
 
-    public void rescheduleAppointment() throws ParseException, IOException {
+    private void rescheduleAppointment() throws ParseException, IOException {
         System.out.print("Enter the PHN of the patient whose appointment needs to be rescheduled: ");
         int phn = input.nextInt();
         Patient patient = getPatient(phn);
@@ -307,7 +307,7 @@ public class StartApplication {
     // REQUIRES: a valid date
     // EFFECTS: displays all the appointments scheduled at a particular date
 
-    public void displayAll() throws ParseException, IOException {
+    private void displayAll() throws ParseException, IOException {
         System.out.print("Enter the date of the appointment (YYYY/MM/DD): ");
         String date = input.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
