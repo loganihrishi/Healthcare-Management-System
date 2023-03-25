@@ -42,7 +42,7 @@ public class StartApplicationGUI extends JFrame {
     }
 
     // EFFECTS: initializes the frame
-    public void initializeFrame() throws IOException {
+    private void initializeFrame() throws IOException {
         getExistingData();
         this.setTitle("Healthcare Management System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
