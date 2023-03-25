@@ -1,4 +1,4 @@
-package gui;
+package ui.gui;
 
 import model.AppointmentList;
 import model.Patient;

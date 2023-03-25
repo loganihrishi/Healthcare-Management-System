@@ -1,4 +1,4 @@
-package gui;
+package ui.gui;
 
 import model.Appointment;
 
@@ -25,7 +25,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
     // EFFECTS: initializes the GUI of the healthcare management system
     private void initialize() {
         this.setTitle("Healthcare Management System");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(true);
         this.getContentPane().setBackground(Color.WHITE);
         this.setSize(new Dimension(dimX, dimY));
