@@ -35,8 +35,8 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
 
     // EFFECTS: returns the main panel
     private JPanel getMainPanel() {
-        mainPanel.add(inputPHN());
         mainPanel.add(getMainMenu());
+        mainPanel.add(inputPHN());
         return mainPanel;
     }
 
