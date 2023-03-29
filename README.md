@@ -48,6 +48,19 @@ medical community.
 - Load the saved state of Patients and Appointments from the last time it was run 
   and resume where it was left off
 
+## Instructions for Grader 
+- You can generate the first required action by adding a patient to the Patients List and by adding an appointment to 
+  the appointment list.
+- You can generate the second required action by cancelling the appointment based on the patient's personal health number. 
+- You can generate the third required action by displaying the patient's appointment details based on the patient's 
+  personal health number. 
+- You can locate my visual component by seeing different pop-ups at different places when running the application. 
+- You can save the state of my application by giving confirmation in different pop-up dialogues at different points 
+  in time when running the application.
+- You can reload the state of my application by pressing the "Load data" button in the menu. 
+It will display a confirmation message upon loading data successfully. 
+
+
 ## References
 
 - The graphical user interface (GUI) of the application was derived from various sources found on
