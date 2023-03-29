@@ -34,7 +34,7 @@ public class StartApplicationGUI extends JFrame {
     protected PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     protected AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
-    protected final String steveMeme = "./data/steve_meme.jpg";
+    protected final String logo = "./data/Logo.jpg";
 
     // EFFECTS: starts the GUI of the application
     public StartApplicationGUI() throws IOException {
@@ -187,7 +187,7 @@ public class StartApplicationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(frame, "Data Loaded successfully", "Success",
-                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon(steveMeme));
+                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon(logo));
             }
         });
         return loadDataButton;

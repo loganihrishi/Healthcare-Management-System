@@ -4,8 +4,6 @@ import model.Appointment;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -14,7 +12,6 @@ import java.io.IOException;
 
 public class FindUsingPhnGUI extends StartApplicationGUI {
 
-    private JButton mainMenu = new JButton("Click Here to go back");
     private JPanel mainPanel = new JPanel();
 
     // EFFECTS: starts the find patient gui
@@ -24,18 +21,14 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
 
     // EFFECTS: initializes the GUI of the healthcare management system
     private void initialize() {
-        this.setTitle("Healthcare Management System");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setResizable(true);
-        this.getContentPane().setBackground(Color.WHITE);
-        this.setSize(new Dimension(dimX, dimY));
-        this.add(getMainPanel());
-        this.setVisible(true);
+        JOptionPane.showOptionDialog(null, getMainPanel(),
+                "Appointment Details", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                new ImageIcon(logo), new Object[]{"OK"},
+                "OK");
     }
 
     // EFFECTS: returns the main panel
     private JPanel getMainPanel() {
-        mainPanel.add(getMainMenu());
         mainPanel.add(inputPHN());
         return mainPanel;
     }
@@ -46,7 +39,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         Object[] message = {"Enter Patient's Personal Health Number:", phn};
         int option = JOptionPane.showConfirmDialog(null, message,
                 "Input Health Number", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                new ImageIcon(steveMeme));
+                new ImageIcon(logo));
         if (option == JOptionPane.OK_OPTION) {
             String number = phn.getText();
             Appointment appointment = this.getAppointments().findAppointment(Integer.parseInt(number));
@@ -63,23 +56,6 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         return null;
     }
 
-    // EFFECTS: returns the JButton for the main menu
-    private JButton getMainMenu() {
-        mainMenu.setFont(new Font("Arial", Font.PLAIN, 20));
-        this.mainMenu.setPreferredSize(new Dimension(500, 100));
-        this.mainMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                try {
-                    new StartApplicationGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        return mainMenu;
-    }
 
     // REQUIRES: appointment
     // EFFECTS: returns the appointment formatted in JText

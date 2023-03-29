@@ -88,7 +88,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
     // EFFECTS: displays the appropriate message to the user after saving the data
     private void addPatientSuccessMessage(JFrame frame) {
         JOptionPane.showMessageDialog(frame, "Patient added successfully!", "Success",
-                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(steveMeme));
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(logo));
         int option = JOptionPane.showConfirmDialog(frame, "Do you want to save the data?", "Save data",
                 JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
@@ -99,7 +99,7 @@ public class PatientDetailsGUI extends StartApplicationGUI {
                 throw new RuntimeException(ex);
             }
             JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success",
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(steveMeme));
+                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon(logo));
         }
     }
 
