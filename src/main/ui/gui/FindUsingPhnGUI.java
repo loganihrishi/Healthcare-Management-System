@@ -19,7 +19,7 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         initialize();
     }
 
-    // EFFECTS: initializes the GUI of the healthcare management system
+    // EFFECTS: displays the pop-up window showing the appropriate appointment message
     private void initialize() {
         JOptionPane.showOptionDialog(null, getMainPanel(),
                 "Appointment Details", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -73,5 +73,4 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
         resultTextArea.setBackground(Color.WHITE);
         return resultTextArea;
     }
-
 }
