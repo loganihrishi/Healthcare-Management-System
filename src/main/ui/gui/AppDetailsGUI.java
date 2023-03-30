@@ -18,15 +18,12 @@ import java.time.format.DateTimeFormatter;
 public class AppDetailsGUI extends StartApplicationGUI {
 
     // EFFECTS: starts the add appointment GUI
-    public AppDetailsGUI() throws IOException {
-        super();
-        addAppointment();
-    }
 
     // MODIFIES: this
     // EFFECTS: adds the appointment if possible, displays appropriate error message otherwise
 
-    private void addAppointment() {
+    public AppDetailsGUI() throws IOException {
+        super();
         JFrame frame = new JFrame("Add an Appointment");
         JLabel dateLabel = new JLabel("Date (yyyy/mm/dd):");
         JTextField dateField = new JTextField();
@@ -39,7 +36,6 @@ public class AppDetailsGUI extends StartApplicationGUI {
         phnField.setEditable(true);
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDate date = LocalDate.parse(dateField.getText(), formatter);

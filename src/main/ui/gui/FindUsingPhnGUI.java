@@ -14,13 +14,9 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
 
     private JPanel mainPanel = new JPanel();
 
-    // EFFECTS: starts the find patient gui
-    public FindUsingPhnGUI() throws IOException {
-        initialize();
-    }
 
     // EFFECTS: displays the pop-up window showing the appropriate appointment message
-    private void initialize() {
+    public FindUsingPhnGUI() throws IOException {
         JOptionPane.showOptionDialog(null, getMainPanel(),
                 "Appointment Details", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 new ImageIcon(logo), new Object[]{"OK"},

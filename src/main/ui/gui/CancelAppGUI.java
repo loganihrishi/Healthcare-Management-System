@@ -14,14 +14,11 @@ import java.io.IOException;
 public class CancelAppGUI extends StartApplicationGUI {
 
     // EFFECTS: creates a CancelAppGUI and calls a method to cancel the appointment
-    public CancelAppGUI() throws IOException {
-        super();
-        cancelAppointment();
-    }
 
     // MODIFIES: this
     // EFFECTS: cancels the appointment, if possible, displays the appropriate error message otherwise
-    private void cancelAppointment() {
+    public CancelAppGUI() throws IOException {
+        super();
         JFrame frame = new JFrame("Cancel an appointment");
         JLabel phnLabel = new JLabel("Personal Health Number:");
         JTextField phnTextField = new JTextField();

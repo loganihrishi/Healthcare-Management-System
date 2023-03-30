@@ -15,16 +15,12 @@ import java.time.format.DateTimeFormatter;
 
 public class PatientDetailsGUI extends StartApplicationGUI {
 
-    // EFFECTS: starts the PatientDetailsGUI part of the main GUI
-    public PatientDetailsGUI() throws IOException {
-        super();
-        addPatient();
-    }
 
     // MODIFIES: this
     // EFFECTS: creates the GUI for Patient details
     @SuppressWarnings("methodlength")
-    private void addPatient() {
+    public PatientDetailsGUI() throws IOException {
+        super();
         JFrame frame = new JFrame("Add Patient");
         JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();

@@ -36,13 +36,10 @@ public class StartApplicationGUI extends JFrame {
 
     protected final String logo = "./data/Logo.jpg";
 
-    // EFFECTS: starts the GUI of the application
-    public StartApplicationGUI() throws IOException {
-        initializeFrame();
-    }
+
 
     // EFFECTS: initializes the frame
-    private void initializeFrame() throws IOException {
+    public StartApplicationGUI() throws IOException {
         getExistingData();
         this.setTitle("Healthcare Management System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,6 +109,7 @@ public class StartApplicationGUI extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                dispose();
             }
         });
         return addPatientButton;
@@ -131,6 +129,7 @@ public class StartApplicationGUI extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                dispose();
             }
         });
         return cancelAppButton;
@@ -151,6 +150,7 @@ public class StartApplicationGUI extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                dispose();
             }
         });
         return addAppButton;
@@ -171,6 +171,7 @@ public class StartApplicationGUI extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                dispose();
             }
         });
         return findUsingPhnButton;
