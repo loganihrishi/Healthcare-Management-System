@@ -18,10 +18,6 @@ import java.time.format.DateTimeFormatter;
 public class AppDetailsGUI extends StartApplicationGUI {
 
     // EFFECTS: starts the add appointment GUI
-
-    // MODIFIES: this
-    // EFFECTS: adds the appointment if possible, displays appropriate error message otherwise
-
     public AppDetailsGUI() throws IOException {
         super();
         JFrame frame = new JFrame("Add an Appointment");

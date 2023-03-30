@@ -49,7 +49,6 @@ public class StartApplicationGUI extends JFrame {
         this.add(panel);
         this.setVisible(true);
         this.setResizable(false);
-        this.setBackground(Color.RED);
         this.setSize(dimX, dimY);
         try {
             patients.addAll(patientFile.readPatientsFromFile());
@@ -105,11 +104,11 @@ public class StartApplicationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    dispose();
                     new PatientDetailsGUI();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                dispose();
             }
         });
         return addPatientButton;
@@ -125,6 +124,7 @@ public class StartApplicationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    dispose();
                     new CancelAppGUI();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -146,11 +146,11 @@ public class StartApplicationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    dispose();
                     new AppDetailsGUI();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                dispose();
             }
         });
         return addAppButton;
@@ -167,11 +167,11 @@ public class StartApplicationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    dispose();
                     new FindUsingPhnGUI();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                dispose();
             }
         });
         return findUsingPhnButton;

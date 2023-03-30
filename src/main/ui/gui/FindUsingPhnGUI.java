@@ -14,7 +14,6 @@ public class FindUsingPhnGUI extends StartApplicationGUI {
 
     private JPanel mainPanel = new JPanel();
 
-
     // EFFECTS: displays the pop-up window showing the appropriate appointment message
     public FindUsingPhnGUI() throws IOException {
         JOptionPane.showOptionDialog(null, getMainPanel(),

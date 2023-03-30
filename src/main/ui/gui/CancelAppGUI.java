@@ -13,8 +13,6 @@ import java.io.IOException;
 
 public class CancelAppGUI extends StartApplicationGUI {
 
-    // EFFECTS: creates a CancelAppGUI and calls a method to cancel the appointment
-
     // MODIFIES: this
     // EFFECTS: cancels the appointment, if possible, displays the appropriate error message otherwise
     public CancelAppGUI() throws IOException {
