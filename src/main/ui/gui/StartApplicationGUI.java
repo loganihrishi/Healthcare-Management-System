@@ -46,6 +46,7 @@ public class StartApplicationGUI extends JFrame {
         this.setResizable(true);
         this.getContentPane().setBackground(Color.WHITE);
         JPanel panel = addPanel();
+        panel.setBackground(Color.PINK);
         this.add(panel);
         this.setVisible(true);
         this.setResizable(false);
