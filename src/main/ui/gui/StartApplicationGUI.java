@@ -37,7 +37,6 @@ public class StartApplicationGUI extends JFrame {
     protected final String logo = "./data/Logo.jpg";
 
 
-
     // EFFECTS: initializes the frame
     public StartApplicationGUI() throws IOException {
         getExistingData();
@@ -49,7 +48,7 @@ public class StartApplicationGUI extends JFrame {
         panel.setBackground(Color.PINK);
         this.add(panel);
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setSize(dimX, dimY);
         try {
             patients.addAll(patientFile.readPatientsFromFile());

@@ -1,10 +1,11 @@
 package model;
 
-import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import persistence.WriteToFile;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class AppointmentList implements WriteToFile {
     // EFFECTS: adds the appointment to the given list of appointments
     public void addAppointment(Appointment app) {
         this.appointments.add(app);
+        EventLog.getInstance().logEvent(new Event("Appointment Added"));
     }
 
     // REQUIRES: an appointment which has already been scheduled
