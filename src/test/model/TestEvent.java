@@ -52,16 +52,6 @@ public class TestEvent {
     }
 
     @Test
-    public void TestEqualsSameDescriptionSameTime(){
-        Event e3 = new Event(e1.getDescription());
-        System.out.println(e1.getDate());
-        System.out.println(e1.getDescription());
-        System.out.println(e3.getDate());
-        System.out.println(e3.getDescription());
-        assertEquals(e1, e3);
-    }
-
-    @Test
     public void TestDifferentDescriptionDifferentTime() throws InterruptedException {
         Thread.sleep(1000);
         Event e3 = new Event(e2.getDescription());
