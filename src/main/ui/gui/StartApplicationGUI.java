@@ -38,7 +38,7 @@ public class StartApplicationGUI extends JFrame {
     protected PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     protected AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
-    protected final String logo = "./data/gregor_meme.jpg";
+    protected final String logo = "./data/Logo.jpg";
 
 
     // EFFECTS: initializes the frame
@@ -71,8 +71,8 @@ public class StartApplicationGUI extends JFrame {
                 for (Event el : EventLog.getInstance()) {
                     System.out.println(el.toString());
                 }
-                EventLog.getInstance().clear();
                 System.exit(69);
+                EventLog.getInstance().clear();
             }
         });
     }
