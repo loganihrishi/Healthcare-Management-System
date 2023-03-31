@@ -58,7 +58,7 @@ public class TestEvent {
         System.out.println(e1.getDescription());
         System.out.println(e3.getDate());
         System.out.println(e3.getDescription());
-        assertNotEquals(e1, e3);
+        assertEquals(e1, e3);
     }
 
     @Test

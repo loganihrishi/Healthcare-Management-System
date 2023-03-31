@@ -38,7 +38,7 @@ public class StartApplicationGUI extends JFrame {
     protected PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     protected AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
-    protected final String logo = "./data/Logo.jpg";
+    protected final String logo = "./data/gregor_meme.jpg";
 
 
     // EFFECTS: initializes the frame
