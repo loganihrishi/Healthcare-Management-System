@@ -75,6 +75,11 @@ It will display a confirmation message upon loading data successfully.
 - Saved appointments to ./data/Appointments.json
 - Process finished with exit code 69`
 
+
+
+## UML Class Diagram 
+<img height="300" src="data/UMLDiagram.png" width="500"/>
+
 ## References
 
 - The graphical user interface (GUI) of the application was derived from various sources found on
