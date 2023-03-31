@@ -75,8 +75,26 @@ It will display a confirmation message upon loading data successfully.
 - Saved appointments to ./data/Appointments.json
 - Process finished with exit code 69`
 
+## Phase 4: Task 3
+I think there are several ways in which the cohesion can be increased and coupling can be reduced.
+
+1. In order to reduce coupling, I am planning to break the console-based UI into multiple classes. This way, each class 
+   will have access to only the necessary information, and the overall design will become more modular and easier 
+   to maintain. With this approach, I can ensure that the UI components are loosely coupled, and changes in one 
+   component will not affect the others.
 
 
+2. I have realized that the current type of relationships between the components of my GUI is leading to the creation 
+   of multiple instances of the super class, which is taking more memory. To address this, I plan to incorporate 
+   the Singleton Design Pattern. By doing so, I will ensure that there is only one instance of the main window 
+   throughout the application, and this will significantly reduce the memory usage. Moreover, 
+   this design pattern will also ensure that the state of the window remains consistent across all the components.
+
+
+3. After careful consideration, I believe that the classes in the model package are currently in good shape, 
+   and they do not require any refactoring at the moment. I have ensured that these classes follow good coding 
+   practices and adhere to the SOLID principles, which has resulted in a clean and maintainable codebase. 
+   As such, I will focus my efforts on improving the UI components, which require more attention.
 ## UML Class Diagram 
 <img height="400" src="data/UMLDiagram.png" width="800"/>
 
