@@ -1,6 +1,7 @@
 package ui.gui;
 
 import model.Appointment;
+import model.EventLog;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,8 @@
 package persistence;
 
 import model.Disease;
+import model.Event;
+import model.EventLog;
 import model.Patient;
 import org.json.*;
 
@@ -49,6 +51,7 @@ public class PatientFileHandler {
             patient.setDiseases(diseases);
             result.add(patient);
         }
+//        EventLog.getInstance().logEvent(new Event("Patients Loaded from ./data/patients.json"));
         return result;
     }
 
@@ -61,6 +64,7 @@ public class PatientFileHandler {
             jsonArray.put(patient.toJson());
         }
         Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
+        EventLog.getInstance().logEvent(new Event("Patients Saved to ./data/patients.json"));
     }
 
     // REQUIRES: a JSONArray of diseases

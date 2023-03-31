@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Appointment;
-import model.Disease;
-import model.Patient;
+import model.*;
 import org.json.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,6 +44,7 @@ public class AppointmentFileHandler {
         } catch (IOException e) {
             System.out.println("Error reading from file: " + e.getMessage());
         }
+//        EventLog.getInstance().logEvent(new Event("Loaded appointments from ./data/Appointments.json"));
         return result;
     }
 
@@ -62,6 +61,7 @@ public class AppointmentFileHandler {
             jsonArray.put(json);
         }
         Files.write(Paths.get(filePath), jsonArray.toString().getBytes());
+        EventLog.getInstance().logEvent(new Event("Saved appointments to ./data/Appointments.json"));
     }
 
     // REQUIRES: a patient JSON Object

@@ -43,6 +43,7 @@ public class AppointmentList implements WriteToFile {
     // EFFECTS: removes the appointment from the given list of appointments
     public void removeAppointment(Appointment app)  {
         this.appointments.remove(app);
+        EventLog.getInstance().logEvent(new Event("Appointment Cancelled"));
     }
 
     // MODIFIES: this
@@ -117,6 +118,7 @@ public class AppointmentList implements WriteToFile {
                 return a;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Retrieved Appointment Details For PHN: " + phn));
         return null;
     }
 
