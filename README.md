@@ -71,14 +71,14 @@ It will display a confirmation message upon loading data successfully.
 - Saved appointments to ./data/Appointments.json
 - Thu Mar 30 21:56:29 PDT 2023
 - Appointment Cancelled
-- Thu Mar 30 21:56:32 PDT 2023
+- Thu Mar 30 21:56:32 PDT 2023 
 - Saved appointments to ./data/Appointments.json
 - Process finished with exit code 69`
 
 
 
 ## UML Class Diagram 
-<img height="300" src="data/UMLDiagram.png" width="500"/>
+<img height="300" src="data/UMLDiagram.png" width="800"/>
 
 ## References
 
