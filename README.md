@@ -78,7 +78,7 @@ It will display a confirmation message upon loading data successfully.
 
 
 ## UML Class Diagram 
-<img height="300" src="data/UMLDiagram.png" width="800"/>
+<img height="400" src="data/UMLDiagram.png" width="800"/>
 
 ## References
 
