@@ -78,4 +78,11 @@ public class TestEvent {
         assertEquals(e1.getDate()+ "\n" +
                 "Appointments added", e1.toString());
     }
+
+    @Test
+    public void TestBothDescriptionAndDateEqual() {
+        Event e4 = new Event("maa chuda");
+        Event e5 = new Event("maa chuda");
+        assertTrue(e4.equals(e5));
+    }
 }
