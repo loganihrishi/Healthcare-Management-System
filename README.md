@@ -60,6 +60,20 @@ medical community.
 - You can reload the state of my application by pressing the "Load data" button in the menu. 
 It will display a confirmation message upon loading data successfully. 
 
+## Phase 4: Task 2
+- Thu Mar 30 21:55:55 PDT 2023
+- Patients Saved to ./data/patients.json
+- Thu Mar 30 21:56:10 PDT 2023
+- Retrieved Appointment Details For PHN: 898989
+- Thu Mar 30 21:56:10 PDT 2023
+- Appointment Added
+- Thu Mar 30 21:56:15 PDT 2023
+- Saved appointments to ./data/Appointments.json
+- Thu Mar 30 21:56:29 PDT 2023
+- Appointment Cancelled
+- Thu Mar 30 21:56:32 PDT 2023
+- Saved appointments to ./data/Appointments.json
+- Process finished with exit code 69`
 
 ## References
 
