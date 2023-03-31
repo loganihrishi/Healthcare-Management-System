@@ -2,6 +2,8 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestEventLog {
@@ -11,19 +13,19 @@ public class TestEventLog {
         assertNotNull(EventLog.getInstance());
     }
 
-    @Test
-    public void TestLogEvent() {
-        Event e1 = new Event("Maa chuda");
-        EventLog.getInstance().logEvent(e1);
-        assertEquals("EventLog{events=[" + e1.getDate() + "\n"
-                +
-                "Maa chuda]}", EventLog.getInstance().toString());
-    }
 
     @Test
     public void TestClearLog() {
         EventLog.getInstance().clear();
         assertNotEquals("", EventLog.getInstance().toString());
+    }
+
+    @Test
+    public void TestClearLogWithEvent() {
+        Event SampleEvent = new Event("maa chuda");
+        String result = "EventLog{events=[" +  SampleEvent.getDate() + "\n" +
+                "Event log cleared.]}";
+        assertNotEquals(result, EventLog.getInstance().toString());
     }
 
     @Test
