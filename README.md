@@ -91,7 +91,13 @@ I think there are several ways in which the cohesion can be increased and coupli
    this design pattern will also ensure that the state of the window remains consistent across all the components.
 
 
-3. After careful consideration, I believe that the classes in the model package are currently in good shape, 
+3. I also realized that I can incorporate the iterator design pattern in the AppointmentList class as it holds 
+   a collection of appointments. If I implemented the iterator pattern, it would prevent calls to getAppointments() 
+   method, which would consume less memory and make program more efficient. 
+
+
+
+5. After careful consideration, I believe that the classes in the model package are currently in good shape, 
    and they do not require any refactoring at the moment. I have ensured that these classes follow good coding 
    practices and adhere to the SOLID principles, which has resulted in a clean and maintainable codebase. 
    As such, I will focus my efforts on improving the UI components, which require more attention.
