@@ -73,7 +73,7 @@ It will display a confirmation message upon loading data successfully.
 - Appointment Cancelled
 - Thu Mar 30 21:56:32 PDT 2023 
 - Saved appointments to ./data/Appointments.json
-- Process finished with exit code 69`
+- Process finished with exit code 69
 
 ## Phase 4: Task 3
 I think there are several ways in which the cohesion can be increased and coupling can be reduced.
