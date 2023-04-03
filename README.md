@@ -61,19 +61,20 @@ medical community.
 It will display a confirmation message upon loading data successfully. 
 
 ## Phase 4: Task 2
-- Thu Mar 30 21:55:55 PDT 2023
-- Patients Saved to ./data/patients.json
-- Thu Mar 30 21:56:10 PDT 2023
-- Retrieved Appointment Details For PHN: 898989
-- Thu Mar 30 21:56:10 PDT 2023
+- Sun Apr 02 18:11:49 PDT 2023
+- Failed to retrieve appointment details for PHN: 898989
+- Sun Apr 02 18:11:49 PDT 2023
 - Appointment Added
-- Thu Mar 30 21:56:15 PDT 2023
-- Saved appointments to ./data/Appointments.json
-- Thu Mar 30 21:56:29 PDT 2023
+- Sun Apr 02 18:11:59 PDT 2023
+- Retrieved Appointment Details For PHN: 898989
+- Sun Apr 02 18:12:05 PDT 2023
+- Failed to retrieve appointment details for PHN: 898990
+- Sun Apr 02 18:12:12 PDT 2023
+- Retrieved Appointment Details For PHN: 898989
+- Sun Apr 02 18:12:12 PDT 2023
 - Appointment Cancelled
-- Thu Mar 30 21:56:32 PDT 2023 
-- Saved appointments to ./data/Appointments.json
 - Process finished with exit code 69
+
 
 ## Phase 4: Task 3
 I think there are several ways in which the cohesion can be increased and coupling can be reduced.

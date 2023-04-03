@@ -115,10 +115,11 @@ public class AppointmentList implements WriteToFile {
     public Appointment findAppointment(int phn) {
         for (Appointment a: appointments) {
             if (a.getPatient().getPhn() == phn) {
+                EventLog.getInstance().logEvent(new Event("Retrieved Appointment Details For PHN: " + phn));
                 return a;
             }
         }
-        EventLog.getInstance().logEvent(new Event("Retrieved Appointment Details For PHN: " + phn));
+        EventLog.getInstance().logEvent(new Event("Failed to retrieve appointment details for PHN: " + phn));
         return null;
     }
 
