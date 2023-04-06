@@ -73,7 +73,7 @@ It will display a confirmation message upon loading data successfully.
 - Retrieved Appointment Details For PHN: 898989
 - Sun Apr 02 18:12:12 PDT 2023
 - Appointment Cancelled
-- Process finished with exit code 69
+
 
 
 ## Phase 4: Task 3
