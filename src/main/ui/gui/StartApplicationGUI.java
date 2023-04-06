@@ -38,7 +38,7 @@ public class StartApplicationGUI extends JFrame {
     protected PatientFileHandler patientFile = new PatientFileHandler(patientPath);
     protected AppointmentFileHandler appointmentFile = new AppointmentFileHandler(appointmentPath);
 
-    protected final String logo = "./data/Logo.jpg";
+    protected final String logo = "./data/steve_meme.jpg";
 
 
     // EFFECTS: initializes the frame
@@ -119,15 +119,12 @@ public class StartApplicationGUI extends JFrame {
         Font font = new Font("Arial", Font.PLAIN, 22);
         addPatientButton.setFont(font);
         addPatientButton.setPreferredSize(new Dimension(500, 100));
-        addPatientButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    dispose();
-                    new PatientDetailsGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        addPatientButton.addActionListener(e -> {
+            try {
+                dispose();
+                new PatientDetailsGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         return addPatientButton;
@@ -139,16 +136,12 @@ public class StartApplicationGUI extends JFrame {
         this.cancelAppButton = new JButton("Cancel an appointment");
         cancelAppButton.setFont(new Font("Arial", Font.PLAIN, 22));
         cancelAppButton.setPreferredSize(new Dimension(500, 100));
-        cancelAppButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    dispose();
-                    new CancelAppGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        cancelAppButton.addActionListener(e -> {
+            try {
                 dispose();
+                new CancelAppGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         return cancelAppButton;
@@ -161,15 +154,12 @@ public class StartApplicationGUI extends JFrame {
         Font font = new Font("Arial", Font.PLAIN, 22);
         addAppButton.setFont(font);
         addAppButton.setPreferredSize(new Dimension(500, 100));
-        addAppButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    dispose();
-                    new AppDetailsGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        addAppButton.addActionListener(e -> {
+            try {
+                dispose();
+                new AppDetailsGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         return addAppButton;
@@ -182,15 +172,12 @@ public class StartApplicationGUI extends JFrame {
         Font font = new Font("Arial", Font.PLAIN, 22);
         findUsingPhnButton.setFont(font);
         findUsingPhnButton.setPreferredSize(new Dimension(500, 100));
-        findUsingPhnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    dispose();
-                    new FindUsingPhnGUI();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        findUsingPhnButton.addActionListener(e -> {
+            try {
+                dispose();
+                new FindUsingPhnGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         return findUsingPhnButton;
@@ -204,13 +191,9 @@ public class StartApplicationGUI extends JFrame {
         loadDataButton.setFont(font);
         loadDataButton.setPreferredSize(new Dimension(500, 100));
         JFrame frame = new JFrame("Loading Data ...");
-        loadDataButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "Data Loaded successfully", "Success",
-                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon(logo));
-            }
-        });
+        loadDataButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Data Loaded successfully",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE, new ImageIcon(logo)));
         return loadDataButton;
     }
 
