@@ -71,8 +71,6 @@ public class StartApplicationGUI extends JFrame {
                 for (Event el : EventLog.getInstance()) {
                     System.out.println(el.toString());
                 }
-                System.exit(69);
-                EventLog.getInstance().clear();
             }
         });
     }

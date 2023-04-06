@@ -113,14 +113,20 @@ public class AppointmentList implements WriteToFile {
     // REQUIRES: a valid PHN
     // EFFECTS: returns the appointment if found, null otherwise
     public Appointment findAppointment(int phn) {
+        Appointment result = null;
         for (Appointment a: appointments) {
             if (a.getPatient().getPhn() == phn) {
-                EventLog.getInstance().logEvent(new Event("Retrieved Appointment Details For PHN: " + phn));
-                return a;
+                result = a;
+                break;
             }
         }
-        EventLog.getInstance().logEvent(new Event("Failed to retrieve appointment details for PHN: " + phn));
-        return null;
+
+        if (result != null) {
+            EventLog.getInstance().logEvent(new Event("Retrieved Appointment Details For PHN: " + phn));
+        } else {
+            EventLog.getInstance().logEvent(new Event("Failed to retrieve appointment details for PHN: " + phn));
+        }
+        return result;
     }
 
     // MODIFIES: this
