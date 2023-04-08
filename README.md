@@ -103,7 +103,7 @@ I think there are several ways in which the cohesion can be increased and coupli
    practices and adhere to the SOLID principles, which has resulted in a clean and maintainable codebase. 
    As such, I will focus my efforts on improving the UI components, which require more attention.
 ## UML Class Diagram 
-<img height="475" src="UML_Diagram_3.png" width="800"/>
+<img height="475" src="UML_Design_Diagram.png" width="800"/>
 
 ## References
 
