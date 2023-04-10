@@ -61,20 +61,20 @@ medical community.
 It will display a confirmation message upon loading data successfully. 
 
 ## Phase 4: Task 2
-- Sun Apr 09 18:42:57 PDT 2023
-- Retrieved Appointment Details For PHN: 595961
-- Sun Apr 09 18:43:41 PDT 2023
-- Failed to retrieve appointment details for PHN: 696969
-- Sun Apr 09 18:43:41 PDT 2023
-- Appointment Added for PHN: 696969
-- Sun Apr 09 18:43:52 PDT 2023
-- Retrieved Appointment Details For PHN: 696969
-- Sun Apr 09 18:44:02 PDT 2023
-- Retrieved Appointment Details For PHN: 696969
-- Sun Apr 09 18:44:02 PDT 2023
-- Appointment Cancelled for PHN: 696969
-- Sun Apr 09 18:44:12 PDT 2023
-- Failed to retrieve appointment details for PHN: 696969
+- Sun Apr 09 18:42:57 PDT 2023 \
+  Retrieved Appointment Details For PHN: 595961
+- Sun Apr 09 18:43:41 PDT 2023 \
+  Failed to retrieve appointment details for PHN: 696969
+- Sun Apr 09 18:43:41 PDT 2023 \
+  Appointment Added for PHN: 696969
+- Sun Apr 09 18:43:52 PDT 2023 \
+  Retrieved Appointment Details For PHN: 696969
+- Sun Apr 09 18:44:02 PDT 2023 \
+  Retrieved Appointment Details For PHN: 696969
+- Sun Apr 09 18:44:02 PDT 2023 \
+  Appointment Cancelled for PHN: 696969
+- Sun Apr 09 18:44:12 PDT 2023 \
+  Failed to retrieve appointment details for PHN: 696969
 
 ## Phase 4: Task 3
 I think there are several ways in which the cohesion can be increased and coupling can be reduced.
