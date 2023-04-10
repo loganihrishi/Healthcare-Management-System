@@ -35,7 +35,9 @@ public class AppointmentList implements WriteToFile {
     // EFFECTS: adds the appointment to the given list of appointments
     public void addAppointment(Appointment app) {
         this.appointments.add(app);
-        EventLog.getInstance().logEvent(new Event("Appointment Added"));
+        EventLog.getInstance().logEvent(new Event("Appointment Added for PHN: "
+                +
+                app.getPatient().getPhn()));
     }
 
     // REQUIRES: an appointment which has already been scheduled
@@ -43,7 +45,9 @@ public class AppointmentList implements WriteToFile {
     // EFFECTS: removes the appointment from the given list of appointments
     public void removeAppointment(Appointment app)  {
         this.appointments.remove(app);
-        EventLog.getInstance().logEvent(new Event("Appointment Cancelled"));
+        EventLog.getInstance().logEvent(new Event("Appointment Cancelled for PHN: "
+                +
+                app.getPatient().getPhn()));
     }
 
     // MODIFIES: this

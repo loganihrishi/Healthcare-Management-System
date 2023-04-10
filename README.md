@@ -61,20 +61,20 @@ medical community.
 It will display a confirmation message upon loading data successfully. 
 
 ## Phase 4: Task 2
-- Sun Apr 02 18:11:49 PDT 2023
-- Failed to retrieve appointment details for PHN: 898989
-- Sun Apr 02 18:11:49 PDT 2023
-- Appointment Added
-- Sun Apr 02 18:11:59 PDT 2023
-- Retrieved Appointment Details For PHN: 898989
-- Sun Apr 02 18:12:05 PDT 2023
-- Failed to retrieve appointment details for PHN: 898990
-- Sun Apr 02 18:12:12 PDT 2023
-- Retrieved Appointment Details For PHN: 898989
-- Sun Apr 02 18:12:12 PDT 2023
-- Appointment Cancelled
-
-
+- Sun Apr 09 18:42:57 PDT 2023
+- Retrieved Appointment Details For PHN: 595961
+- Sun Apr 09 18:43:41 PDT 2023
+- Failed to retrieve appointment details for PHN: 696969
+- Sun Apr 09 18:43:41 PDT 2023
+- Appointment Added for PHN: 696969
+- Sun Apr 09 18:43:52 PDT 2023
+- Retrieved Appointment Details For PHN: 696969
+- Sun Apr 09 18:44:02 PDT 2023
+- Retrieved Appointment Details For PHN: 696969
+- Sun Apr 09 18:44:02 PDT 2023
+- Appointment Cancelled for PHN: 696969
+- Sun Apr 09 18:44:12 PDT 2023
+- Failed to retrieve appointment details for PHN: 696969
 
 ## Phase 4: Task 3
 I think there are several ways in which the cohesion can be increased and coupling can be reduced.
@@ -92,13 +92,20 @@ I think there are several ways in which the cohesion can be increased and coupli
    this design pattern will also ensure that the state of the window remains consistent across all the components.
 
 
-3. I also realized that I can incorporate the iterator design pattern in the AppointmentList class as it holds 
+3. If I had more time, I would revisit the relationships between the classes in my graphical user interface. 
+   Currently, these relationships violate the Liskov substitution principle. Rather than having these classes extend
+   the main class, I would instead keep a private field of StartApplicationGUI in the classes that currently extend it. 
+   This would allow me to improve the design and ensure that all subclasses can be used interchangeably with the 
+   superclass without introducing unexpected behavior.
+
+
+4. I also realized that I can incorporate the iterator design pattern in the AppointmentList class as it holds 
    a collection of appointments. If I implemented the iterator pattern, it would prevent calls to getAppointments() 
    method, which would consume less memory and make program more efficient. Also, this would give me freedom to choose 
    any type of suitable collection data structure (LinkedHashSet or HashSet) without breaking the code.
 
 
-4. After careful consideration, I believe that the classes in the model package are currently in good shape, 
+5. After careful consideration, I believe that the classes in the model package are currently in good shape, 
    and they do not require any refactoring at the moment. I have ensured that these classes follow good coding 
    practices and adhere to the SOLID principles, which has resulted in a clean and maintainable codebase. 
    As such, I will focus my efforts on improving the UI components, which require more attention.
