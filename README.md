@@ -106,10 +106,6 @@ I think there are several ways in which the cohesion can be increased and coupli
    any type of suitable collection data structure (LinkedHashSet or HashSet) without breaking the code.
 
 
-5. After careful consideration, I believe that the classes in the model package are currently in good shape, 
-   and they do not require any refactoring at the moment. I have ensured that these classes follow good coding 
-   practices and adhere to the SOLID principles, which has resulted in a clean and maintainable codebase. 
-   As such, I will focus my efforts on improving the UI components, which require more attention.
 ## UML Class Diagram 
 <img height="475" src="UML_Design_Diagram.png" width="800"/>
 
