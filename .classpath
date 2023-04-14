@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="lib" path="lib/junit-jupiter-5.4.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/hrishilogani/IdeaProjects/JsonSerializationDemo/lib/json-20210307.jar"/>
+	<classpathentry kind="output" path="out/production/Project-Starter"/>
+</classpath>

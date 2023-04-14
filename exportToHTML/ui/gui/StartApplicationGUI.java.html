@@ -1,0 +1,223 @@
+<html>
+<head>
+<title>StartApplicationGUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+StartApplicationGUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">ui.gui</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">model.AppointmentList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">model.Patient</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">persistence.AppointmentFileHandler</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">persistence.PatientFileHandler</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">javax.swing.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionEvent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionListener</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.IOException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s2">/** This class is used to start the GRAPHICAL user Interface of the project.</span>
+ <span class="s2">* It implements four user stories, add patient, add appointment, save data and load the data.</span>
+ <span class="s2">*/</span>
+
+<span class="s0">public class </span><span class="s1">StartApplicationGUI </span><span class="s0">extends </span><span class="s1">JFrame {</span>
+    <span class="s0">private </span><span class="s1">JButton addAppButton</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JButton addPatientButton</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JButton cancelAppButton</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JButton loadDataButton</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JButton findUsingPhnButton</span><span class="s0">;</span>
+    <span class="s0">protected final int </span><span class="s1">dimX = </span><span class="s3">600</span><span class="s0">; </span><span class="s4">// represents the width of the JFrame</span>
+    <span class="s0">protected final int </span><span class="s1">dimY = </span><span class="s3">800</span><span class="s0">; </span><span class="s4">// represents the height of the JFrame</span>
+
+    <span class="s0">private final </span><span class="s1">String patientPath = </span><span class="s5">&quot;./data/patients.json&quot;</span><span class="s0">;</span>
+    <span class="s0">private final </span><span class="s1">String appointmentPath = </span><span class="s5">&quot;./data/appointments.json&quot;</span><span class="s0">;</span>
+    <span class="s0">protected </span><span class="s1">List&lt;Patient&gt; patients = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">; </span><span class="s4">// stores the patients made</span>
+    <span class="s0">protected </span><span class="s1">AppointmentList appointments = </span><span class="s0">new </span><span class="s1">AppointmentList()</span><span class="s0">; </span><span class="s4">// stores all the appointments that have been</span>
+                                                                   <span class="s4">// scheduled so far</span>
+    <span class="s0">protected </span><span class="s1">PatientFileHandler patientFile = </span><span class="s0">new </span><span class="s1">PatientFileHandler(patientPath)</span><span class="s0">;</span>
+    <span class="s0">protected </span><span class="s1">AppointmentFileHandler appointmentFile = </span><span class="s0">new </span><span class="s1">AppointmentFileHandler(appointmentPath)</span><span class="s0">;</span>
+
+    <span class="s0">protected final </span><span class="s1">String logo = </span><span class="s5">&quot;./data/Logo.jpg&quot;</span><span class="s0">;</span>
+
+    <span class="s4">// EFFECTS: starts the GUI of the application</span>
+    <span class="s0">public </span><span class="s1">StartApplicationGUI() </span><span class="s0">throws </span><span class="s1">IOException {</span>
+        <span class="s1">initializeFrame()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// EFFECTS: initializes the frame</span>
+    <span class="s0">private void </span><span class="s1">initializeFrame() </span><span class="s0">throws </span><span class="s1">IOException {</span>
+        <span class="s1">getExistingData()</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setTitle(</span><span class="s5">&quot;Healthcare Management System&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setResizable(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.getContentPane().setBackground(Color.WHITE)</span><span class="s0">;</span>
+        <span class="s1">JPanel panel = addPanel()</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.add(panel)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setVisible(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setResizable(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setBackground(Color.RED)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.setSize(dimX</span><span class="s0">, </span><span class="s1">dimY)</span><span class="s0">;</span>
+        <span class="s0">try </span><span class="s1">{</span>
+            <span class="s1">patients.addAll(patientFile.readPatientsFromFile())</span><span class="s0">;</span>
+            <span class="s1">appointments.addAll(appointmentFile.readAppointmentsFromFile())</span><span class="s0">;</span>
+        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ex) {</span>
+            <span class="s1">System.out.println(</span><span class="s5">&quot;Error: &quot; </span><span class="s1">+ ex.getMessage())</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// EFFECTS: adds the welcome label</span>
+    <span class="s0">private </span><span class="s1">JLabel addWelcomeLabel() {</span>
+        <span class="s1">JLabel label = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s5">&quot;Welcome Back!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">label.setForeground(Color.BLACK)</span><span class="s0">;</span>
+        <span class="s1">label.setBounds(</span><span class="s3">0</span><span class="s0">, </span><span class="s3">50</span><span class="s0">, </span><span class="s3">200</span><span class="s0">, </span><span class="s3">50</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">label.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.BOLD</span><span class="s0">, </span><span class="s3">28</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">label.setVerticalAlignment(JLabel.TOP)</span><span class="s0">;</span>
+        <span class="s1">label.setHorizontalAlignment(JLabel.CENTER)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">label</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: adds the panel with appropriate dimensions</span>
+    <span class="s0">private </span><span class="s1">JPanel addPanel() </span><span class="s0">throws </span><span class="s1">IOException {</span>
+        <span class="s1">JPanel res = </span><span class="s0">new </span><span class="s1">JPanel(</span><span class="s0">new </span><span class="s1">GridBagLayout())</span><span class="s0">;</span>
+        <span class="s1">GridBagConstraints gbc = </span><span class="s0">new </span><span class="s1">GridBagConstraints()</span><span class="s0">;</span>
+        <span class="s1">gbc.insets = </span><span class="s0">new </span><span class="s1">Insets(</span><span class="s3">10</span><span class="s0">, </span><span class="s3">10</span><span class="s0">, </span><span class="s3">10</span><span class="s0">, </span><span class="s3">10</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridx = </span><span class="s3">0</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy = </span><span class="s3">0</span><span class="s0">;</span>
+        <span class="s1">gbc.weighty = </span><span class="s3">1.0</span><span class="s0">;</span>
+        <span class="s1">gbc.anchor = GridBagConstraints.CENTER</span><span class="s0">;</span>
+        <span class="s1">res.add(addWelcomeLabel()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy++</span><span class="s0">;</span>
+        <span class="s1">res.add(addPatientButton()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy++</span><span class="s0">;</span>
+        <span class="s1">res.add(getExistingData()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy++</span><span class="s0">;</span>
+        <span class="s1">res.add(addAppButton()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy++</span><span class="s0">;</span>
+        <span class="s1">res.add(cancelAppButton()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s1">gbc.gridy++</span><span class="s0">;</span>
+        <span class="s1">res.add(phnButton()</span><span class="s0">, </span><span class="s1">gbc)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">res</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: adds the patient button</span>
+    <span class="s0">private </span><span class="s1">JButton addPatientButton() </span><span class="s0">throws </span><span class="s1">IOException {</span>
+        <span class="s0">this</span><span class="s1">.addPatientButton = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s5">&quot;Add a patient&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Font font = </span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">addPatientButton.setFont(font)</span><span class="s0">;</span>
+        <span class="s1">addPatientButton.setPreferredSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">addPatientButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s0">new </span><span class="s1">PatientDetailsGUI()</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ex) {</span>
+                    <span class="s0">throw new </span><span class="s1">RuntimeException(ex)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">addPatientButton</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: returns the button to cancel the appointment</span>
+    <span class="s0">private </span><span class="s1">JButton cancelAppButton() {</span>
+        <span class="s0">this</span><span class="s1">.cancelAppButton = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s5">&quot;Cancel an appointment&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">cancelAppButton.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s3">22</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">cancelAppButton.setPreferredSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">cancelAppButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s0">new </span><span class="s1">CancelAppGUI()</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ex) {</span>
+                    <span class="s0">throw new </span><span class="s1">RuntimeException(ex)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">cancelAppButton</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: adds the add appointment button</span>
+    <span class="s0">private </span><span class="s1">JButton addAppButton() {</span>
+        <span class="s0">this</span><span class="s1">.addAppButton = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s5">&quot;Add an appointment&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Font font = </span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">addAppButton.setFont(font)</span><span class="s0">;</span>
+        <span class="s1">addAppButton.setPreferredSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">addAppButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s0">new </span><span class="s1">AppDetailsGUI()</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ex) {</span>
+                    <span class="s0">throw new </span><span class="s1">RuntimeException(ex)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">addAppButton</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: adds the find appointments using PHN button</span>
+    <span class="s0">private </span><span class="s1">JButton phnButton() {</span>
+        <span class="s0">this</span><span class="s1">.findUsingPhnButton = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s5">&quot;Find Appointment Details Using PHN&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Font font = </span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">findUsingPhnButton.setFont(font)</span><span class="s0">;</span>
+        <span class="s1">findUsingPhnButton.setPreferredSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">findUsingPhnButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s0">new </span><span class="s1">FindUsingPhnGUI()</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException ex) {</span>
+                    <span class="s0">throw new </span><span class="s1">RuntimeException(ex)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">findUsingPhnButton</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// MODIFIES: this</span>
+    <span class="s4">// EFFECTS: loads the data from the JSON files</span>
+    <span class="s0">private </span><span class="s1">JButton getExistingData() {</span>
+        <span class="s0">this</span><span class="s1">.loadDataButton = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s5">&quot;Load the data&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Font font = </span><span class="s0">new </span><span class="s1">Font(</span><span class="s5">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">loadDataButton.setFont(font)</span><span class="s0">;</span>
+        <span class="s1">loadDataButton.setPreferredSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">500</span><span class="s0">, </span><span class="s3">100</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">JFrame frame = </span><span class="s0">new </span><span class="s1">JFrame(</span><span class="s5">&quot;Loading Data ...&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">loadDataButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">JOptionPane.showMessageDialog(frame</span><span class="s0">, </span><span class="s5">&quot;Data Loaded successfully&quot;</span><span class="s0">, </span><span class="s5">&quot;Success&quot;</span><span class="s0">,</span>
+                        <span class="s1">JOptionPane.INFORMATION_MESSAGE</span><span class="s0">, new </span><span class="s1">ImageIcon(logo))</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">loadDataButton</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s4">// EFFECTS: returns the appointments</span>
+    <span class="s0">public </span><span class="s1">AppointmentList getAppointments() {</span>
+        <span class="s0">return </span><span class="s1">appointments</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
