@@ -48,7 +48,7 @@ medical community.
 - Load the saved state of Patients and Appointments from the last time it was run 
   and resume where it was left off
 
-## Phase 4: Task 2
+## Sample Logging of Events
 ~~~
   Sun Apr 09 18:42:57 PDT 2023 
   Retrieved Appointment Details For PHN: 595961
@@ -65,7 +65,8 @@ medical community.
   Sun Apr 09 18:44:12 PDT 2023 
   Failed to retrieve appointment details for PHN: 696969
 ~~~
-## Phase 4: Task 3
+
+## How can this project be improved? 
 I think there are several ways in which the cohesion can be increased and coupling can be reduced.
 
 1. In order to reduce coupling, I am planning to break the console-based UI into multiple classes. This way, each class 
