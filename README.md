@@ -17,10 +17,7 @@
 
 **Why is this project of interest to you?**
 
-- As someone who has always been interested in creating tools to assist those in the healthcare industry, 
-I am particularly drawn to this project. My goal is to develop an application that can make the job of doctors, 
-specifically my father, more manageable.
-In the fast-paced world of medicine, doctors often have to deal with a huge amount of information, patient data, and paperwork. 
+- As an individual with a passion for developing tools to aid healthcare professionals, I am intrigued by a project that can simplify the work of doctors, including my father. In the hectic realm of medicine, doctors are frequently confronted with copious amounts of data, patient information, and administrative tasks.
 
 - This can make their job stressful and time-consuming, leading to burnout and decreased patient care. 
 By developing a tool that can assist doctors and make their job more manageable, I hope to have a positive impact on the 
