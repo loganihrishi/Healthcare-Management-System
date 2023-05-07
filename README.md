@@ -48,35 +48,6 @@
   Failed to retrieve appointment details for PHN: 696969
 ~~~
 
-## How can this project be improved? 
-I think there are several ways in which the cohesion can be increased and coupling can be reduced.
-
-1. In order to reduce coupling, I am planning to break the console-based UI into multiple classes. This way, each class 
-   will have access to only the necessary information, and the overall design will become more modular and easier 
-   to maintain. With this approach, I can ensure that the UI components are loosely coupled, and changes in one 
-   component will not affect the others.
-
-
-2. I have realized that the current type of relationships between the components of my GUI is leading to the creation 
-   of multiple instances of the super class, which is taking more memory. To address this, I plan to incorporate 
-   the Singleton Design Pattern. By doing so, I will ensure that there is only one instance of the main window 
-   throughout the application, and this will significantly reduce the memory usage. Moreover, 
-   this design pattern will also ensure that the state of the window remains consistent across all the components.
-
-
-3. If I had more time, I would revisit the relationships between the classes in my graphical user interface. 
-   Currently, these relationships violate the Liskov substitution principle. Rather than having these classes extend
-   the main class, I would instead keep a private field of StartApplicationGUI in the classes that currently extend it. 
-   This would allow me to improve the design and ensure that all subclasses can be used interchangeably with the 
-   superclass without introducing unexpected behavior.
-
-
-4. I also realized that I can incorporate the iterator design pattern in the AppointmentList class as it holds 
-   a collection of appointments. If I implemented the iterator pattern, it would prevent calls to getAppointments() 
-   method, which would consume less memory and make program more efficient. Also, this would give me freedom to choose 
-   any type of suitable collection data structure (LinkedHashSet or HashSet) without breaking the code.
-
-
 ## UML Class Diagram 
 <img height="475" src="UML_Design_Diagram.png" width="800"/>
 
