@@ -50,8 +50,3 @@
 
 ## UML Class Diagram 
 <img height="475" src="UML_Design_Diagram.png" width="800"/>
-
-## References
-
-- The graphical user interface (GUI) of the application was derived from various sources found on
-  [stackoverflow.com](https://stackoverflow.com/). 
